@@ -8,8 +8,8 @@ android {
 
     defaultConfig {
         applicationId "com.mtb.foodorderreview"
-        minSdk 24
-        targetSdk 24
+        minSdk 29
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 

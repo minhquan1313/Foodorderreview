@@ -1,25 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:backgroundTint="@color/black"
+        android:layout_marginHorizontal="20sp"
+        app:cardCornerRadius="24sp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="120sp"
+                android:layout_height="60sp"
+                android:translationX="-52sp"
+                android:scaleType="centerInside"
+                android:importantForAccessibility="no"
+                android:rotation="25"
+                app:srcCompat="@drawable/icon_coupon" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+
+                android:orientation="horizontal"
+                android:padding="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:paddingStart="0sp"
+                    android:paddingEnd="8dp"
+                    android:text="You have 2x free delivery coupon!"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_home_button_order_now"
+                    android:letterSpacing=".05"
+                    android:minHeight="0sp"
+                    android:paddingHorizontal="16sp"
+                    android:paddingVertical="8sp"
+                    android:text="Order Now"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
     <GridView
         android:id="@+id/home_food_type_grid_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:numColumns="4"
-        android:paddingHorizontal="20sp"
-        android:verticalSpacing="20sp"
-        android:horizontalSpacing="20sp" />
+        android:layout_marginHorizontal="20sp"
+        android:verticalSpacing="16sp"
+        android:horizontalSpacing="16sp"
+
+        android:layout_marginTop="20sp"
+
+        android:listSelector="@color/transparent" />
 
 
 </LinearLayout>
