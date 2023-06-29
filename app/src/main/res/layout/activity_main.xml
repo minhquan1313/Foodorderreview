@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <!--  Coupon  -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +73,7 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-
+    <!-- Food types -->
     <GridView
         android:id="@+id/home_food_type_grid_1"
         android:layout_width="match_parent"
