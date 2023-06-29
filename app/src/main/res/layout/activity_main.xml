@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
         android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="20sp"
         app:cardCornerRadius="24sp">
 
         <RelativeLayout
