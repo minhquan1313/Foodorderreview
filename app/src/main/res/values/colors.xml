@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="transparent">#00000000</color>
     <color name="black">#2f3542</color>
     <color name="white">#f1f2f6</color>
 
@@ -7,6 +8,7 @@
     <color name="grey_2">#ced6e0</color>
     <color name="grey_3">#a4b0be</color>
     <color name="grey_4">#747d8c</color>
+    <color name="grey_5">#57606f</color>
 
     <color name="primary">#2ed573</color>
     <color name="primaryDarker">#24A359</color>
