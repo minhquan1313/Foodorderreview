@@ -13,8 +13,8 @@ import java.util.List;
 public class HomeFoodTypeGridAdapter extends BaseAdapter {
     private Context context;
 
-    private List<HomeFoodType> list;
-    private LayoutInflater inflater;
+    private final List<HomeFoodType> list;
+    private final LayoutInflater inflater;
 
     public HomeFoodTypeGridAdapter(Context context, List<HomeFoodType> list) {
         this.list = list;
@@ -24,7 +24,7 @@ public class HomeFoodTypeGridAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return list.size();
     }
 
     @Override
