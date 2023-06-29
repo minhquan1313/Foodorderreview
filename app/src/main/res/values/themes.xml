@@ -1,11 +1,14 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.FoodOrderReview" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/black</item>
+
 
     </style>
+
 
     <style name="Theme.FoodOrderReview" parent="Base.Theme.FoodOrderReview" />
 </resources>

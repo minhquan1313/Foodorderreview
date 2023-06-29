@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_food_type_grid_layout_1"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/shape_food_type_box"
+    android:padding="8sp"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/home_food_type_grid_layout_img_1"
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            app:layout_constraintDimensionRatio="3:2"
+
+            android:importantForAccessibility="no"
+            android:src="@drawable/icon_food_type_rice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/home_food_type_grid_layout_text_1"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="TextView TextView"
+        android:layout_marginTop="8dp"
+        android:textSize="12sp" />
+</LinearLayout>
