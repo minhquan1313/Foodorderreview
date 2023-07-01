@@ -33,6 +33,7 @@
                 android:importantForAccessibility="no"
                 android:src="@drawable/icon_food_type_rice"
                 app:layout_constraintStart_toStartOf="parent"
+                android:scaleType="centerInside"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
