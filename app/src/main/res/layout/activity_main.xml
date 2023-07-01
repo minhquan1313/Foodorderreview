@@ -12,19 +12,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingHorizontal="8sp"
         android:layout_marginHorizontal="20sp"
         android:layout_marginTop="20sp"
+        android:gravity="center_vertical"
         android:background="@drawable/shape_search_box">
+
+
+        <ImageView
+            android:layout_width="40sp"
+            android:layout_height="match_parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:padding="8sp"
+            app:srcCompat="@drawable/icon_search"
+            android:importantForAccessibility="no" />
+
 
         <EditText
             android:id="@+id/editTextText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
+            android:layout_weight="1"
+            android:paddingHorizontal="8sp"
             android:hint="Tìm thức ăn, nước uống..."
+            android:textColorHint="@color/grey_3"
+            android:textColor="@color/black"
             android:backgroundTint="@color/transparent"
+
             android:importantForAutofill="no" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1sp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="8sp"
+            android:background="@color/grey_2" />
+
+
+        <ImageView
+            android:layout_width="40sp"
+            android:layout_height="match_parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:rotation="90"
+
+            android:padding="8sp"
+            app:srcCompat="@drawable/icon_setting"
+            android:importantForAccessibility="no" />
 
     </LinearLayout>
 
