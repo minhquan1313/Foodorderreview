@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePageFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--  Top info part  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="20sp"
+            android:gravity="center_vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:outlineSpotShadowColor="@color/transparent"
+                app:cardCornerRadius="12sp">
+
+                <ImageView
+                    android:id="@+id/home_user_avatar1"
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:scaleType="centerCrop"
+
+                    app:srcCompat="@drawable/user_avatar"
+                    android:importantForAccessibility="no" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginStart="12sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="@color/grey_4"
+                    android:textSize="14sp"
+                    android:text="Giao tới" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:scaleType="centerInside"
+
+                        app:srcCompat="@drawable/icon_location"
+                        android:importantForAccessibility="no" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:textColor="@color/black"
+                        android:textFontWeight="500"
+                        android:textSize="15sp"
+                        android:text="Nhà tui" />
+
+                    <ImageView
+                        android:layout_width="12sp"
+                        android:layout_height="12sp"
+                        android:scaleType="centerInside"
+
+                        android:layout_marginStart="8sp"
+
+                        app:srcCompat="@drawable/icon_down_arrow"
+                        android:importantForAccessibility="no" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_search_box">
+
+                <ImageView
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+
+                    android:padding="10sp"
+                    app:srcCompat="@drawable/icon_cart"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+
+                android:layout_marginStart="8sp"
+                android:background="@drawable/shape_search_box">
+
+                <ImageView
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+
+                    android:padding="8sp"
+                    app:srcCompat="@drawable/icon_bell"
+                    android:importantForAccessibility="no" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--  Search part  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="8sp"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="20sp"
+            android:gravity="center_vertical"
+            android:background="@drawable/shape_search_box">
+
+
+            <ImageView
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+
+                android:padding="8sp"
+                app:srcCompat="@drawable/icon_search"
+                android:importantForAccessibility="no" />
+
+
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:layout_weight="1"
+                android:paddingHorizontal="8sp"
+                android:hint="Tìm thức ăn, nước uống..."
+                android:textColorHint="@color/grey_3"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/transparent"
+
+                android:importantForAutofill="no" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="1sp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="8sp"
+                android:background="@color/grey_2" />
+
+
+            <ImageView
+                android:layout_width="40sp"
+                android:layout_height="match_parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                android:rotation="90"
+
+                android:padding="8sp"
+                app:srcCompat="@drawable/icon_setting"
+                android:importantForAccessibility="no" />
+
+        </LinearLayout>
+
+        <!--  Coupon  -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="20sp"
+            app:cardCornerRadius="16sp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="100sp"
+                    android:layout_height="60sp"
+
+                    android:translationX="-30sp"
+                    android:translationY="12sp"
+                    android:rotation="20"
+
+                    android:scaleType="fitXY"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/icon_coupon" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout33"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:orientation="horizontal"
+                    android:padding="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:paddingStart="0sp"
+                        android:paddingEnd="8dp"
+                        android:text="You have 2x free delivery coupon!"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_home_button_order_now"
+                        android:letterSpacing=".05"
+                        android:minHeight="0sp"
+                        android:paddingHorizontal="16sp"
+                        android:paddingVertical="8sp"
+                        android:text="Order Now"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!--  Food types  -->
+        <GridView
+            android:id="@+id/home_food_type_grid_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:numColumns="4"
+            android:layout_marginHorizontal="20sp"
+            android:verticalSpacing="16sp"
+            android:horizontalSpacing="16sp"
+
+            android:layout_marginTop="20sp"
+            tools:listitem="@layout/home_food_type_grid_layout"
+            android:listSelector="@color/transparent" />
+    </LinearLayout>
+</FrameLayout>
