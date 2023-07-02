@@ -261,5 +261,10 @@
             android:layout_marginTop="20sp"
             tools:listitem="@layout/home_food_type_grid_layout"
             android:listSelector="@color/transparent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="hihi" />
     </LinearLayout>
 </FrameLayout>

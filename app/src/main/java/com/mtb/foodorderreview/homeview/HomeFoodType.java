@@ -1,4 +1,4 @@
-package com.mtb.foodorderreview;
+package com.mtb.foodorderreview.homeview;
 
 public class HomeFoodType {
     private String name;

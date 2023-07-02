@@ -1,4 +1,4 @@
-package com.mtb.foodorderreview;
+package com.mtb.foodorderreview.homeview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,18 +8,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mtb.foodorderreview.R;
+
 import java.util.List;
 
 public class HomeFoodTypeGridAdapter extends BaseAdapter {
-    private Context context;
 
     private final List<HomeFoodType> list;
     private final LayoutInflater inflater;
 
     public HomeFoodTypeGridAdapter(Context context, List<HomeFoodType> list) {
         this.list = list;
-        this.context = context;
-        inflater = LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class HomeFoodTypeGridAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public HomeFoodType getItem(int position) {
         return list.get(position);
     }
 
