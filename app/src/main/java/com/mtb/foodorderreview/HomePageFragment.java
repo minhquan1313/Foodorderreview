@@ -1,11 +1,20 @@
 package com.mtb.foodorderreview;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.mtb.foodorderreview.homeview.HomeFoodType;
+import com.mtb.foodorderreview.homeview.HomeFoodTypeGridAdapter;
+
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,7 +66,38 @@ public class HomePageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_page, container, false);
+
+        HomeFoodTypeUI(view, getContext());
+
+        return view;
+    }
+
+    private void HomeFoodTypeUI(View view, Context context) {
+
+        HomeFoodType[] l = {
+                new HomeFoodType("Rice", R.drawable.icon_food_type_rice),
+                new HomeFoodType("Rice2", R.drawable.icon_food_type_rice),
+                new HomeFoodType("Rice3", R.drawable.icon_food_type_rice),
+                new HomeFoodType("Rice4", R.drawable.icon_food_type_rice),
+                new HomeFoodType("Rice5", R.drawable.icon_food_type_rice)
+        };
+
+
+        HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(context, Arrays.asList(l));
+
+        GridView gridView = view.findViewById(R.id.home_food_type_grid_1);
+        gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long
+                    id) {
+                Object o = gridView.getItemAtPosition(position);
+                HomeFoodType foodType = (HomeFoodType) o;
+                Toast.makeText(context, "Selected :" + " " + foodType.getName(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
