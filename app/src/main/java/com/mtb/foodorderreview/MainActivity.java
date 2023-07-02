@@ -10,8 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import com.mtb.foodorderreview.homeview.HomeFoodType;
 import com.mtb.foodorderreview.homeview.HomeFoodTypeGridAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,31 +19,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationUI();
+        Init();
         HomeFoodTypeUI();
     }
 
     private void HomeFoodTypeUI() {
 
-//        HomeFoodType[] l = {
-//                new HomeFoodType("Rice", R.drawable.icon_food_type_rice),
-//                new HomeFoodType("Rice2", R.drawable.icon_food_type_rice),
-//                new HomeFoodType("Rice3", R.drawable.icon_food_type_rice),
-//                new HomeFoodType("Rice4", R.drawable.icon_food_type_rice),
-//                new HomeFoodType("Rice5", R.drawable.icon_food_type_rice)
-//        };
-        List<HomeFoodType> list = new ArrayList<HomeFoodType>() {
-            {
-                add(new HomeFoodType("Rice", R.drawable.icon_food_type_rice));
-                add(new HomeFoodType("Rice2", R.drawable.icon_food_type_rice));
-                add(new HomeFoodType("Rice3", R.drawable.icon_food_type_rice));
-                add(new HomeFoodType("Rice4", R.drawable.icon_food_type_rice));
-                add(new HomeFoodType("Rice5", R.drawable.icon_food_type_rice));
-            }
+        HomeFoodType[] l = {
+                new HomeFoodType("Rice", R.drawable.icon_food_type_rice),
+                new HomeFoodType("Rice2", R.drawable.icon_food_type_rice),
+                new HomeFoodType("Rice3", R.drawable.icon_food_type_rice),
+                new HomeFoodType("Rice4", R.drawable.icon_food_type_rice),
+                new HomeFoodType("Rice5", R.drawable.icon_food_type_rice)
         };
 
+
         //Toast.makeText(this, "size = " + list.size(), Toast.LENGTH_SHORT).show();
-        HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(MainActivity.this, list);
+        HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(MainActivity.this, Arrays.asList(l));
         Toast.makeText(this, "adapter = " + adapter.getCount(), Toast.LENGTH_SHORT).show();
 
         GridView gridView = findViewById(R.id.home_food_type_grid_1);
@@ -64,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
         // });
     }
 
-    private void BottomNavigationUI() {
+    private void Init() {
         FragmentManager fragmentManager = getSupportFragmentManager();
+        // int mainFrameId = 0;
         int mainFrameId = R.id.main_frame_layout1;
 
         fragmentManager
