@@ -11,6 +11,114 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="20sp"
         android:orientation="vertical">
+
+        <!--  Highest rate part  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="8sp"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:textFontWeight="600"
+                    android:text="Top nhà hàng" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/primary"
+                    android:text="View all" />
+
+            </LinearLayout>
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="200sp"
+                        android:layout_height="wrap_content"
+                        android:outlineSpotShadowColor="@color/transparent"
+                        app:cardCornerRadius="12sp"
+                        android:backgroundTint="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:background="@drawable/shape_search_box">
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="140sp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_sample_food" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1sp"
+                                android:background="@color/grey_2"
+                                tools:ignore="SmallSp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_marginHorizontal="16sp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1.02km"
+                                    android:textColor="@color/grey_4" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="-"
+                                    android:layout_marginHorizontal="4sp"
+                                    android:textColor="@color/grey_4" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="10 phút"
+                                    android:textColor="@color/grey_4" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Quán phở Lệ" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
+
         <!--  Top info part  -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +140,7 @@
                     android:layout_height="40sp"
                     android:scaleType="centerCrop"
 
-                    app:srcCompat="@drawable/user_avatar"
+                    app:srcCompat="@drawable/img_user_avatar"
                     android:importantForAccessibility="no" />
             </androidx.cardview.widget.CardView>
 
@@ -121,6 +229,7 @@
                     android:importantForAccessibility="no" />
             </LinearLayout>
         </LinearLayout>
+
 
         <!--  Search part  -->
         <LinearLayout
@@ -223,11 +332,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:ellipsize="end"
                         android:maxLines="2"
+                        android:ellipsize="end"
                         android:paddingStart="0sp"
                         android:paddingEnd="8dp"
-                        android:text="You have 2x free delivery coupon!"
+                        android:text="Bro có 2 mã giảm giá nè bro ơi :>"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
@@ -239,7 +348,7 @@
                         android:minHeight="0sp"
                         android:paddingHorizontal="16sp"
                         android:paddingVertical="8sp"
-                        android:text="Order Now"
+                        android:text="Đặt Liền"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="16sp"

@@ -12,7 +12,7 @@
     <color name="grey_4">#747d8c</color>
     <color name="grey_5">#57606f</color>
 
-    <color name="primary">#2ed573</color>
-    <color name="primaryDarker">#24A359</color>
-    <color name="primarySofter">#73DD9F</color>
+    <color name="primary">#ff6b81</color>
+    <color name="primaryDarker">#B3394B</color>
+    <color name="primarySofter">#FF8597</color>
 </resources>
