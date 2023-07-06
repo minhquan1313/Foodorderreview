@@ -11,6 +11,52 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="20sp"
         android:orientation="vertical">
+
+        <!--  Highest rate part  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:textFontWeight="600"
+                    android:text="Top nhà hàng" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minHeight="0sp"
+                    android:minWidth="0sp"
+                    android:paddingVertical="0sp"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    android:textColor="@color/primary"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:text="View all" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_food_shop_recycler_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/home_food_shop"
+                tools:itemCount="2"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
         <!--  Top info part  -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +78,7 @@
                     android:layout_height="40sp"
                     android:scaleType="centerCrop"
 
-                    app:srcCompat="@drawable/user_avatar"
+                    app:srcCompat="@drawable/img_user_avatar"
                     android:importantForAccessibility="no" />
             </androidx.cardview.widget.CardView>
 
@@ -117,10 +163,11 @@
                     android:layout_height="40sp"
 
                     android:padding="8sp"
-                    app:srcCompat="@drawable/icon_bell"
+                    app:srcCompat="@drawable/icon_notification"
                     android:importantForAccessibility="no" />
             </LinearLayout>
         </LinearLayout>
+
 
         <!--  Search part  -->
         <LinearLayout
@@ -140,7 +187,8 @@
 
                 android:padding="8sp"
                 app:srcCompat="@drawable/icon_search"
-                android:importantForAccessibility="no" />
+                android:importantForAccessibility="no"
+                app:tint="@color/grey_5" />
 
 
             <EditText
@@ -223,11 +271,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:ellipsize="end"
                         android:maxLines="2"
+                        android:ellipsize="end"
                         android:paddingStart="0sp"
                         android:paddingEnd="8dp"
-                        android:text="You have 2x free delivery coupon!"
+                        android:text="Bro có 2 mã giảm giá nè bro ơi :>"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
@@ -239,7 +287,7 @@
                         android:minHeight="0sp"
                         android:paddingHorizontal="16sp"
                         android:paddingVertical="8sp"
-                        android:text="Order Now"
+                        android:text="Đặt Liền"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="16sp"
@@ -260,7 +308,7 @@
             android:horizontalSpacing="16sp"
 
             android:layout_marginTop="20sp"
-            tools:listitem="@layout/home_food_type_grid_layout"
+            tools:listitem="@layout/home_food_type"
             android:listSelector="@color/transparent" />
     </LinearLayout>
 </FrameLayout>
