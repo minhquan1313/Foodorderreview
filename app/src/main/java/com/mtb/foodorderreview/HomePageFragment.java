@@ -10,7 +10,10 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.mtb.foodorderreview.homeview.HomeFoodShopAdapter;
 import com.mtb.foodorderreview.homeview.HomeFoodType;
 import com.mtb.foodorderreview.homeview.HomeFoodTypeGridAdapter;
 
@@ -67,10 +70,29 @@ public class HomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-
+        //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         HomeFoodTypeUI(view, getContext());
+        HomeFoodShopUI(view, getContext());
+        //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
         return view;
+    }
+
+    private void HomeFoodShopUI(View view, Context context) {
+        String[] l = new String[]{
+                "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f"};
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l));
+
+        RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     private void HomeFoodTypeUI(View view, Context context) {
