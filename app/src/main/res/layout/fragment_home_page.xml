@@ -18,13 +18,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="8sp"
-            android:layout_marginHorizontal="20sp"
             android:layout_marginTop="20sp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginHorizontal="20sp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -35,12 +35,16 @@
                     android:textFontWeight="600"
                     android:text="Top nhà hàng" />
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="16sp"
+                    android:minHeight="0sp"
+                    android:minWidth="0sp"
+                    android:paddingVertical="0sp"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
                     android:textColor="@color/primary"
+                    style="?android:attr/borderlessButtonStyle"
                     android:text="View all" />
 
             </LinearLayout>
@@ -53,14 +57,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="200sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:outlineSpotShadowColor="@color/transparent"
                         app:cardCornerRadius="12sp"
-                        android:backgroundTint="@color/white">
+                        android:layout_marginStart="20sp"
+                        android:backgroundTint="@color/grey_0">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -69,11 +74,12 @@
                             android:background="@drawable/shape_search_box">
 
                             <ImageView
-                                android:id="@+id/imageView2"
-                                android:layout_width="match_parent"
-                                android:layout_height="140sp"
+                                android:layout_width="200sp"
+                                android:layout_height="150sp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/img_sample_food" />
+                                android:layout_marginBottom="0sp"
+                                android:src="@drawable/img_sample_food"
+                                android:importantForAccessibility="no" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -84,33 +90,201 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_marginHorizontal="16sp">
+                                android:orientation="vertical"
+                                android:paddingVertical="12sp">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginHorizontal="16sp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="1.02km"
+                                        android:textColor="@color/grey_4" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" - "
+                                        android:textColor="@color/grey_4" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="10 phút"
+                                        android:textColor="@color/grey_4" />
+                                </LinearLayout>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="1.02km"
-                                    android:textColor="@color/grey_4" />
+                                    android:text="Quán phở Lệ"
+                                    android:textSize="18sp"
+                                    android:textFontWeight="600"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:layout_marginVertical="8sp"
+                                    android:layout_marginHorizontal="16sp" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="-"
-                                    android:layout_marginHorizontal="4sp"
-                                    android:textColor="@color/grey_4" />
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginHorizontal="16sp">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="10 phút"
-                                    android:textColor="@color/grey_4" />
+                                    <ImageView
+                                        android:layout_width="20sp"
+                                        android:layout_height="20sp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_star_fill"
+                                        android:importantForAccessibility="no" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="4.6"
+                                        android:layout_marginStart="4sp"
+                                        android:textFontWeight="600" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" - "
+                                        android:textColor="@color/grey_4" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="100+"
+                                        android:textColor="@color/grey_4" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" đánh giá"
+                                        android:textColor="@color/grey_4" />
+                                </LinearLayout>
                             </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Quán phở Lệ" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:outlineSpotShadowColor="@color/transparent"
+                        app:cardCornerRadius="12sp"
+                        android:layout_marginStart="20sp"
+
+                        android:backgroundTint="@color/grey_0">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:background="@drawable/shape_search_box">
+
+                            <ImageView
+                                android:layout_width="200sp"
+                                android:layout_height="150sp"
+                                android:scaleType="centerCrop"
+                                android:layout_marginBottom="0sp"
+                                android:src="@drawable/img_sample_food"
+                                android:importantForAccessibility="no" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1sp"
+                                android:background="@color/grey_2"
+                                tools:ignore="SmallSp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:paddingVertical="12sp">
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginHorizontal="16sp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="1.02km"
+                                        android:textColor="@color/grey_4" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" - "
+                                        android:textColor="@color/grey_4" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="10 phút"
+                                        android:textColor="@color/grey_4" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Quán phở Lệ"
+                                    android:textSize="18sp"
+                                    android:textFontWeight="600"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:layout_marginVertical="8sp"
+                                    android:layout_marginHorizontal="16sp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginHorizontal="16sp">
+
+                                    <ImageView
+                                        android:layout_width="20sp"
+                                        android:layout_height="20sp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_star_fill"
+                                        android:importantForAccessibility="no" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="4.6"
+                                        android:layout_marginStart="4sp"
+                                        android:textFontWeight="600" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" - "
+                                        android:textColor="@color/grey_4" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="100+"
+                                        android:textColor="@color/grey_4" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" đánh giá"
+                                        android:textColor="@color/grey_4" />
+                                </LinearLayout>
+                            </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -225,7 +399,7 @@
                     android:layout_height="40sp"
 
                     android:padding="8sp"
-                    app:srcCompat="@drawable/icon_bell"
+                    app:srcCompat="@drawable/icon_notification"
                     android:importantForAccessibility="no" />
             </LinearLayout>
         </LinearLayout>
@@ -249,7 +423,8 @@
 
                 android:padding="8sp"
                 app:srcCompat="@drawable/icon_search"
-                android:importantForAccessibility="no" />
+                android:importantForAccessibility="no"
+                app:tint="@color/grey_5" />
 
 
             <EditText

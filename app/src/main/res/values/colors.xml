@@ -6,6 +6,7 @@
     <color name="white">#f1f2f6</color>
     <color name="pureWhite">#ffffff</color>
 
+    <color name="grey_0">#F6F7FB</color>
     <color name="grey_1">#dfe4ea</color>
     <color name="grey_2">#ced6e0</color>
     <color name="grey_3">#a4b0be</color>
@@ -15,4 +16,6 @@
     <color name="primary">#ff6b81</color>
     <color name="primaryDarker">#B3394B</color>
     <color name="primarySofter">#FF8597</color>
+
+    <color name="yellow">#ffa502</color>
 </resources>
