@@ -71,21 +71,22 @@ public class HomePageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        HomeFoodTypeUI(view, getContext());
-        HomeFoodShopUI(view, getContext());
+        HomeFoodTypeUI(getContext(), view);
+        HomeFoodShopUI(getContext(), view);
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
         return view;
     }
 
-    private void HomeFoodShopUI(View view, Context context) {
+    private void HomeFoodShopUI(Context context, View view) {
         String[] l = new String[]{
                 "a",
                 "b",
                 "c",
                 "d",
                 "e",
-                "f"};
+                "f"
+        };
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l));
@@ -95,7 +96,7 @@ public class HomePageFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    private void HomeFoodTypeUI(View view, Context context) {
+    private void HomeFoodTypeUI(Context context, View view) {
 
         HomeFoodType[] l = {
                 new HomeFoodType("Rice", R.drawable.icon_food_type_rice),
