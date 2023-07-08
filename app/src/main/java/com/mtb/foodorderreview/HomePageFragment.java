@@ -73,7 +73,6 @@ public class HomePageFragment extends Fragment {
         HomeFoodTypeUI(getContext(), view);
         HomeFoodShopUI(getContext(), view);
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
         return view;
     }
 

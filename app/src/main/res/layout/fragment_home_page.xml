@@ -1,11 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".HomePageFragment">-->
-
-
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -307,6 +300,7 @@
                     android:minWidth="0sp"
                     android:paddingVertical="0sp"
                     android:textAllCaps="false"
+                    android:textFontWeight="700"
                     android:textSize="14sp"
                     android:textColor="@color/primary"
                     style="?android:attr/borderlessButtonStyle"
@@ -318,10 +312,11 @@
                 android:id="@+id/home_food_shop_recycler_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/home_food_shop"
+                tools:listitem="@layout/home_restaurant_item"
+
                 android:layout_marginTop="16sp"
                 tools:itemCount="1"
                 android:orientation="horizontal" />
         </LinearLayout>
-    </LinearLayout><!--</FrameLayout>-->
+    </LinearLayout>
 </ScrollView>

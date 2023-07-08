@@ -1,9 +1,16 @@
 package com.mtb.foodorderreview;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Init() {
+        BottomNavigationView navigationView = findViewById(R.id.bottom_navigation1);
+        Intent restaurantIntent = new Intent(this, HomePageFragment.class);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         int mainFrameId = R.id.main_frame_layout1;
 
@@ -25,5 +35,33 @@ public class MainActivity extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .addToBackStack("home") // Name can be null
                 .commit();
+
+        navigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.isChecked())
+                    return false;
+
+                if (item.getItemId() == R.id.bottom_navigation_home1 && !item.isChecked()) {
+                    Toast.makeText(MainActivity.this, "Home ne", Toast.LENGTH_SHORT).show();
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(mainFrameId, HomePageFragment.class, null)
+                            .setReorderingAllowed(true)
+                            .addToBackStack("home") // Name can be null
+                            .commit();
+                }
+
+                if (item.getItemId() == R.id.bottom_navigation_order1) {
+                    Toast.makeText(MainActivity.this, "Order ne", Toast.LENGTH_SHORT).show();
+                }
+
+                if (item.getItemId() == R.id.bottom_navigation_profile1) {
+                    Toast.makeText(MainActivity.this, "Profile ne", Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
+            }
+        });
     }
 }

@@ -9,5 +9,4 @@ public class Utils {
         float scaledDensity = getResources.getDisplayMetrics().scaledDensity;
         return (int) (px / scaledDensity);
     }
-
 }
