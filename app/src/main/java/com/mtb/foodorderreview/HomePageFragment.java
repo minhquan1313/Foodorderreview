@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -89,7 +88,7 @@ public class HomePageFragment extends Fragment {
         };
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l));
+        HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l), getResources());
 
         RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
@@ -112,15 +111,11 @@ public class HomePageFragment extends Fragment {
         GridView gridView = view.findViewById(R.id.home_food_type_grid_1);
         gridView.setAdapter(adapter);
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long
-                    id) {
-                Object o = gridView.getItemAtPosition(position);
-                HomeFoodType foodType = (HomeFoodType) o;
-                Toast.makeText(context, "Selected :" + " " + foodType.getName(),
-                        Toast.LENGTH_LONG).show();
-            }
+        gridView.setOnItemClickListener((parent, view1, position, id) -> {
+            Object o = gridView.getItemAtPosition(position);
+            HomeFoodType foodType = (HomeFoodType) o;
+            Toast.makeText(context, "Selected :" + " " + foodType.getName(),
+                    Toast.LENGTH_LONG).show();
         });
     }
 }
