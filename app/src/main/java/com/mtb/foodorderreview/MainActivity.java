@@ -41,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.isChecked())
                     return false;
+                int id = item.getItemId();
 
-                if (item.getItemId() == R.id.bottom_navigation_home1 && !item.isChecked()) {
+                if (id == R.id.bottom_navigation_home1) {
                     Toast.makeText(MainActivity.this, "Home ne", Toast.LENGTH_SHORT).show();
                     fragmentManager
                             .beginTransaction()
@@ -52,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                 }
 
-                if (item.getItemId() == R.id.bottom_navigation_order1) {
+                if (id == R.id.bottom_navigation_order1) {
                     Toast.makeText(MainActivity.this, "Order ne", Toast.LENGTH_SHORT).show();
                 }
 
-                if (item.getItemId() == R.id.bottom_navigation_profile1) {
+                if (id == R.id.bottom_navigation_profile1) {
                     Toast.makeText(MainActivity.this, "Profile ne", Toast.LENGTH_SHORT).show();
                 }
 

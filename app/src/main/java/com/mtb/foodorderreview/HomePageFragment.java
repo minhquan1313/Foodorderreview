@@ -75,8 +75,6 @@ public class HomePageFragment extends Fragment {
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         HomeFoodTypeUI(getContext(), view);
         HomeFoodShopUI(getContext(), view);
-
-
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         return view;
     }
@@ -93,10 +91,12 @@ public class HomePageFragment extends Fragment {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l), getResources());
-        Intent intent = new Intent(context, RestaurantActivity.class);
-        intent.putExtra("id", 1);
-        intent.putExtra("name", "Abc");
-        startActivity(intent);
+
+//        Intent intent = new Intent(context, RestaurantActivity.class);
+//        intent.putExtra("id", 1);
+//        intent.putExtra("name", "Abc");
+//        startActivity(intent);
+
         adapter.setClickListener(new HomeFoodClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick, HomeFood homeFood) {

@@ -45,17 +45,16 @@ public class HomeFoodShopAdapter extends RecyclerView.Adapter<HomeFoodShopHolder
 
         holder.getFood_shop_name1().setText(item.getName());
         holder.getFood_shop_image1().setImageResource(item.getImage());
-        
+
         holder.setClickListener(clickListener);
         holder.setItem(item);
 
+        if (position > 0) {
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.getFood_shop_cardView1().getLayoutParams();
+            lp.leftMargin = 0;
+            holder.getFood_shop_cardView1().setLayoutParams(lp);
 
-        if (position + 1 == list.size()) {
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 0, 0, 0);
-            holder.getFood_shop_cardView1().setLayoutParams(params);
         }
-
     }
 
     @Override
