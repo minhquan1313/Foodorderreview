@@ -94,15 +94,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/shape_search_box">
+                android:background="@drawable/shape_border_box">
 
                 <ImageView
                     android:layout_width="40sp"
                     android:layout_height="40sp"
 
                     android:padding="10sp"
-                    app:srcCompat="@drawable/icon_cart"
-                    android:importantForAccessibility="no" />
+                    app:srcCompat="@drawable/icon_shopping_cart"
+                    android:importantForAccessibility="no"
+                    app:tint="@color/grey_5" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,15 +113,16 @@
                 android:gravity="center_vertical"
 
                 android:layout_marginStart="8sp"
-                android:background="@drawable/shape_search_box">
+                android:background="@drawable/shape_border_box">
 
                 <ImageView
                     android:layout_width="40sp"
                     android:layout_height="40sp"
 
                     android:padding="8sp"
-                    app:srcCompat="@drawable/icon_notification"
-                    android:importantForAccessibility="no" />
+                    app:srcCompat="@drawable/icon_bell"
+                    android:importantForAccessibility="no"
+                    app:tint="@color/grey_5" />
             </LinearLayout>
         </LinearLayout>
 
@@ -134,7 +136,7 @@
             android:layout_marginHorizontal="20sp"
             android:layout_marginTop="20sp"
             android:gravity="center_vertical"
-            android:background="@drawable/shape_search_box">
+            android:background="@drawable/shape_border_box">
 
 
             <ImageView
@@ -142,7 +144,7 @@
                 android:layout_height="40sp"
 
                 android:padding="8sp"
-                app:srcCompat="@drawable/icon_search"
+                app:srcCompat="@drawable/icon_magnifying_glass"
                 android:importantForAccessibility="no"
                 app:tint="@color/grey_5" />
 
@@ -247,7 +249,7 @@
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textFontWeight="600" />
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

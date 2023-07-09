@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/shape_search_box">
+            android:background="@drawable/shape_border_box">
 
             <ImageView
                 android:id="@+id/food_shop_image1"

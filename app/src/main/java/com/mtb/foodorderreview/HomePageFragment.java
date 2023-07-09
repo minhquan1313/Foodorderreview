@@ -75,30 +75,39 @@ public class HomePageFragment extends Fragment {
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         HomeFoodTypeUI(getContext(), view);
         HomeFoodShopUI(getContext(), view);
+
+
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         return view;
     }
 
     private void HomeFoodShopUI(Context context, View view) {
         HomeFood[] l = {
-                new HomeFood("a", R.drawable.img_sample_food),
-                new HomeFood("b", R.drawable.img_sample_food),
-                new HomeFood("c", R.drawable.img_sample_food),
-                new HomeFood("d", R.drawable.img_sample_food),
-                new HomeFood("e", R.drawable.img_sample_food),
-                new HomeFood("f", R.drawable.img_sample_food),
+                new HomeFood(1, "a", R.drawable.img_sample_food),
+                new HomeFood(2, "b", R.drawable.img_sample_food),
+                new HomeFood(3, "c", R.drawable.img_sample_food),
+                new HomeFood(4, "d", R.drawable.img_sample_food),
+                new HomeFood(5, "e", R.drawable.img_sample_food),
+                new HomeFood(6, "f", R.drawable.img_sample_food),
         };
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l), getResources());
-
+        Intent intent = new Intent(context, RestaurantActivity.class);
+        intent.putExtra("id", 1);
+        intent.putExtra("name", "Abc");
+        startActivity(intent);
         adapter.setClickListener(new HomeFoodClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick, HomeFood homeFood) {
-                Intent intent = new Intent(context, RestaurantActivity.class);
-                intent.putExtra("id", homeFood.getId());
-                intent.putExtra("name", homeFood.getName());
-                startActivity(intent);
+                if (!isLongClick) {
+                    Intent intent = new Intent(context, RestaurantActivity.class);
+                    intent.putExtra("id", homeFood.getId());
+                    intent.putExtra("name", homeFood.getName());
+                    startActivity(intent);
+                } else {
+
+                }
             }
         });
 

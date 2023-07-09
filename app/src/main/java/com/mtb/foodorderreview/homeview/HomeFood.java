@@ -1,21 +1,20 @@
 package com.mtb.foodorderreview.homeview;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomeFood {
     private int id;
-    private static int ID = 0;
+    //    private static int ID = 0;
     private String name;
     private int image;
 
+    private static List<HomeFood> list = new ArrayList<>();
+
     public HomeFood(int id, String name, int image) {
-        if (id > ID) ID = id;
+//        if (id > ID) ID = id;
 
         this.id = id;
-        this.name = name;
-        this.image = image;
-    }
-
-    public HomeFood(String name, int image) {
-        this.id = ++ID;
         this.name = name;
         this.image = image;
     }
