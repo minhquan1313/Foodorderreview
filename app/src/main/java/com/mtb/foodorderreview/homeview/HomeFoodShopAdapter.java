@@ -15,15 +15,21 @@ import com.mtb.foodorderreview.R;
 import java.util.List;
 
 public class HomeFoodShopAdapter extends RecyclerView.Adapter<HomeFoodShopHolder> {
-    private List<String> list;
+    private List<HomeFood> list;
     private final LayoutInflater inflater;
     private final Resources resources;
 
+    private HomeFoodClickListener clickListener;
 
-    public HomeFoodShopAdapter(Context context, List<String> list, Resources resources) {
+
+    public HomeFoodShopAdapter(Context context, List<HomeFood> list, Resources resources) {
         this.list = list;
         this.resources = resources;
         this.inflater = LayoutInflater.from(context);
+    }
+
+    public void setClickListener(HomeFoodClickListener clickListener) {
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -35,14 +41,21 @@ public class HomeFoodShopAdapter extends RecyclerView.Adapter<HomeFoodShopHolder
 
     @Override
     public void onBindViewHolder(@NonNull HomeFoodShopHolder holder, int position) {
-        holder.food_shop_name1.setText(list.get(position));
+        HomeFood item = list.get(position);
+
+        holder.getFood_shop_name1().setText(item.getName());
+        holder.getFood_shop_image1().setImageResource(item.getImage());
+        
+        holder.setClickListener(clickListener);
+        holder.setItem(item);
 
 
         if (position + 1 == list.size()) {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 0, 0, 0);
-            holder.food_shop_cardView1.setLayoutParams(params);
+            holder.getFood_shop_cardView1().setLayoutParams(params);
         }
+
     }
 
     @Override

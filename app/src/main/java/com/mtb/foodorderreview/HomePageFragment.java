@@ -1,6 +1,7 @@
 package com.mtb.foodorderreview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mtb.foodorderreview.homeview.HomeFood;
+import com.mtb.foodorderreview.homeview.HomeFoodClickListener;
 import com.mtb.foodorderreview.homeview.HomeFoodShopAdapter;
 import com.mtb.foodorderreview.homeview.HomeFoodType;
 import com.mtb.foodorderreview.homeview.HomeFoodTypeGridAdapter;
@@ -77,21 +80,36 @@ public class HomePageFragment extends Fragment {
     }
 
     private void HomeFoodShopUI(Context context, View view) {
-        String[] l = new String[]{
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f"
+        HomeFood[] l = {
+                new HomeFood("a", R.drawable.img_sample_food),
+                new HomeFood("b", R.drawable.img_sample_food),
+                new HomeFood("c", R.drawable.img_sample_food),
+                new HomeFood("d", R.drawable.img_sample_food),
+                new HomeFood("e", R.drawable.img_sample_food),
+                new HomeFood("f", R.drawable.img_sample_food),
         };
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l), getResources());
 
+        adapter.setClickListener(new HomeFoodClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick, HomeFood homeFood) {
+                Intent intent = new Intent(context, RestaurantActivity.class);
+                intent.putExtra("id", homeFood.getId());
+                intent.putExtra("name", homeFood.getName());
+                startActivity(intent);
+            }
+        });
+
         RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+
+//        Intent intent = new Intent(v.getContext(), RestaurantActivity.class);
+//         startActivity(intent);
+
     }
 
     private void HomeFoodTypeUI(Context context, View view) {
@@ -111,8 +129,7 @@ public class HomePageFragment extends Fragment {
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
-            Object o = gridView.getItemAtPosition(position);
-            HomeFoodType foodType = (HomeFoodType) o;
+            HomeFoodType foodType = (HomeFoodType) gridView.getItemAtPosition(position);
             Toast.makeText(context, "Selected :" + " " + foodType.getName(),
                     Toast.LENGTH_LONG).show();
         });
