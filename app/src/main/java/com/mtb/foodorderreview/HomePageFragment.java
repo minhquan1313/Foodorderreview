@@ -1,11 +1,11 @@
 package com.mtb.foodorderreview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mtb.foodorderreview.homeview.HomeFood;
+import com.mtb.foodorderreview.homeview.HomeFoodClickListener;
 import com.mtb.foodorderreview.homeview.HomeFoodShopAdapter;
 import com.mtb.foodorderreview.homeview.HomeFoodType;
 import com.mtb.foodorderreview.homeview.HomeFoodTypeGridAdapter;
@@ -74,26 +76,49 @@ public class HomePageFragment extends Fragment {
         HomeFoodTypeUI(getContext(), view);
         HomeFoodShopUI(getContext(), view);
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
         return view;
     }
 
     private void HomeFoodShopUI(Context context, View view) {
-        String[] l = new String[]{
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f"
+        HomeFood[] l = {
+                new HomeFood(1, "a", R.drawable.img_sample_food),
+                new HomeFood(2, "b", R.drawable.img_sample_food),
+                new HomeFood(3, "c", R.drawable.img_sample_food),
+                new HomeFood(4, "d", R.drawable.img_sample_food),
+                new HomeFood(5, "e", R.drawable.img_sample_food),
+                new HomeFood(6, "f", R.drawable.img_sample_food),
         };
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l));
+        HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l), getResources());
+
+//        Intent intent = new Intent(context, RestaurantActivity.class);
+//        intent.putExtra("id", 1);
+//        intent.putExtra("name", "Abc");
+//        startActivity(intent);
+
+        adapter.setClickListener(new HomeFoodClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick, HomeFood homeFood) {
+                if (!isLongClick) {
+                    Intent intent = new Intent(context, RestaurantActivity.class);
+                    intent.putExtra("id", homeFood.getId());
+                    intent.putExtra("name", homeFood.getName());
+                    startActivity(intent);
+                } else {
+
+                }
+            }
+        });
 
         RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+
+//        Intent intent = new Intent(v.getContext(), RestaurantActivity.class);
+//         startActivity(intent);
+
     }
 
     private void HomeFoodTypeUI(Context context, View view) {
@@ -112,15 +137,10 @@ public class HomePageFragment extends Fragment {
         GridView gridView = view.findViewById(R.id.home_food_type_grid_1);
         gridView.setAdapter(adapter);
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long
-                    id) {
-                Object o = gridView.getItemAtPosition(position);
-                HomeFoodType foodType = (HomeFoodType) o;
-                Toast.makeText(context, "Selected :" + " " + foodType.getName(),
-                        Toast.LENGTH_LONG).show();
-            }
+        gridView.setOnItemClickListener((parent, view1, position, id) -> {
+            HomeFoodType foodType = (HomeFoodType) gridView.getItemAtPosition(position);
+            Toast.makeText(context, "Selected :" + " " + foodType.getName(),
+                    Toast.LENGTH_LONG).show();
         });
     }
 }
