@@ -80,9 +80,9 @@ public class HomePageFragment extends Fragment {
 
     private void HomeFoodShopUI(Context context, View view) {
         HomeFood[] l = {
-                new HomeFood(1, "a", R.drawable.img_sample_food),
+                new HomeFood(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food),
                 new HomeFood(2, "b", R.drawable.img_sample_food),
-                new HomeFood(3, "c", R.drawable.img_sample_food),
+                new HomeFood(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2),
                 new HomeFood(4, "d", R.drawable.img_sample_food),
                 new HomeFood(5, "e", R.drawable.img_sample_food),
                 new HomeFood(6, "f", R.drawable.img_sample_food),
@@ -117,7 +117,6 @@ public class HomePageFragment extends Fragment {
                 new HomeFoodType("Rice4", R.drawable.icon_food_type_rice),
                 new HomeFoodType("Rice5", R.drawable.icon_food_type_rice)
         };
-
 
         HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(context, Arrays.asList(l));
 

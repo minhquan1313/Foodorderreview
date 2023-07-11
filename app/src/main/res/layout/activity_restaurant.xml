@@ -28,6 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/restaurant_banner1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -159,6 +160,8 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/restaurant_name1"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="28sp"
@@ -167,6 +170,8 @@
                     android:text="Cháo bà bảy - Lạc Long Quân" />
 
                 <TextView
+                    android:id="@+id/restaurant_detail1"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -210,9 +215,11 @@
 
                 android:importantForAccessibility="no"
                 app:srcCompat="@drawable/icon_location"
-                app:tint="@color/primary" />
+                app:tint="@color/primaryDarker" />
 
             <TextView
+                android:id="@+id/restaurant_location1"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
@@ -304,7 +311,7 @@
                             android:padding="3sp"
                             android:importantForAccessibility="no"
                             app:srcCompat="@drawable/icon_list_2"
-                            app:tint="@color/primary" />
+                            app:tint="@color/primaryDarker" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -350,7 +357,7 @@
 
                             android:importantForAccessibility="no"
                             app:srcCompat="@drawable/icon_clock"
-                            app:tint="@color/primary" />
+                            app:tint="@color/primaryDarker" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -386,5 +393,14 @@
             android:orientation="horizontal" />
 
 
+        <!-- Foods -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="20sp"
+            android:orientation="horizontal">
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

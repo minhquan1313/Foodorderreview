@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +31,15 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantCouponHolder holder, int position) {
+        String item = list.get(position);
 
+        holder.getRestaurant_coupon_detail1().setText(item);
+
+        if (position > 0) {
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.getRestaurant_coupon_layout1().getLayoutParams();
+            lp.leftMargin = 0;
+            holder.getRestaurant_coupon_layout1().setLayoutParams(lp);
+        }
     }
 
     @Override

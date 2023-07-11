@@ -1,72 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@drawable/shape_restaurant_coupon_background"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/restaurant_coupon_layout1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="12sp"
-    android:gravity="center"
-    android:layout_marginHorizontal="20sp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/restaurant_coupon_detail1"
-        android:layout_width="wrap_content"
-        android:maxWidth="160sp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textFontWeight="500"
-        android:paddingVertical="8sp"
-
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:textColor="@color/primary"
-        android:text="Cháo thêm miễn phí" />
-
-    <Button
-        android:id="@+id/restaurant_coupon_claim_btn1"
+    <RelativeLayout
+        android:id="@+id/restaurant_coupon_layout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_home_button_order_now"
-        android:letterSpacing=".05"
-        android:minHeight="0sp"
-        android:paddingHorizontal="16sp"
-        android:paddingVertical="8sp"
-        android:layout_marginVertical="8sp"
-        android:outlineSpotShadowColor="@color/transparent"
+        android:paddingHorizontal="12sp"
+        android:gravity="center"
+        android:background="@drawable/shape_restaurant_coupon_background"
+        android:layout_marginHorizontal="20sp">
 
-        android:text="Nhận Ngay"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textFontWeight="500"
-        android:textSize="16sp"
-        android:maxLines="1"
-        android:layout_marginStart="40sp"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/restaurant_coupon_detail1" />
+        <TextView
+            android:id="@+id/restaurant_coupon_detail1"
+            android:layout_width="wrap_content"
+            android:maxWidth="160sp"
+            android:minHeight="38sp"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textFontWeight="500"
+            android:layout_marginVertical="8sp"
 
-    <!-- Fake rounded on position -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="20sp"
-        android:layout_height="20sp"
-        app:cardCornerRadius="999sp"
-        android:backgroundTint="@color/pureWhite"
-        android:outlineSpotShadowColor="@color/transparent"
-        android:layout_toEndOf="@+id/restaurant_coupon_detail1"
-        android:layout_marginStart="10sp"
-        android:translationY="-10sp"
-        android:layout_alignParentTop="true" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/primary"
+            android:text="Cháo thêm miễn phí" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="20sp"
-        android:layout_height="20sp"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/restaurant_coupon_detail1"
-        android:layout_alignBottom="@+id/restaurant_coupon_detail1"
+        <Button
+            android:id="@+id/restaurant_coupon_claim_btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_home_button_order_now"
+            android:letterSpacing=".05"
+            android:minHeight="0sp"
+            android:paddingHorizontal="16sp"
+            android:paddingVertical="8sp"
+            android:layout_marginVertical="8sp"
+            android:outlineSpotShadowColor="@color/transparent"
 
-        android:backgroundTint="@color/pureWhite"
-        android:outlineSpotShadowColor="@color/transparent"
-        android:translationY="28sp"
+            android:text="Nhận Ngay"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textFontWeight="500"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:layout_marginStart="40sp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/restaurant_coupon_detail1" />
 
-        app:cardCornerRadius="999sp" />
-</RelativeLayout>
+        <!-- Fake rounded on position -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            app:cardCornerRadius="999sp"
+            android:backgroundTint="@color/pureWhite"
+            android:outlineSpotShadowColor="@color/transparent"
+            android:layout_toEndOf="@+id/restaurant_coupon_detail1"
+            android:layout_marginStart="10sp"
+            android:translationY="-10sp"
+            android:layout_alignParentTop="true" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/restaurant_coupon_detail1"
+            android:layout_alignBottom="@+id/restaurant_coupon_detail1"
+
+            android:backgroundTint="@color/pureWhite"
+            android:outlineSpotShadowColor="@color/transparent"
+            android:translationY="18sp"
+
+            app:cardCornerRadius="999sp" />
+    </RelativeLayout>
+</LinearLayout>
