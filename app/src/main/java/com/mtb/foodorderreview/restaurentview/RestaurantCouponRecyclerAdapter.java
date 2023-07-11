@@ -14,10 +14,10 @@ import com.mtb.foodorderreview.R;
 import java.util.List;
 
 public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<RestaurantCouponHolder> {
-    private List<String> list;
+    private List<RestaurantCoupon> list;
     private final LayoutInflater inflater;
 
-    public RestaurantCouponRecyclerAdapter(Context context, List<String> list) {
+    public RestaurantCouponRecyclerAdapter(Context context, List<RestaurantCoupon> list) {
         this.list = list;
         this.inflater = LayoutInflater.from(context);
     }
@@ -31,9 +31,9 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantCouponHolder holder, int position) {
-        String item = list.get(position);
+        RestaurantCoupon item = list.get(position);
 
-        holder.getRestaurant_coupon_detail1().setText(item);
+        holder.getRestaurant_coupon_detail1().setText(item.getTitle());
 
         if (position > 0) {
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.getRestaurant_coupon_layout1().getLayoutParams();
