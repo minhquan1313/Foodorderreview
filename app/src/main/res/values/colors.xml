@@ -2,7 +2,7 @@
 <resources>
     <color name="transparent">#00000000</color>
     <color name="black">#2f3542</color>
-    <color name="black_rgba">#4D2F3542</color>
+    <color name="black_rgba">#342F3542</color>
     <color name="pureBlack">#000000</color>
     <color name="white">#f1f2f6</color>
     <color name="pureWhite">#ffffff</color>
@@ -15,6 +15,7 @@
     <color name="grey_5">#57606f</color>
 
     <color name="primary">#ff6b81</color>
+    <color name="primary_rgba">#32FF6B81</color>
     <color name="primaryDarker">#B3394B</color>
     <color name="primarySofter">#FF8597</color>
 

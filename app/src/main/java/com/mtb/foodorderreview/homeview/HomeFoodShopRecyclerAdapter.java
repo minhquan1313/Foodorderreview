@@ -1,7 +1,6 @@
 package com.mtb.foodorderreview.homeview;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.R;
+import com.mtb.foodorderreview.utils.ItemClickListener;
 
 import java.util.List;
 
-public class HomeFoodShopAdapter extends RecyclerView.Adapter<HomeFoodShopHolder> {
+public class HomeFoodShopRecyclerAdapter extends RecyclerView.Adapter<HomeFoodShopHolder> {
     private List<HomeFood> list;
     private final LayoutInflater inflater;
-    private final Resources resources;
+    private ItemClickListener<HomeFood> clickListener;
 
-    private HomeFoodClickListener clickListener;
-
-
-    public HomeFoodShopAdapter(Context context, List<HomeFood> list, Resources resources) {
+    public HomeFoodShopRecyclerAdapter(Context context, List<HomeFood> list) {
         this.list = list;
-        this.resources = resources;
         this.inflater = LayoutInflater.from(context);
     }
 
-    public void setClickListener(HomeFoodClickListener clickListener) {
+    public void setClickListener(ItemClickListener<HomeFood> clickListener) {
         this.clickListener = clickListener;
     }
 
