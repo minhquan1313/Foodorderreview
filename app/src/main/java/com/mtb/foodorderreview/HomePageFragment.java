@@ -13,12 +13,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mtb.foodorderreview.api.LoaiFoodService;
 import com.mtb.foodorderreview.homeview.HomeFood;
 import com.mtb.foodorderreview.homeview.HomeFoodShopRecyclerAdapter;
 import com.mtb.foodorderreview.homeview.HomeFoodType;
 import com.mtb.foodorderreview.homeview.HomeFoodTypeGridAdapter;
+import com.mtb.foodorderreview.model.LoaiFood;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,7 +95,6 @@ public class HomePageFragment extends Fragment {
                 new HomeFood(5, "e", R.drawable.img_sample_food),
                 new HomeFood(6, "f", R.drawable.img_sample_food),
         };
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         HomeFoodShopRecyclerAdapter adapter = new HomeFoodShopRecyclerAdapter(context, Arrays.asList(l));
 
@@ -110,15 +117,27 @@ public class HomePageFragment extends Fragment {
 
     private void HomeFoodTypeUI(Context context, View view) {
 
-        HomeFoodType[] l = {
-                new HomeFoodType("Rice", R.drawable.icon_food_type_rice),
-                new HomeFoodType("Rice2", R.drawable.icon_food_type_rice),
-                new HomeFoodType("Rice3", R.drawable.icon_food_type_rice),
-                new HomeFoodType("Rice4", R.drawable.icon_food_type_rice),
-                new HomeFoodType("Rice5", R.drawable.icon_food_type_rice)
-        };
+        List<HomeFoodType> l = new ArrayList<HomeFoodType>();
+        HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(context, l);
+        LoaiFoodService.apiService.getAllFood().enqueue(new Callback<List<LoaiFood>>() {
+            @Override
+            public void onResponse(Call<List<LoaiFood>> call, Response<List<LoaiFood>> response) {
+                List<LoaiFood> list = response.body();
+                for (LoaiFood loaiFood : list)
+                {
+                    l.add(new HomeFoodType( loaiFood.getTen().toString(), R.drawable.img_sample_food));
+                }
 
-        HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(context, Arrays.asList(l));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<LoaiFood>> call, Throwable t) {
+
+            }
+        });
+
+
 
         GridView gridView = view.findViewById(R.id.home_food_type_grid_1);
         gridView.setAdapter(adapter);
