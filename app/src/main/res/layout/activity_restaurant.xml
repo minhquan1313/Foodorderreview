@@ -387,7 +387,7 @@
             android:id="@+id/restaurant_coupon_recycler_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/restaurant_coupon"
+            tools:listitem="@layout/restaurant_coupon_adapter"
             android:layout_marginTop="20sp"
             tools:itemCount="1"
             android:orientation="horizontal" />

@@ -31,7 +31,7 @@ public class HomeFoodShopRecyclerAdapter extends RecyclerView.Adapter<HomeFoodSh
     @NonNull
     @Override
     public HomeFoodShopHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.home_restaurant_item, null);
+        View view = inflater.inflate(R.layout.home_restaurant_adapter, null);
         return new HomeFoodShopHolder(view);
     }
 

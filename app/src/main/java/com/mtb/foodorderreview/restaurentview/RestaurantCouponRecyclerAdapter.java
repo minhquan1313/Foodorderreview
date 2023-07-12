@@ -25,7 +25,7 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
     @NonNull
     @Override
     public RestaurantCouponHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.restaurant_coupon, null);
+        View view = inflater.inflate(R.layout.restaurant_coupon_adapter, null);
         return new RestaurantCouponHolder(view);
     }
 
