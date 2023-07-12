@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true"
     android:scrollbars="none"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/pureWhite"
+
         android:paddingVertical="20sp"
         android:orientation="vertical">
 
@@ -156,12 +157,12 @@
                 android:ems="10"
                 android:inputType="text"
                 android:layout_weight="1"
-                android:paddingHorizontal="8sp"
                 android:hint="Tìm thức ăn, nước uống..."
+                android:paddingHorizontal="8sp"
                 android:textColorHint="@color/grey_3"
                 android:textColor="@color/black"
                 android:backgroundTint="@color/transparent"
-
+                android:textSize="16sp"
                 android:importantForAutofill="no" />
 
             <View
@@ -206,31 +207,30 @@
                     android:layout_height="60sp"
 
                     android:translationX="-30sp"
-                    android:translationY="12sp"
                     android:rotation="20"
-
                     android:scaleType="fitXY"
-                    android:importantForAccessibility="no"
-                    app:srcCompat="@drawable/icon_coupon" />
+                    app:srcCompat="@drawable/icon_coupon"
+
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:importantForAccessibility="no" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout33"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_centerInParent="true"
 
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:padding="20sp">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:maxLines="2"
                         android:ellipsize="end"
+                        android:maxLines="2"
                         android:paddingStart="0sp"
                         android:paddingEnd="8dp"
                         android:text="Bro có 2 mã giảm giá nè bro ơi :>"
@@ -248,8 +248,10 @@
                         android:text="Đặt Liền"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textFontWeight="600" />
+                        android:outlineSpotShadowColor="@color/transparent"
+
+                        android:textFontWeight="600"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -269,7 +271,7 @@
 
             android:layout_marginTop="20sp"
 
-            tools:listitem="@layout/home_food_type"
+            tools:listitem="@layout/home_food_type_adapter"
             android:listSelector="@color/transparent"
             tools:ignore="NestedScrolling" />
 
@@ -315,7 +317,7 @@
                 android:id="@+id/home_food_shop_recycler_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/home_restaurant_item"
+                tools:listitem="@layout/home_restaurant_adapter"
                 android:layout_marginTop="16sp"
                 tools:itemCount="1"
                 android:orientation="horizontal" />

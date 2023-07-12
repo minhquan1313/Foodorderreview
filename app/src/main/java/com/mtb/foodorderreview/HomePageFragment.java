@@ -14,8 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.homeview.HomeFood;
-import com.mtb.foodorderreview.homeview.HomeFoodClickListener;
-import com.mtb.foodorderreview.homeview.HomeFoodShopAdapter;
+import com.mtb.foodorderreview.homeview.HomeFoodShopRecyclerAdapter;
 import com.mtb.foodorderreview.homeview.HomeFoodType;
 import com.mtb.foodorderreview.homeview.HomeFoodTypeGridAdapter;
 
@@ -81,44 +80,32 @@ public class HomePageFragment extends Fragment {
 
     private void HomeFoodShopUI(Context context, View view) {
         HomeFood[] l = {
-                new HomeFood(1, "a", R.drawable.img_sample_food),
+                new HomeFood(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food),
                 new HomeFood(2, "b", R.drawable.img_sample_food),
-                new HomeFood(3, "c", R.drawable.img_sample_food),
+                new HomeFood(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2),
                 new HomeFood(4, "d", R.drawable.img_sample_food),
                 new HomeFood(5, "e", R.drawable.img_sample_food),
                 new HomeFood(6, "f", R.drawable.img_sample_food),
         };
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        HomeFoodShopAdapter adapter = new HomeFoodShopAdapter(context, Arrays.asList(l), getResources());
+        HomeFoodShopRecyclerAdapter adapter = new HomeFoodShopRecyclerAdapter(context, Arrays.asList(l));
 
-//        Intent intent = new Intent(context, RestaurantActivity.class);
-//        intent.putExtra("id", 1);
-//        intent.putExtra("name", "Abc");
-//        startActivity(intent);
-
-        adapter.setClickListener(new HomeFoodClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick, HomeFood homeFood) {
-                if (!isLongClick) {
-                    Intent intent = new Intent(context, RestaurantActivity.class);
-                    intent.putExtra("id", homeFood.getId());
-                    intent.putExtra("name", homeFood.getName());
-                    startActivity(intent);
-                } else {
-
-                }
+        adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
+            if (!isLongClick) {
+                Intent intent = new Intent(context, RestaurantActivity.class);
+                intent.putExtra("id", homeFood.getId());
+                intent.putExtra("name", homeFood.getName());
+                intent.putExtra("image", homeFood.getImage());
+                startActivity(intent);
+            } else {
+                // Do something if it's long click
             }
         });
 
         RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
-
-//        Intent intent = new Intent(v.getContext(), RestaurantActivity.class);
-//         startActivity(intent);
-
     }
 
     private void HomeFoodTypeUI(Context context, View view) {
@@ -131,7 +118,6 @@ public class HomePageFragment extends Fragment {
                 new HomeFoodType("Rice5", R.drawable.icon_food_type_rice)
         };
 
-
         HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(context, Arrays.asList(l));
 
         GridView gridView = view.findViewById(R.id.home_food_type_grid_1);
@@ -139,8 +125,7 @@ public class HomePageFragment extends Fragment {
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             HomeFoodType foodType = (HomeFoodType) gridView.getItemAtPosition(position);
-            Toast.makeText(context, "Selected :" + " " + foodType.getName(),
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Selected :" + " " + foodType.getName(), Toast.LENGTH_LONG).show();
         });
     }
 }
