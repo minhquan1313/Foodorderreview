@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="32sp"
-        android:textFontWeight="800"
         android:letterSpacing="0.1"
-        android:paddingVertical="20sp"
+        android:paddingTop="32sp"
+        android:fontFamily="@font/svn_poppins_bold"
+        android:paddingBottom="20sp"
         android:text="Đăng ký" />
 
     <!--    <LinearLayout-->
@@ -43,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textFontWeight="600"
+                    android:fontFamily="@font/svn_poppins_semibold"
                     android:text="Số điện thoại" />
 
                 <EditText
@@ -61,13 +62,7 @@
                     tools:ignore="LabelFor"
                     android:importantForAutofill="no" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textFontWeight="600"
-                    android:textColor="@color/red"
-                    android:layout_marginTop="4sp"
-                    android:text="Số điện thoại không hợp lệ" />
+
             </LinearLayout>
 
 
@@ -81,7 +76,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textFontWeight="600"
+                    android:fontFamily="@font/svn_poppins_semibold"
                     android:text="Tên đăng nhập" />
 
                 <EditText
@@ -99,14 +94,6 @@
                     android:importantForAutofill="no"
                     tools:ignore="LabelFor" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textFontWeight="600"
-                    android:textColor="@color/red"
-                    android:layout_marginTop="4sp"
-
-                    android:text="Số điện thoại không hợp lệ" />
             </LinearLayout>
 
             <LinearLayout
@@ -119,7 +106,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textFontWeight="600"
+                    android:fontFamily="@font/svn_poppins_semibold"
+
                     android:text="Mật khẩu" />
 
                 <EditText
@@ -137,14 +125,6 @@
                     android:importantForAutofill="no"
                     tools:ignore="LabelFor" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textFontWeight="600"
-                    android:textColor="@color/red"
-                    android:layout_marginTop="4sp"
-
-                    android:text="Số điện thoại không hợp lệ" />
             </LinearLayout>
 
             <LinearLayout
@@ -157,7 +137,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textFontWeight="600"
+                    android:fontFamily="@font/svn_poppins_semibold"
+
                     android:text="Họ tên" />
 
                 <EditText
@@ -175,14 +156,6 @@
                     android:importantForAutofill="no"
                     tools:ignore="LabelFor" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textFontWeight="600"
-                    android:textColor="@color/red"
-                    android:layout_marginTop="4sp"
-
-                    android:text="Số điện thoại không hợp lệ" />
             </LinearLayout>
 
             <LinearLayout
@@ -195,7 +168,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textFontWeight="600"
+                    android:fontFamily="@font/svn_poppins_semibold"
+
                     android:text="Email" />
 
                 <EditText
@@ -213,14 +187,6 @@
                     android:importantForAutofill="no"
                     tools:ignore="LabelFor" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textFontWeight="600"
-                    android:textColor="@color/red"
-                    android:layout_marginTop="4sp"
-
-                    android:text="Số điện thoại không hợp lệ" />
             </LinearLayout>
 
             <LinearLayout
@@ -233,7 +199,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textFontWeight="600"
+                    android:fontFamily="@font/svn_poppins_semibold"
+
                     android:text="Địa chỉ" />
 
                 <EditText
@@ -251,16 +218,16 @@
                     android:importantForAutofill="no"
                     tools:ignore="LabelFor" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textFontWeight="600"
-                    android:textColor="@color/red"
-                    android:layout_marginTop="4sp"
-
-                    android:text="Số điện thoại không hợp lệ" />
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/red"
+                android:layout_marginTop="4sp"
+                android:gravity="center"
+                android:text="Số điện thoại không hợp lệ" />
         </LinearLayout>
     </ScrollView>
     <!--    </LinearLayout>-->
@@ -269,7 +236,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingVertical="20sp">
+        android:paddingTop="20sp"
+        android:paddingBottom="32sp">
 
         <Button
             android:layout_width="wrap_content"
@@ -284,7 +252,8 @@
             android:text="Đăng ký"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textFontWeight="500"
+            android:fontFamily="@font/svn_poppins_semibold"
+
             android:textSize="16sp"
             android:maxLines="1" />
 
@@ -301,8 +270,7 @@
             android:layout_marginStart="12sp"
             android:text="Đăng nhập"
             android:textAllCaps="false"
-            android:textColor="@color/grey_4"
-            android:textFontWeight="500"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:maxLines="1" />
     </LinearLayout>
