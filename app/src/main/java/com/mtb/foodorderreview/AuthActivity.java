@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.mtb.foodorderreview.global.User;
+
 public class AuthActivity extends AppCompatActivity {
     enum State {
         SIGN_IN, SIGN_UP
@@ -20,7 +22,6 @@ public class AuthActivity extends AppCompatActivity {
     Button auth_sign_in_btn1, auth_sign_up_btn1;
     State state = State.SIGN_UP;
     TextView auth_title1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +36,13 @@ public class AuthActivity extends AppCompatActivity {
         auth_sign_up_btn1 = findViewById(R.id.auth_sign_up_btn1);
         auth_title1 = findViewById(R.id.auth_title1);
 
-
         changeStateUI(state);
 
         auth_sign_in_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (state == State.SIGN_IN) signIn();
+                if (state == State.SIGN_IN)
+                    signIn();
                 else {
                     state = state == State.SIGN_IN ? State.SIGN_UP : State.SIGN_IN;
                     changeStateUI(state);
@@ -51,7 +52,8 @@ public class AuthActivity extends AppCompatActivity {
         auth_sign_up_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (state == State.SIGN_UP) signUp();
+                if (state == State.SIGN_UP)
+                    signUp();
                 else {
                     state = state == State.SIGN_IN ? State.SIGN_UP : State.SIGN_IN;
                     changeStateUI(state);
@@ -64,9 +66,7 @@ public class AuthActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         int frameId = R.id.auth_frame_layout1;
 
-
         auth_title1.setText(state == State.SIGN_IN ? "Đăng nhập" : "Đăng ký");
-
 
         fragmentManager
                 .beginTransaction()
@@ -90,7 +90,6 @@ public class AuthActivity extends AppCompatActivity {
 
             auth_sign_up_btn1.setBackgroundResource(R.drawable.shape_home_button_order_now);
             auth_sign_up_btn1.setTypeface(typeface);
-
         }
     }
 
@@ -104,6 +103,16 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void onSuccessHandle() {
+        User.getInstance().setData(
+                1,
+                "Anh Ba",
+                "0123456789",
+                R.drawable.img_user_avatar,
+                "abcxyz123@gmail.com",
+                "Thành Phố HCM",
+                "lakjwdliawjdljia",
+                false);
+
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

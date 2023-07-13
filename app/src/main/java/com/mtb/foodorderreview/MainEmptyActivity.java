@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mtb.foodorderreview.global.User;
+
 public class MainEmptyActivity extends AppCompatActivity {
 
     @Override
@@ -14,8 +16,9 @@ public class MainEmptyActivity extends AppCompatActivity {
 
         Intent activityIntent;
 
-        // go straight to main if a token is stored
-        if (false) {
+//        initFakeUser();
+
+        if (User.getInstance().getToken() != null) {
             activityIntent = new Intent(this, MainActivity.class);
         } else {
             activityIntent = new Intent(this, AuthActivity.class);
@@ -23,5 +26,17 @@ public class MainEmptyActivity extends AppCompatActivity {
 
         startActivity(activityIntent);
         finish();
+    }
+
+    private void initFakeUser() {
+        User.getInstance().setData(
+                1,
+                "Anh Ba",
+                "0123456789",
+                R.drawable.img_user_avatar,
+                "abcxyz123@gmail.com",
+                "Thành Phố HCM",
+                "lakjwdliawjdljia",
+                false);
     }
 }

@@ -76,6 +76,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/fragment_sign_in_response_text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
