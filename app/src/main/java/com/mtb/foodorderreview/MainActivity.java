@@ -19,8 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        Auth(this);
+
         Init();
     }
+
+//    private void Auth(Context context) {
+//        Intent intent = new Intent(context, AuthActivity.class);
+//        startActivity(intent);
+//    }
 
     private void Init() {
         BottomNavigationView navigationView = findViewById(R.id.bottom_navigation1);
