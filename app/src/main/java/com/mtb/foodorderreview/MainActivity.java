@@ -1,6 +1,5 @@
 package com.mtb.foodorderreview;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -20,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Auth(this);
+//        Auth(this);
 
         Init();
     }
 
-    private void Auth(Context context) {
-        Intent intent = new Intent(context, AuthActivity.class);
-        startActivity(intent);
-    }
+//    private void Auth(Context context) {
+//        Intent intent = new Intent(context, AuthActivity.class);
+//        startActivity(intent);
+//    }
 
     private void Init() {
         BottomNavigationView navigationView = findViewById(R.id.bottom_navigation1);
