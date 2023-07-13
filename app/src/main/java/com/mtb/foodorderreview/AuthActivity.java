@@ -18,7 +18,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     Button auth_sign_in_btn1, auth_sign_up_btn1;
-    State state = State.SIGN_IN;
+    State state = State.SIGN_UP;
     TextView auth_title1;
 
 
