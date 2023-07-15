@@ -26,6 +26,27 @@ public class RestaurantActivity extends AppCompatActivity {
         Coupons();
     }
 
+
+    private void BundlePart() {
+        Bundle bundle = getIntent().getExtras();
+
+        int id = bundle.getInt("id");
+        String name = bundle.getString("name");
+        int image = bundle.getInt("image");
+
+        TextView restaurant_name1 = findViewById(R.id.restaurant_name1);
+        ImageView restaurant_banner1 = findViewById(R.id.restaurant_banner1);
+        restaurant_name1.setText(name);
+        restaurant_banner1.setImageResource(image);
+
+    }
+
+    private void Miscellaneous() {
+        LinearLayout linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
+
+        linear_btn_restaurant_back1.setOnClickListener(v -> finish());
+    }
+
     private void Coupons() {
         RestaurantCoupon[] l = {
                 new RestaurantCoupon("Giảm 40% luôn, lụm liền đi", ""),
@@ -55,25 +76,5 @@ public class RestaurantActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.restaurant_coupon_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-    }
-
-    private void Miscellaneous() {
-        LinearLayout linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
-
-        linear_btn_restaurant_back1.setOnClickListener(v -> finish());
-    }
-
-    private void BundlePart() {
-        Bundle bundle = getIntent().getExtras();
-
-        int id = bundle.getInt("id");
-        String name = bundle.getString("name");
-        int image = bundle.getInt("image");
-
-        TextView restaurant_name1 = findViewById(R.id.restaurant_name1);
-        ImageView restaurant_banner1 = findViewById(R.id.restaurant_banner1);
-        restaurant_name1.setText(name);
-        restaurant_banner1.setImageResource(image);
-
     }
 }

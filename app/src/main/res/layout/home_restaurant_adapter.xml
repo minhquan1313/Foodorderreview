@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/food_shop_image1"
-                android:layout_width="180sp"
+                android:layout_width="220sp"
                 android:layout_height="150sp"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="0sp"

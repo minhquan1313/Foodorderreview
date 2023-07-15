@@ -31,6 +31,7 @@ public class MainEmptyActivity extends AppCompatActivity {
     private void initFakeUser() {
         User.getInstance().setData(
                 1,
+                "Anh_Ba",
                 "Anh Ba",
                 "0123456789",
                 R.drawable.img_user_avatar,

@@ -2,6 +2,7 @@ package com.mtb.foodorderreview.global;
 
 public class User {
     private int id;
+    private String userName;
     private String name;
     private String tel;
     private int avatar;
@@ -17,8 +18,9 @@ public class User {
     }
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-    public void setData(int id, String name, String tel, int avatar, String email, String address, String token, boolean isAdmin) {
+    public void setData(int id, String userName, String name, String tel, int avatar, String email, String address, String token, boolean isAdmin) {
         this.id = id;
+        this.userName = userName;
         this.name = name;
         this.tel = tel;
         this.avatar = avatar;
