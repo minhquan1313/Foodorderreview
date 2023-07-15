@@ -19,10 +19,11 @@
             android:orientation="vertical"
             android:background="@drawable/shape_border_box">
 
+            <!-- Ratio 6/5 -->
             <ImageView
                 android:id="@+id/food_shop_image1"
                 android:layout_width="220sp"
-                android:layout_height="150sp"
+                android:layout_height="180sp"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="0sp"
                 android:src="@drawable/img_sample_food"
