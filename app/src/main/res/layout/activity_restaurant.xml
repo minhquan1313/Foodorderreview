@@ -1,406 +1,436 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    android:scrollbars="none"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".RestaurantActivity">
 
-    <LinearLayout
+    <!-- Main layout -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/pureWhite"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-        <!-- Banner -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/pureWhite"
+            android:orientation="vertical">
 
-            <RelativeLayout
+            <!-- Banner -->
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0sp"
-                app:layout_constraintDimensionRatio="2:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/restaurant_banner1"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:importantForAccessibility="no"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img_sample_food" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="@color/black_rgba" />
-
-                <!-- Custom Button -->
-                <LinearLayout
-                    android:id="@+id/linear_btn_restaurant_back1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="12sp"
-
-                    android:layout_marginTop="12sp"
-                    android:background="@drawable/shape_border_box"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
+                    android:layout_height="0sp"
+                    app:layout_constraintDimensionRatio="2:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:layout_width="40sp"
-                        android:layout_height="40sp"
-
+                        android:id="@+id/restaurant_banner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:importantForAccessibility="no"
-                        android:padding="10sp"
-                        android:rotation="90"
-                        app:srcCompat="@drawable/icon_down_arrow"
-                        app:tint="@color/grey_5" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_sample_food" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@color/black_rgba" />
+
+                    <!-- Custom Button -->
+                    <LinearLayout
+                        android:id="@+id/linear_btn_restaurant_back1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="12sp"
+                        android:layout_marginTop="12sp"
+                        android:background="@drawable/shape_border_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="40sp"
+                            android:layout_height="40sp"
+                            android:importantForAccessibility="no"
+                            android:padding="10sp"
+                            android:rotation="90"
+                            app:srcCompat="@drawable/icon_down_arrow"
+                            app:tint="@color/grey_5" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_btn_restaurant_search1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="12sp"
+                        android:layout_marginEnd="12sp"
+                        android:layout_toStartOf="@+id/linear_btn_restaurant_share1"
+                        android:background="@drawable/shape_border_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40sp"
+                            android:layout_height="40sp"
+                            android:importantForAccessibility="no"
+                            android:padding="10sp"
+                            app:srcCompat="@drawable/icon_magnifying_glass"
+                            app:tint="@color/grey_5" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_btn_restaurant_share1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="12sp"
+                        android:layout_marginEnd="12sp"
+                        android:layout_toStartOf="@+id/linear_btn_restaurant_info1"
+                        android:background="@drawable/shape_border_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40sp"
+                            android:layout_height="40sp"
+                            android:importantForAccessibility="no"
+                            android:padding="10sp"
+                            app:srcCompat="@drawable/icon_share"
+                            app:tint="@color/grey_5" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_btn_restaurant_info1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="12sp"
+                        android:layout_marginEnd="12sp"
+                        android:background="@drawable/shape_border_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40sp"
+                            android:layout_height="40sp"
+                            android:importantForAccessibility="no"
+                            android:padding="10sp"
+                            app:srcCompat="@drawable/icon_info"
+                            app:tint="@color/grey_5" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginTop="20sp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12sp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/restaurant_name1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing=".03"
+                        android:text="Cháo bà bảy - Lạc Long Quân"
+                        android:textFontWeight="600"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:id="@+id/restaurant_detail1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng :>"
+                        android:textColor="@color/grey_3"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
+
                 <LinearLayout
-                    android:id="@+id/linear_btn_restaurant_search1"
+                    android:id="@+id/linear_btn_restaurant_favorite1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="12sp"
-                    android:layout_marginEnd="12sp"
-
-                    android:layout_toStartOf="@+id/linear_btn_restaurant_share1"
                     android:background="@drawable/shape_border_box"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="40sp"
                         android:layout_height="40sp"
-
-                        android:importantForAccessibility="no"
-                        android:padding="10sp"
-                        app:srcCompat="@drawable/icon_magnifying_glass"
-                        app:tint="@color/grey_5" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_btn_restaurant_share1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="12sp"
-                    android:layout_marginEnd="12sp"
-
-                    android:layout_toStartOf="@+id/linear_btn_restaurant_info1"
-                    android:background="@drawable/shape_border_box"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40sp"
-                        android:layout_height="40sp"
-
                         android:importantForAccessibility="no"
                         android:padding="10sp"
                         app:srcCompat="@drawable/icon_share"
                         app:tint="@color/grey_5" />
-
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_btn_restaurant_info1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="12sp"
-
-                    android:layout_marginEnd="12sp"
-                    android:background="@drawable/shape_border_box"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40sp"
-                        android:layout_height="40sp"
-
-                        android:importantForAccessibility="no"
-                        android:padding="10sp"
-                        app:srcCompat="@drawable/icon_info"
-                        app:tint="@color/grey_5" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- Info -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
-            android:layout_marginTop="20sp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginEnd="12sp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/restaurant_name1"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="28sp"
-                    android:textFontWeight="600"
-                    android:letterSpacing=".03"
-                    android:text="Cháo bà bảy - Lạc Long Quân" />
-
-                <TextView
-                    android:id="@+id/restaurant_detail1"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/grey_3"
-                    android:text="Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng :>" />
-
             </LinearLayout>
 
-
+            <!-- Location -->
             <LinearLayout
-                android:id="@+id/linear_btn_restaurant_favorite1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_border_box"
-                android:gravity="center"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginTop="8sp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
-
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
                     android:importantForAccessibility="no"
-                    android:padding="10sp"
-                    app:srcCompat="@drawable/icon_share"
-                    app:tint="@color/grey_5" />
+                    app:srcCompat="@drawable/icon_location"
+                    app:tint="@color/primaryDarker" />
+
+                <TextView
+                    android:id="@+id/restaurant_location1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="262 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"
+                    android:textColor="@color/grey_5"
+                    android:textSize="14sp" />
+
             </LinearLayout>
-        </LinearLayout>
 
-        <!-- Location -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
-            android:layout_marginTop="8sp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-
-                android:importantForAccessibility="no"
-                app:srcCompat="@drawable/icon_location"
-                app:tint="@color/primaryDarker" />
-
-            <TextView
-                android:id="@+id/restaurant_location1"
-
-                android:layout_width="wrap_content"
+            <!-- Rating -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/grey_5"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:text="262 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam" />
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginTop="20sp"
+                android:backgroundTint="@color/white"
+                android:outlineSpotShadowColor="@color/transparent"
+                app:cardCornerRadius="16sp">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12sp"
+                    android:paddingVertical="8sp">
 
-        <!-- Rating -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
-            app:cardCornerRadius="16sp"
-            android:outlineSpotShadowColor="@color/transparent"
-            android:backgroundTint="@color/white"
-            android:layout_marginTop="20sp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20sp"
+                                android:layout_height="20sp"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/icon_star_fill"
+                                app:tint="@color/yellow" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4sp"
+                                android:text="4.3"
+                                android:textFontWeight="500"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4sp"
+                            android:text="Bình chọn"
+                            android:textColor="@color/grey_5"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1sp"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20sp"
+                                android:layout_height="20sp"
+                                android:importantForAccessibility="no"
+                                android:padding="3sp"
+                                app:srcCompat="@drawable/icon_list_2"
+                                app:tint="@color/primaryDarker" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4sp"
+                                android:text="1k+"
+                                android:textFontWeight="500"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4sp"
+                            android:text="Đánh giá"
+                            android:textColor="@color/grey_5"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1sp"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20sp"
+                                android:layout_height="20sp"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/icon_clock"
+                                app:tint="@color/primaryDarker" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4sp"
+                                android:text="15 phút"
+                                android:textFontWeight="500"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4sp"
+                            android:text="Giao hàng"
+                            android:textColor="@color/grey_5"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Coupon -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/restaurant_coupon_recycler_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:orientation="horizontal"
+                tools:itemCount="1"
+                tools:listitem="@layout/adapter_restaurant_coupon" />
+
+
+            <!-- Foods -->
+            <com.mtb.foodorderreview.components.ExpandableHeightGridView
+                android:id="@+id/restaurant_food_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginTop="20sp"
+                android:horizontalSpacing="16sp"
+                android:listSelector="@color/transparent"
+                android:nestedScrollingEnabled="true"
+                android:numColumns="2"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="16sp"
+                tools:listitem="@layout/adapter_restaurant_food" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="8sp"
-                android:paddingHorizontal="12sp"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginTop="20sp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="20sp"
-                            android:layout_height="20sp"
-
-                            android:importantForAccessibility="no"
-                            app:srcCompat="@drawable/icon_star_fill"
-                            app:tint="@color/yellow" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:layout_marginStart="4sp"
-
-                            android:textFontWeight="500"
-                            android:text="4.3" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey_5"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4sp"
-                        android:text="Bình chọn" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1sp"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_2" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="20sp"
-                            android:layout_height="20sp"
-                            android:padding="3sp"
-                            android:importantForAccessibility="no"
-                            app:srcCompat="@drawable/icon_list_2"
-                            app:tint="@color/primaryDarker" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:layout_marginStart="4sp"
-                            android:textFontWeight="500"
-
-                            android:text="1k+" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey_5"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4sp"
-
-                        android:text="Đánh giá" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1sp"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_2" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="20sp"
-                            android:layout_height="20sp"
-
-                            android:importantForAccessibility="no"
-                            app:srcCompat="@drawable/icon_clock"
-                            app:tint="@color/primaryDarker" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:layout_marginStart="4sp"
-
-                            android:textFontWeight="500"
-                            android:text="15 phút" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey_5"
-                        android:textSize="14sp"
-                        android:layout_marginTop="4sp"
-
-                        android:text="Giao hàng" />
-                </LinearLayout>
-
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Coupon -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/restaurant_coupon_recycler_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/restaurant_coupon_adapter"
-            android:layout_marginTop="20sp"
-            tools:itemCount="1"
-            android:orientation="horizontal" />
-
-
-        <!-- Foods -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
-            android:layout_marginTop="20sp"
-            android:orientation="horizontal">
-
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+    <!-- Floating cart -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/restaurant_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+
+        android:outlineSpotShadowColor="@color/transparent"
+        app:cardCornerRadius="12sp"
+
+        android:translationX="-12sp"
+        android:translationY="-12sp"
+
+        android:backgroundTint="@color/primary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:importantForAccessibility="no"
+            android:padding="10sp"
+            app:srcCompat="@drawable/icon_shopping_cart"
+            app:tint="@color/pureWhite" />
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

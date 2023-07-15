@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.User;
 import com.mtb.foodorderreview.homeview.HomeFood;
 import com.mtb.foodorderreview.homeview.HomeFoodShopRecyclerAdapter;
@@ -119,7 +119,6 @@ public class HomePageFragment extends Fragment {
     }
 
     private void HomeFoodTypeUI(Context context, View view) {
-
         HomeFoodType[] l = {
                 new HomeFoodType("Rice", R.drawable.icon_food_type_rice),
                 new HomeFoodType("Rice2", R.drawable.icon_food_type_rice),
@@ -130,8 +129,9 @@ public class HomePageFragment extends Fragment {
 
         HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(context, Arrays.asList(l));
 
-        GridView gridView = view.findViewById(R.id.home_food_type_grid_1);
+        ExpandableHeightGridView gridView = view.findViewById(R.id.home_food_type_grid_1);
         gridView.setAdapter(adapter);
+        gridView.setExpanded(true);
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             HomeFoodType foodType = (HomeFoodType) gridView.getItemAtPosition(position);

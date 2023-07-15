@@ -1,20 +1,22 @@
 package com.mtb.foodorderreview.global;
 
+import com.mtb.foodorderreview.restaurentview.RestaurantFood;
+
 public class FoodInCart {
-    int foodId;
+    RestaurantFood food;
     int quantity;
 
-    public FoodInCart(int foodId, int quantity) {
-        this.foodId = foodId;
+    public FoodInCart(RestaurantFood food, int quantity) {
+        this.food = food;
         this.quantity = quantity;
     }
 
-    public int getFoodId() {
-        return foodId;
+    public RestaurantFood getFood() {
+        return food;
     }
 
-    public void setFoodId(int foodId) {
-        this.foodId = foodId;
+    public void setFood(RestaurantFood food) {
+        this.food = food;
     }
 
     public int getQuantity() {

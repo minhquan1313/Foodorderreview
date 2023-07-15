@@ -39,7 +39,7 @@ public class HomeFoodTypeGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.home_food_type_adapter, null);
+        convertView = inflater.inflate(R.layout.adapter_home_food_type, null);
 
         TextView text = convertView.findViewById(R.id.home_food_type_grid_layout_text_1);
         text.setText(list.get(position).getName());
