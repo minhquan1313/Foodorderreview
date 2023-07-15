@@ -125,6 +125,7 @@ public class AuthActivity extends AppCompatActivity {
             requestId = "1";
             requestToken = "abcxyz";
             requestIsAdmin = false;
+            authName = "Ngài Bình";
 
             onSuccessHandle();
         } else {

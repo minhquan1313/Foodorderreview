@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mtb.foodorderreview.global.User;
 import com.mtb.foodorderreview.homeview.HomeFood;
 import com.mtb.foodorderreview.homeview.HomeFoodShopRecyclerAdapter;
 import com.mtb.foodorderreview.homeview.HomeFoodType;
@@ -29,6 +31,7 @@ public class HomePageFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    TextView home_page_user_name;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -72,10 +75,17 @@ public class HomePageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        init(view);
         HomeFoodTypeUI(getContext(), view);
         HomeFoodShopUI(getContext(), view);
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         return view;
+    }
+
+    private void init(View v) {
+        home_page_user_name = v.findViewById(R.id.home_page_user_name);
+
+        home_page_user_name.setText(User.getInstance().getName());
     }
 
     private void HomeFoodShopUI(Context context, View view) {
