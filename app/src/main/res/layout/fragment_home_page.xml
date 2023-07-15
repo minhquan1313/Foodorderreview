@@ -53,7 +53,7 @@
 
                     android:textColor="@color/grey_4"
                     android:textSize="14sp"
-                    android:text="Giao tới" />
+                    android:text="Tên người dùng" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
