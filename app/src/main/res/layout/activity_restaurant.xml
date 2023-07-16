@@ -410,6 +410,8 @@
 
     <!-- Floating cart -->
     <RelativeLayout
+        android:id="@+id/restaurant_cart_btn"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clipChildren="false"
@@ -420,7 +422,6 @@
         android:translationY="-12sp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/restaurant_cart_btn"
             android:layout_width="50sp"
             android:layout_height="50sp"
 
@@ -445,6 +446,7 @@
 
         <!-- Floating number -->
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/restaurant_cart_quantity_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipChildren="false"
@@ -466,6 +468,8 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/restaurant_cart_quantity_text"
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="2"

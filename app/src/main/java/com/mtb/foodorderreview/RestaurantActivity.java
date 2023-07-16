@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +26,7 @@ public class RestaurantActivity extends AppCompatActivity {
             restaurant_detail1,
             restaurant_location1;
     ImageView restaurant_banner1;
-    CardView restaurant_cart;
+    RelativeLayout restaurant_cart_btn;
     RestaurantCoupon coupon;
     Cart cart;
 
@@ -51,7 +51,7 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_banner1 = findViewById(R.id.restaurant_banner1);
         restaurant_detail1 = findViewById(R.id.restaurant_detail1);
         restaurant_location1 = findViewById(R.id.restaurant_location1);
-        restaurant_cart = findViewById(R.id.restaurant_cart_btn);
+        restaurant_cart_btn = findViewById(R.id.restaurant_cart_btn);
 
         cart = Cart.getInstance();
 
@@ -81,7 +81,7 @@ public class RestaurantActivity extends AppCompatActivity {
 //        if (cart.getRestaurantId() == -1)
 //            restaurant_cart.setVisibility(View.INVISIBLE);
 
-        restaurant_cart.setOnClickListener(new View.OnClickListener() {
+        restaurant_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Checkout activity
@@ -92,7 +92,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
     public void updateCart() {
         if (cart.getRestaurantId() != -1)
-            restaurant_cart.setVisibility(View.VISIBLE);
+            restaurant_cart_btn.setVisibility(View.VISIBLE);
     }
 
     private void couponsRecycler() {
