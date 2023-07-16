@@ -150,7 +150,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/food_select_des"
+                android:id="@+id/food_select_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
@@ -221,9 +221,10 @@
 
 
                     <LinearLayout
+                        android:id="@+id/food_select_decrease_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/shape_border_box"
+                        android:background="@drawable/shape_border_box_disable"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -238,14 +239,17 @@
                     </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/food_select_quantity_text"
+                        android:layout_width="52sp"
                         android:layout_height="wrap_content"
                         android:text="1"
+                        android:gravity="center"
                         android:fontFamily="@font/svn_poppins_bold"
-                        android:layout_marginHorizontal="20sp"
+                        android:layout_marginHorizontal="8sp"
                         android:textSize="18sp" />
 
                     <LinearLayout
+                        android:id="@+id/food_select_increase_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_border_box"
@@ -269,7 +273,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/restaurant_coupon_claim_btn1"
+            android:id="@+id/food_select_add_to_cart_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="0sp"

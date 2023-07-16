@@ -114,7 +114,8 @@ public class AuthActivity extends AppCompatActivity {
 
     private void signIn() {
         // Call your API here
-
+        disableButton(auth_sign_up_btn1);
+        disableButton(auth_sign_in_btn1);
         String s = authUsername + " " +
                 authPassword + " ";
 
@@ -135,6 +136,8 @@ public class AuthActivity extends AppCompatActivity {
 
     private void signUp() {
         // Call your API here
+        disableButton(auth_sign_up_btn1);
+        disableButton(auth_sign_in_btn1);
 
         String s = authUsername + " " +
                 authPassword + " " +
@@ -150,7 +153,16 @@ public class AuthActivity extends AppCompatActivity {
          * else onFailHandle("Ten dang nhap bi trung")
          */
 
+
         onFailHandle("Ai cho mi đăng ký:))");
+    }
+
+    private void disableButton(Button btn) {
+        btn.setEnabled(false);
+    }
+
+    private void enableButton(Button btn) {
+        btn.setEnabled(true);
     }
 
     private void onSuccessHandle() {
@@ -171,6 +183,8 @@ public class AuthActivity extends AppCompatActivity {
 
     private void onFailHandle(String msg) {
         authResponse = msg;
+        enableButton(auth_sign_in_btn1);
+        enableButton(auth_sign_up_btn1);
         changeUI(state);
     }
 

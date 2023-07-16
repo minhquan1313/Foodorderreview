@@ -1,10 +1,10 @@
 package com.mtb.foodorderreview.homeview;
 
-public class HomeFoodType {
+public class FoodType {
     private String name;
     private int img;
 
-    public HomeFoodType(String name, int img) {
+    public FoodType(String name, int img) {
         this.img = img;
         this.name = name;
     }

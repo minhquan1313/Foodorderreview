@@ -1,5 +1,6 @@
 package com.mtb.foodorderreview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.Cart;
+import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
+import com.mtb.foodorderreview.global.RestaurantGlobal;
+import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
@@ -30,6 +34,8 @@ public class RestaurantActivity extends AppCompatActivity {
     RestaurantCoupon coupon;
     Cart cart;
 
+    int restaurantId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +43,12 @@ public class RestaurantActivity extends AppCompatActivity {
 
         initialization();
 
-        bundlePart();
         backBtn();
         cartBtn();
 
         couponsRecycler();
         foodGrid();
     }
-
 
     private void initialization() {
         restaurant_name1 = findViewById(R.id.restaurant_name1);
@@ -55,21 +59,19 @@ public class RestaurantActivity extends AppCompatActivity {
 
         cart = Cart.getInstance();
 
+//        Bundle bundle = getIntent().getExtras();
+//
+//        restaurantId = bundle.getInt("id");
+//        String name = bundle.getString("name");
+//        String description = bundle.getString("description");
+//        int image = bundle.getInt("image");
+
+        Restaurant restaurant = RestaurantGlobal.getInstance().getRestaurant();
+
+        restaurant_name1.setText(restaurant.getName());
+        restaurant_banner1.setImageResource(restaurant.getImage());
+
     }
-
-    private void bundlePart() {
-        Bundle bundle = getIntent().getExtras();
-
-        int id = bundle.getInt("id");
-        String name = bundle.getString("name");
-        String description = bundle.getString("description");
-        int image = bundle.getInt("image");
-
-        restaurant_name1.setText(name);
-        restaurant_banner1.setImageResource(image);
-
-    }
-
 
     private void backBtn() {
         LinearLayout linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
@@ -78,8 +80,8 @@ public class RestaurantActivity extends AppCompatActivity {
     }
 
     private void cartBtn() {
-//        if (cart.getRestaurantId() == -1)
-//            restaurant_cart.setVisibility(View.INVISIBLE);
+        // if (cart.getRestaurantId() == -1)
+        // restaurant_cart.setVisibility(View.INVISIBLE);
 
         restaurant_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,8 +141,21 @@ public class RestaurantActivity extends AppCompatActivity {
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             RestaurantFood f = (RestaurantFood) gridView.getItemAtPosition(position);
-            Toast.makeText(this, "Selected :" + " " + f.getName(), Toast.LENGTH_LONG).show();
+//            RestaurantGlobal.getInstance().setRestaurant();
+
+            RestaurantFoodGlobal.getInstance().setFood(f);
+            Intent intent = new Intent(this, FoodSelectActivity.class);
+//            intent.putExtra("id", f.getId());
+//            intent.putExtra("name", f.getName());
+//            intent.putExtra("description", f.getDescription());
+//            intent.putExtra("image", f.getImage());
+//            intent.putExtra("price", f.getPrice());
+
+            startActivity(intent);
+
+            // Toast.makeText(this, "Selected :" + " " + f.getName(), Toast.LENGTH_LONG).show();
         });
     }
+
 
 }

@@ -3,15 +3,15 @@ package com.mtb.foodorderreview.homeview;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFood {
+public class Restaurant {
     private int id;
     //    private static int ID = 0;
     private String name;
     private int image;
 
-    private static List<HomeFood> list = new ArrayList<>();
+    private static List<Restaurant> list = new ArrayList<>();
 
-    public HomeFood(int id, String name, int image) {
+    public Restaurant(int id, String name, int image) {
 //        if (id > ID) ID = id;
 
         this.id = id;

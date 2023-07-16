@@ -12,12 +12,12 @@ import com.mtb.foodorderreview.R;
 
 import java.util.List;
 
-public class HomeFoodTypeGridAdapter extends BaseAdapter {
+public class FoodTypeGridAdapter extends BaseAdapter {
 
-    private final List<HomeFoodType> list;
+    private final List<FoodType> list;
     private final LayoutInflater inflater;
 
-    public HomeFoodTypeGridAdapter(Context context, List<HomeFoodType> list) {
+    public FoodTypeGridAdapter(Context context, List<FoodType> list) {
         this.list = list;
         this.inflater = LayoutInflater.from(context);
     }
@@ -28,7 +28,7 @@ public class HomeFoodTypeGridAdapter extends BaseAdapter {
     }
 
     @Override
-    public HomeFoodType getItem(int position) {
+    public FoodType getItem(int position) {
         return list.get(position);
     }
 
