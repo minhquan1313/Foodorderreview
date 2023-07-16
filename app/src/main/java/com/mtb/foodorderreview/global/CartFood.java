@@ -2,11 +2,11 @@ package com.mtb.foodorderreview.global;
 
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 
-public class FoodInCart {
+public class FoodCart {
     RestaurantFood food;
     int quantity;
 
-    public FoodInCart(RestaurantFood food, int quantity) {
+    public FoodCart(RestaurantFood food, int quantity) {
         this.food = food;
         this.quantity = quantity;
     }
