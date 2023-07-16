@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clipChildren="false"
+
     tools:context=".RestaurantActivity">
 
     <!-- Main layout -->
@@ -59,6 +61,7 @@
                         android:layout_marginTop="12sp"
                         android:background="@drawable/shape_border_box"
                         android:gravity="center_vertical"
+                        android:hapticFeedbackEnabled="true"
                         android:orientation="horizontal">
 
 
@@ -386,12 +389,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
                 android:layout_marginTop="20sp"
-                android:horizontalSpacing="16sp"
+                android:verticalSpacing="8sp"
+                android:horizontalSpacing="8sp"
                 android:listSelector="@color/transparent"
                 android:nestedScrollingEnabled="true"
                 android:numColumns="2"
                 android:stretchMode="columnWidth"
-                android:verticalSpacing="16sp"
                 tools:listitem="@layout/adapter_restaurant_food" />
 
             <LinearLayout
@@ -406,31 +409,72 @@
     </ScrollView>
 
     <!-- Floating cart -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/restaurant_cart"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clipChildren="false"
 
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-
-        android:outlineSpotShadowColor="@color/transparent"
-        app:cardCornerRadius="12sp"
-
         android:translationX="-12sp"
-        android:translationY="-12sp"
+        android:translationY="-12sp">
 
-        android:backgroundTint="@color/primary"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/restaurant_cart_btn"
             android:layout_width="50sp"
             android:layout_height="50sp"
-            android:importantForAccessibility="no"
-            android:padding="10sp"
-            app:srcCompat="@drawable/icon_shopping_cart"
-            app:tint="@color/pureWhite" />
 
-    </androidx.cardview.widget.CardView>
+
+            android:outlineSpotShadowColor="@color/transparent"
+            app:cardCornerRadius="999sp"
+
+
+            android:backgroundTint="@color/primary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:padding="12sp"
+                app:srcCompat="@drawable/icon_shopping_cart"
+                app:tint="@color/pureWhite" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Floating number -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+
+            android:layout_alignEnd="@+id/restaurant_cart_btn"
+            android:layout_alignParentTop="true"
+            android:translationZ="2sp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="20sp"
+                android:layout_height="0sp"
+                app:cardCornerRadius="999sp"
+                android:clipChildren="false"
+
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="2"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textFontWeight="500"
+                    android:textSize="12sp" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
 </RelativeLayout>

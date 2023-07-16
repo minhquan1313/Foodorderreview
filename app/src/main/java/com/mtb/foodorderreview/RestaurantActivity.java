@@ -51,7 +51,7 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_banner1 = findViewById(R.id.restaurant_banner1);
         restaurant_detail1 = findViewById(R.id.restaurant_detail1);
         restaurant_location1 = findViewById(R.id.restaurant_location1);
-        restaurant_cart = findViewById(R.id.restaurant_cart);
+        restaurant_cart = findViewById(R.id.restaurant_cart_btn);
 
         cart = Cart.getInstance();
 
@@ -78,13 +78,14 @@ public class RestaurantActivity extends AppCompatActivity {
     }
 
     private void cartBtn() {
-        if (cart.getRestaurantId() == -1)
-            restaurant_cart.setVisibility(View.INVISIBLE);
+//        if (cart.getRestaurantId() == -1)
+//            restaurant_cart.setVisibility(View.INVISIBLE);
 
         restaurant_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Checkout activity
+                Toast.makeText(RestaurantActivity.this, "Cart click ne", Toast.LENGTH_SHORT).show();
             }
         });
     }
