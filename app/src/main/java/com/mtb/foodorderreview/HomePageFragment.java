@@ -105,6 +105,7 @@ public class HomePageFragment extends Fragment {
         adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
             if (!isLongClick) {
                 RestaurantGlobal.getInstance().setRestaurant(homeFood);
+
                 Intent intent = new Intent(context, RestaurantActivity.class);
 //
 //                intent.putExtra("id", homeFood.getId());

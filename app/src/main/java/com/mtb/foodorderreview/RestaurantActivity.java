@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
-import com.mtb.foodorderreview.global.Cart;
+import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.homeview.Restaurant;
@@ -28,13 +28,14 @@ import java.util.Arrays;
 public class RestaurantActivity extends AppCompatActivity {
     TextView restaurant_name1,
             restaurant_detail1,
-            restaurant_location1;
+            restaurant_location1,
+            restaurant_cart_quantity_text;
     ImageView restaurant_banner1;
     RelativeLayout restaurant_cart_btn;
     RestaurantCoupon coupon;
-    Cart cart;
+    LinearLayout linear_btn_restaurant_back1;
+    CartGlobal cartGlobal;
 
-    int restaurantId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,9 @@ public class RestaurantActivity extends AppCompatActivity {
 
         initialization();
 
-        backBtn();
+        updateCart();
+
+        backBtn(linear_btn_restaurant_back1);
         cartBtn();
 
         couponsRecycler();
@@ -56,32 +59,25 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_detail1 = findViewById(R.id.restaurant_detail1);
         restaurant_location1 = findViewById(R.id.restaurant_location1);
         restaurant_cart_btn = findViewById(R.id.restaurant_cart_btn);
+        restaurant_cart_quantity_text = findViewById(R.id.restaurant_cart_quantity_text);
+        linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
 
-        cart = Cart.getInstance();
-
-//        Bundle bundle = getIntent().getExtras();
-//
-//        restaurantId = bundle.getInt("id");
-//        String name = bundle.getString("name");
-//        String description = bundle.getString("description");
-//        int image = bundle.getInt("image");
+        cartGlobal = CartGlobal.getInstance();
 
         Restaurant restaurant = RestaurantGlobal.getInstance().getRestaurant();
 
         restaurant_name1.setText(restaurant.getName());
         restaurant_banner1.setImageResource(restaurant.getImage());
 
+        cartGlobal.reset();
+        cartGlobal.setRestaurant(restaurant);
     }
 
-    private void backBtn() {
-        LinearLayout linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
-
-        linear_btn_restaurant_back1.setOnClickListener(v -> finish());
+    private void backBtn(LinearLayout btn) {
+        btn.setOnClickListener(v -> finish());
     }
 
     private void cartBtn() {
-        // if (cart.getRestaurantId() == -1)
-        // restaurant_cart.setVisibility(View.INVISIBLE);
 
         restaurant_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +89,14 @@ public class RestaurantActivity extends AppCompatActivity {
     }
 
     public void updateCart() {
-        if (cart.getRestaurantId() != -1)
-            restaurant_cart_btn.setVisibility(View.VISIBLE);
+        if (cartGlobal.getFoods().size() == 0) {
+            restaurant_cart_btn.setVisibility(View.INVISIBLE);
+            return;
+        }
+
+        restaurant_cart_btn.setVisibility(View.VISIBLE);
+
+        restaurant_cart_quantity_text.setText(String.valueOf(cartGlobal.getFoods().size()));
     }
 
     private void couponsRecycler() {
@@ -119,17 +121,17 @@ public class RestaurantActivity extends AppCompatActivity {
     private void foodGrid() {
         RestaurantFood[] l = {
                 new RestaurantFood(1, "Bún bò 1", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        12000),
+                        13000),
                 new RestaurantFood(2, "Bún bò 2", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        12000),
+                        14000),
                 new RestaurantFood(3, "Bún bò 3", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        12000),
+                        15000),
                 new RestaurantFood(4, "Bún bò 4", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        12000),
+                        16000),
                 new RestaurantFood(5, "Bún bò 5", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        12000),
+                        17000),
                 new RestaurantFood(6, "Bún bò 6", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        12000),
+                        18000),
         };
 
         RestaurantFoodGridAdapter adapter = new RestaurantFoodGridAdapter(this, Arrays.asList(l));
@@ -145,17 +147,16 @@ public class RestaurantActivity extends AppCompatActivity {
 
             RestaurantFoodGlobal.getInstance().setFood(f);
             Intent intent = new Intent(this, FoodSelectActivity.class);
-//            intent.putExtra("id", f.getId());
-//            intent.putExtra("name", f.getName());
-//            intent.putExtra("description", f.getDescription());
-//            intent.putExtra("image", f.getImage());
-//            intent.putExtra("price", f.getPrice());
 
-            startActivity(intent);
-
-            // Toast.makeText(this, "Selected :" + " " + f.getName(), Toast.LENGTH_LONG).show();
+            startActivityIfNeeded(intent, 2);
         });
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2) {
+            updateCart();
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.mtb.foodorderreview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,10 +11,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mtb.foodorderreview.global.Cart;
+import com.mtb.foodorderreview.global.CartFood;
+import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
-import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
+import com.mtb.foodorderreview.utils.Utils;
+
+import java.util.Locale;
 
 public class FoodSelectActivity extends AppCompatActivity {
     TextView food_select_name,
@@ -30,8 +34,7 @@ public class FoodSelectActivity extends AppCompatActivity {
     RestaurantFood food;
     int countQuantity = 1;
     final String ADD_TO_CART_STR = "Thêm - ";
-    final String CURRENCY_UNIT = "đ";
-    Cart cart;
+    CartGlobal cartGlobal;
 
     enum Mode {
         INC,
@@ -65,13 +68,11 @@ public class FoodSelectActivity extends AppCompatActivity {
         food = RestaurantFoodGlobal.getInstance().getFood();
 
         food_select_name.setText(food.getName());
-        food_select_price.setText(String.format("%,d" + CURRENCY_UNIT, food.getPrice()));
+        food_select_price.setText(String.format("%,d" + Utils.CURRENCY, food.getPrice()));
         food_select_banner.setImageResource(food.getImage());
         food_select_description.setText(food.getDescription());
 
-        cart = Cart.getInstance();
-        cart.reset();
-        cart.setRestaurantId(RestaurantGlobal.getInstance().getRestaurant().getId());
+        cartGlobal = CartGlobal.getInstance();
     }
 
     private void onQuantityChangeBtns() {
@@ -102,7 +103,7 @@ public class FoodSelectActivity extends AppCompatActivity {
     }
 
     private void updateQuantityUi() {
-        String price = String.format("%,d" + CURRENCY_UNIT, countQuantity * food.getPrice());
+        String price = String.format(Locale.getDefault(), "%,d" + Utils.CURRENCY, countQuantity * food.getPrice());
         String newBtnText = ADD_TO_CART_STR + price;
         food_select_quantity_text.setText(String.valueOf(countQuantity));
         food_select_add_to_cart_btn.setText(newBtnText);
@@ -112,8 +113,13 @@ public class FoodSelectActivity extends AppCompatActivity {
         food_select_add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cart.getRestaurantId();
-                Toast.makeText(FoodSelectActivity.this, "Add click", Toast.LENGTH_SHORT).show();
+                cartGlobal.getFoods().add(new CartFood(food, countQuantity));
+                Toast.makeText(FoodSelectActivity.this, "" + cartGlobal.getFoods().size(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent();
+                setResult(2, intent);
+
+                finish();
             }
         });
     }

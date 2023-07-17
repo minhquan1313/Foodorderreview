@@ -1,40 +1,55 @@
 package com.mtb.foodorderreview.global;
 
+import com.mtb.foodorderreview.homeview.Restaurant;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
-    private int restaurantId = -1;
+public class CartGlobal {
+    private Restaurant restaurant;
     private List<CartFood> foods = new ArrayList<>();
-    private static Cart cart = new Cart();
+    private static CartGlobal cartGlobal = new CartGlobal();
 
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    public static Cart getInstance() {
-        return cart;
+    public static CartGlobal getInstance() {
+        return cartGlobal;
     }
 
 
-    private Cart() {
+    private CartGlobal() {
     }
 
     public void reset() {
-        restaurantId = -1;
+        restaurant = null;
         foods = new ArrayList<>();
     }
 
-    public int getRestaurantId() {
-        return restaurantId;
+
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantId(int restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public void addFood(CartFood food) {
+        CartFood ff = null;
+
+        for (CartFood f : foods) {
+            if (f.getFood().getId() == food.getFood().getId())
+                ff = f;
+        }
+
+        if (ff != null) {
+            ff.setQuantity(ff.getQuantity() + food.getQuantity());
+            return;
+        }
+
+        this.foods.add(food);
     }
 
     public List<CartFood> getFoods() {
         return foods;
-    }
-
-    public void setFoods(List<CartFood> foods) {
-        this.foods = foods;
     }
 }

@@ -3,8 +3,8 @@ package com.mtb.foodorderreview.global;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 
 public class CartFood {
-    RestaurantFood food;
-    int quantity;
+    private RestaurantFood food;
+    private int quantity;
 
     public CartFood(RestaurantFood food, int quantity) {
         this.food = food;

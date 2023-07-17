@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mtb.foodorderreview.R;
+import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class RestaurantFoodGridAdapter extends BaseAdapter {
         restaurant_food_name = convertView.findViewById(R.id.restaurant_food_name);
         restaurant_food_cover = convertView.findViewById(R.id.restaurant_food_cover);
 
-        restaurant_food_price.setText(String.valueOf(item.getPrice()));
+        restaurant_food_price.setText(String.format("%,d" + Utils.CURRENCY, item.getPrice()));
         restaurant_food_des.setText(item.getDescription());
         restaurant_food_name.setText(item.getName());
 
