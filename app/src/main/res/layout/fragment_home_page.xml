@@ -47,12 +47,13 @@
                 android:layout_marginStart="12sp">
 
                 <TextView
+                    android:id="@+id/home_page_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
                     android:textColor="@color/grey_4"
                     android:textSize="14sp"
-                    android:text="Giao tới" />
+                    android:text="Tên người dùng" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -83,7 +84,7 @@
                         android:layout_height="12sp"
                         android:scaleType="centerInside"
 
-                        android:layout_marginStart="8sp"
+                        android:layout_marginStart="4sp"
 
                         app:srcCompat="@drawable/icon_down_arrow"
                         android:importantForAccessibility="no" />
@@ -258,22 +259,21 @@
 
         <!--  Food types  -->
 
-        <GridView
+        <com.mtb.foodorderreview.components.ExpandableHeightGridView
             android:id="@+id/home_food_type_grid_1"
             android:layout_width="match_parent"
-            android:layout_height="190sp"
-            android:nestedScrollingEnabled="true"
-            android:numColumns="4"
+            android:layout_height="300sp"
             android:layout_marginHorizontal="20sp"
-            android:verticalSpacing="16sp"
-            android:horizontalSpacing="16sp"
-
 
             android:layout_marginTop="20sp"
-
-            tools:listitem="@layout/home_food_type_adapter"
+            android:horizontalSpacing="16sp"
             android:listSelector="@color/transparent"
-            tools:ignore="NestedScrolling" />
+            android:numColumns="4"
+
+
+            android:verticalSpacing="16sp"
+            tools:ignore="NestedScrolling"
+            tools:listitem="@layout/adapter_home_food_type" />
 
         <!--  Highest rate part  -->
         <LinearLayout
@@ -309,7 +309,7 @@
                     android:textSize="14sp"
                     android:textColor="@color/primary"
                     style="?android:attr/borderlessButtonStyle"
-                    android:text="View all" />
+                    android:text="Xem tất cả" />
 
             </LinearLayout>
 
@@ -317,7 +317,7 @@
                 android:id="@+id/home_food_shop_recycler_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/home_restaurant_adapter"
+                tools:listitem="@layout/adapter_home_restaurant"
                 android:layout_marginTop="16sp"
                 tools:itemCount="1"
                 android:orientation="horizontal" />

@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/restaurant_food_cover1"
+                    android:id="@+id/restaurant_food_cover"
                     android:layout_width="match_parent"
                     android:layout_height="0sp"
                     android:importantForAccessibility="no"
@@ -47,7 +47,7 @@
                 android:paddingVertical="12sp">
 
                 <TextView
-                    android:id="@+id/restaurant_food_name1"
+                    android:id="@+id/restaurant_food_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cơm tấm thịt nướng"
@@ -59,7 +59,7 @@
                     android:layout_marginHorizontal="16sp" />
 
                 <TextView
-                    android:id="@+id/restaurant_food_des1"
+                    android:id="@+id/restaurant_food_des"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gồm cơm, thịt, chả "
@@ -69,7 +69,7 @@
                     android:textColor="@color/grey_4" />
 
                 <TextView
-                    android:id="@+id/restaurant_food_price1"
+                    android:id="@+id/restaurant_food_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="35000đ"

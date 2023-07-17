@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="transparent">#00000000</color>
+
     <color name="black">#2f3542</color>
     <color name="black_rgba">#342F3542</color>
     <color name="pureBlack">#000000</color>
+
     <color name="white">#f1f2f6</color>
     <color name="pureWhite">#ffffff</color>
 
@@ -21,4 +23,9 @@
 
     <color name="yellow">#ffa502</color>
     <color name="red">#ff4757</color>
+
+    <color name="light_blue_400">#FF29B6F6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="gray_400">#FFBDBDBD</color>
+    <color name="gray_600">#FF757575</color>
 </resources>

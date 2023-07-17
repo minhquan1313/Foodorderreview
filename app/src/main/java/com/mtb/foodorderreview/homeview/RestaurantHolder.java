@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mtb.foodorderreview.R;
 import com.mtb.foodorderreview.utils.ItemClickListener;
 
-public class HomeFoodShopHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-    private HomeFood item;
+public class RestaurantHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    private Restaurant item;
     private TextView food_shop_name1;
     private CardView food_shop_cardView1;
     private ImageView food_shop_image1;
-    private ItemClickListener<HomeFood> clickListener;
+    private ItemClickListener<Restaurant> clickListener;
 
 
-    public HomeFoodShopHolder(@NonNull View itemView) {
+    public RestaurantHolder(@NonNull View itemView) {
         super(itemView);
 
         itemView.setOnClickListener(this);
@@ -29,7 +29,7 @@ public class HomeFoodShopHolder extends RecyclerView.ViewHolder implements View.
         food_shop_image1 = itemView.findViewById(R.id.food_shop_image1);
     }
 
-    public void setClickListener(ItemClickListener<HomeFood> clickListener) {
+    public void setClickListener(ItemClickListener<Restaurant> clickListener) {
         this.clickListener = clickListener;
     }
 
@@ -45,7 +45,7 @@ public class HomeFoodShopHolder extends RecyclerView.ViewHolder implements View.
         return food_shop_image1;
     }
 
-    public void setItem(HomeFood item) {
+    public void setItem(Restaurant item) {
         this.item = item;
     }
 

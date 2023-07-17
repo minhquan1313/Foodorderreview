@@ -24,11 +24,11 @@
         android:layout_height="1sp"
         android:background="@color/grey_2" />
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
 
         <FrameLayout
             android:id="@+id/auth_frame_layout1"
@@ -37,7 +37,7 @@
 
         </FrameLayout>
     </ScrollView>
-    <!--    </LinearLayout>-->
+
 
     <View
         android:layout_width="match_parent"

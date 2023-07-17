@@ -1,12 +1,15 @@
 package com.mtb.foodorderreview;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +17,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class SignInFragment extends Fragment {
+    AuthActivity authActivity;
+    EditText
+            sign_in_username_input,
+            sign_in_password_input;
+    TextView fragment_sign_in_response_text;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +66,53 @@ public class SignInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+
+        init(view);
+
+        reAssignValue();
+
+        setOnInputs();
+
+        return view;
+    }
+
+    private void init(View v) {
+        authActivity = (AuthActivity) getActivity();
+
+        sign_in_username_input = v.findViewById(R.id.sign_in_username_input);
+        sign_in_password_input = v.findViewById(R.id.sign_in_password_input);
+        fragment_sign_in_response_text = v.findViewById(R.id.fragment_sign_in_response_text);
+
+    }
+
+    private void reAssignValue() {
+        sign_in_username_input.setText(authActivity.getString("authUsername"));
+        sign_in_password_input.setText(authActivity.getString("authPassword"));
+        fragment_sign_in_response_text.setText(authActivity.getString("authResponse"));
+    }
+
+    private void setOnInput(EditText editText, String bundleName) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                authActivity.setString(bundleName, s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+
+    private void setOnInputs() {
+        setOnInput(sign_in_username_input, "authUsername");
+        setOnInput(sign_in_password_input, "authPassword");
     }
 }

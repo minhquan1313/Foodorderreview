@@ -14,30 +14,30 @@ import com.mtb.foodorderreview.utils.ItemClickListener;
 
 import java.util.List;
 
-public class HomeFoodShopRecyclerAdapter extends RecyclerView.Adapter<HomeFoodShopHolder> {
-    private List<HomeFood> list;
+public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantHolder> {
+    private List<Restaurant> list;
     private final LayoutInflater inflater;
-    private ItemClickListener<HomeFood> clickListener;
+    private ItemClickListener<Restaurant> clickListener;
 
-    public HomeFoodShopRecyclerAdapter(Context context, List<HomeFood> list) {
+    public RestaurantRecyclerAdapter(Context context, List<Restaurant> list) {
         this.list = list;
         this.inflater = LayoutInflater.from(context);
     }
 
-    public void setClickListener(ItemClickListener<HomeFood> clickListener) {
+    public void setClickListener(ItemClickListener<Restaurant> clickListener) {
         this.clickListener = clickListener;
     }
 
     @NonNull
     @Override
-    public HomeFoodShopHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.home_restaurant_adapter, null);
-        return new HomeFoodShopHolder(view);
+    public RestaurantHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.adapter_home_restaurant, null);
+        return new RestaurantHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeFoodShopHolder holder, int position) {
-        HomeFood item = list.get(position);
+    public void onBindViewHolder(@NonNull RestaurantHolder holder, int position) {
+        Restaurant item = list.get(position);
 
         holder.getFood_shop_name1().setText(item.getName());
         holder.getFood_shop_image1().setImageResource(item.getImage());
