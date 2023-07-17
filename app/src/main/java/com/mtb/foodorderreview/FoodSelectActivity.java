@@ -113,7 +113,7 @@ public class FoodSelectActivity extends AppCompatActivity {
         food_select_add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cartGlobal.getFoods().add(new CartFood(food, countQuantity));
+                cartGlobal.addFood(new CartFood(food, countQuantity));
                 Toast.makeText(FoodSelectActivity.this, "" + cartGlobal.getFoods().size(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent();
