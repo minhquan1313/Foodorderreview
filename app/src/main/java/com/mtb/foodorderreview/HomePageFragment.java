@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mtb.foodorderreview.api.LoaiFoodService;
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.global.User;
@@ -20,6 +21,7 @@ import com.mtb.foodorderreview.homeview.FoodType;
 import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
+import com.mtb.foodorderreview.model.LoaiFood;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -128,17 +130,16 @@ public class HomePageFragment extends Fragment {
     }
 
     private void HomeFoodTypeUI(Context context, View view) {
-<<<<<<< HEAD
 
-        List<HomeFoodType> l = new ArrayList<HomeFoodType>();
-        HomeFoodTypeGridAdapter adapter = new HomeFoodTypeGridAdapter(context, l);
+        List<FoodType> l = new ArrayList<FoodType>();
+        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, l);
         LoaiFoodService.apiService.getAllFood().enqueue(new Callback<List<LoaiFood>>() {
             @Override
             public void onResponse(Call<List<LoaiFood>> call, Response<List<LoaiFood>> response) {
                 List<LoaiFood> list = response.body();
                 for (LoaiFood loaiFood : list)
                 {
-                    l.add(new HomeFoodType( loaiFood.getTen().toString(), R.drawable.img_sample_food));
+                    l.add(new FoodType( loaiFood.getTen().toString(), R.drawable.img_sample_food));
                 }
 
                 adapter.notifyDataSetChanged();
@@ -151,17 +152,15 @@ public class HomePageFragment extends Fragment {
         });
 
 
-=======
-        FoodType[] l = {
-                new FoodType("Rice", R.drawable.icon_food_type_rice),
-                new FoodType("Rice2", R.drawable.icon_food_type_rice),
-                new FoodType("Rice3", R.drawable.icon_food_type_rice),
-                new FoodType("Rice4", R.drawable.icon_food_type_rice),
-                new FoodType("Rice5", R.drawable.icon_food_type_rice)
-        };
+//        FoodType[] l = {
+//                new FoodType("Rice", R.drawable.icon_food_type_rice),
+//                new FoodType("Rice2", R.drawable.icon_food_type_rice),
+//                new FoodType("Rice3", R.drawable.icon_food_type_rice),
+//                new FoodType("Rice4", R.drawable.icon_food_type_rice),
+//                new FoodType("Rice5", R.drawable.icon_food_type_rice)
+//        };
 
-        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
->>>>>>> 164f01031af91b5d501e58e9e5b4dbfb60a4c309
+//        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
 
         ExpandableHeightGridView gridView = view.findViewById(R.id.home_food_type_grid_1);
         gridView.setAdapter(adapter);
