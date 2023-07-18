@@ -172,6 +172,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
             // Checkout
             case 3:
+                finish();
                 break;
         }
 

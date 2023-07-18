@@ -1,5 +1,6 @@
 package com.mtb.foodorderreview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -61,9 +62,16 @@ public class CartCheckoutActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Order order = new Order(cartGlobal.getRestaurant(), cartGlobal.getFoodList());
-                //Call api here to set orderId,
+                //Call api here to set orderId
+                
+                cartGlobal.reset();
 
+                Intent intent = new Intent();
+                setResult(3, intent);
                 Toast.makeText(CartCheckoutActivity.this, "Dat ngay click", Toast.LENGTH_SHORT).show();
+
+                finish();
+
                 // herehereherehereherehereherehereherehere
             }
         });
