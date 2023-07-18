@@ -15,7 +15,7 @@ public interface NhaHangService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH-mm-ss").create();
 
     NhaHangService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.6:8085/")
+            .baseUrl("http://192.168.1.104:8081/")
             .addConverterFactory(GsonConverterFactory.create(gson)).build().create(NhaHangService.class);
     @GET("nhahang/")
     Call<List<NhaHang>> getListNH();

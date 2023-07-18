@@ -13,7 +13,7 @@ public class Restaurant {
     private static List<Restaurant> list = new ArrayList<>();
 
 
-    public Restaurant(int id, String name, int image, String address) {
+    public Restaurant(int id, String name, int image) {
         this.id = id;
         this.name = name;
         this.image = image;

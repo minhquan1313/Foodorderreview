@@ -11,14 +11,14 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
-public interface LoaiFoodService {
-
+public interface FoodService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH-mm-ss").create();
 
-    LoaiFoodService apiService = new Retrofit.Builder()
+    FoodService apiService = new Retrofit.Builder()
             .baseUrl("http://192.168.1.104:8081/")
-            .addConverterFactory(GsonConverterFactory.create(gson)).build().create(LoaiFoodService.class);
-    @GET("loaifood")
-    Call<List<LoaiFood>> getAllFood();
+            .addConverterFactory(GsonConverterFactory.create(gson)).build().create(FoodService.class);
+    @GET("food/nhahang/{id}/")
+    Call<List<Food>> getListFoodByNhaHang(@Path("id") int id);
 }
