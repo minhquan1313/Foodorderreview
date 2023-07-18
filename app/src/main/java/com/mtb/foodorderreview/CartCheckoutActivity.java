@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mtb.foodorderreview.checkout.CartFoodListViewAdapter;
 import com.mtb.foodorderreview.components.ExpandableHeightListView;
 import com.mtb.foodorderreview.global.CartGlobal;
+import com.mtb.foodorderreview.something.Order;
 import com.mtb.foodorderreview.utils.Utils;
 
 public class CartCheckoutActivity extends AppCompatActivity {
@@ -58,8 +59,12 @@ public class CartCheckoutActivity extends AppCompatActivity {
         cart_checkout_submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Order order = new Order(cartGlobal.getRestaurant(), cartGlobal.getFoodList());
+                //Call api here to set orderId,
+
                 Toast.makeText(CartCheckoutActivity.this, "Dat ngay click", Toast.LENGTH_SHORT).show();
-//                herehereherehereherehereherehereherehere
+                // herehereherehereherehereherehereherehere
             }
         });
     }

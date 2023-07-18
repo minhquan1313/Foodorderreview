@@ -8,10 +8,14 @@ import android.widget.LinearLayout;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class Utils {
     public static final String CURRENCY = "đ";
+    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public static void writeFile(Context context, String fileName, String text) {
         try {
@@ -53,6 +57,14 @@ public class Utils {
         String format = "%,d";
 
         return String.format(Locale.getDefault(), format, number) + CURRENCY;
+    }
+
+    public static String dateStr(Date date) {
+        return simpleDateFormat.format(date);
+    }
+
+    public static Date dateParse(String date) throws ParseException {
+        return simpleDateFormat.parse(date);
     }
 
     public static class CommonUIFunction {
