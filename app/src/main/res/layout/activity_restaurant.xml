@@ -381,7 +381,6 @@
                 tools:itemCount="1"
                 tools:listitem="@layout/adapter_restaurant_coupon" />
 
-
             <!-- Foods -->
             <com.mtb.foodorderreview.components.ExpandableHeightGridView
                 android:id="@+id/restaurant_food_grid"

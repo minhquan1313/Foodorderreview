@@ -54,7 +54,9 @@ public class RestaurantFoodGridAdapter extends BaseAdapter {
         restaurant_food_name = convertView.findViewById(R.id.restaurant_food_name);
         restaurant_food_cover = convertView.findViewById(R.id.restaurant_food_cover);
 
-        restaurant_food_price.setText(String.format("%,d" + Utils.CURRENCY, item.getPrice()));
+
+        String money = Utils.currency(item.getPrice());
+        restaurant_food_price.setText(money);
         restaurant_food_des.setText(item.getDescription());
         restaurant_food_name.setText(item.getName());
 

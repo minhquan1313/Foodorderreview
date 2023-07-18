@@ -1,11 +1,14 @@
 package com.mtb.foodorderreview.utils;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.widget.LinearLayout;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 public class Utils {
     public static final String CURRENCY = "đ";
@@ -38,5 +41,23 @@ public class Utils {
         }
 
         return "";
+    }
+
+    public static String currency(double number) {
+        String format = "%,.2f";
+
+        return String.format(Locale.getDefault(), format, number) + CURRENCY;
+    }
+
+    public static String currency(int number) {
+        String format = "%,d";
+
+        return String.format(Locale.getDefault(), format, number) + CURRENCY;
+    }
+
+    public static class CommonUIFunction {
+        public static void backBtn(Context context, LinearLayout btn) {
+            btn.setOnClickListener(v -> ((Activity) context).finish());
+        }
     }
 }

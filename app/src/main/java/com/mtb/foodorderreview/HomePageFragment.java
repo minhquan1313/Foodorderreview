@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +19,7 @@ import com.mtb.foodorderreview.homeview.FoodType;
 import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
+import com.mtb.foodorderreview.service.FoodCategoryType;
 
 import java.util.Arrays;
 
@@ -75,11 +75,11 @@ public class HomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         initialization(view);
         HomeFoodTypeUI(getContext(), view);
         HomeFoodShopUI(getContext(), view);
-        //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         return view;
     }
 
@@ -91,15 +91,27 @@ public class HomePageFragment extends Fragment {
 
     private void HomeFoodShopUI(Context context, View view) {
         Restaurant[] l = {
-                new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food, "262 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(2, "b", R.drawable.img_sample_food, "263 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2, "264 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(4, "d", R.drawable.img_sample_food, "265 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(5, "e", R.drawable.img_sample_food, "266 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(6, "f", R.drawable.img_sample_food, "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam")
+                new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food,
+                        "262 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+
+                new Restaurant(2, "b", R.drawable.img_sample_food,
+                        "263 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+
+                new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2,
+                        "264 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+
+                new Restaurant(4, "d", R.drawable.img_sample_food,
+                        "265 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+
+                new Restaurant(5, "e", R.drawable.img_sample_food,
+                        "266 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+
+                new Restaurant(6, "f", R.drawable.img_sample_food,
+                        "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam")
         };
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+                false);
         RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, Arrays.asList(l));
 
         adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
@@ -107,13 +119,7 @@ public class HomePageFragment extends Fragment {
                 RestaurantGlobal.getInstance().setRestaurant(homeFood);
 
                 Intent intent = new Intent(context, RestaurantActivity.class);
-//
-//                intent.putExtra("id", homeFood.getId());
-//                intent.putExtra("name", homeFood.getName());
-//                intent.putExtra("image", homeFood.getImage());
                 startActivity(intent);
-            } else {
-                // Do something if it's long click
             }
         });
 
@@ -124,11 +130,11 @@ public class HomePageFragment extends Fragment {
 
     private void HomeFoodTypeUI(Context context, View view) {
         FoodType[] l = {
-                new FoodType("Rice", R.drawable.icon_food_type_rice),
-                new FoodType("Rice2", R.drawable.icon_food_type_rice),
-                new FoodType("Rice3", R.drawable.icon_food_type_rice),
-                new FoodType("Rice4", R.drawable.icon_food_type_rice),
-                new FoodType("Rice5", R.drawable.icon_food_type_rice)
+                new FoodType(FoodCategoryType.RICE, "Rice", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.RICE, "Rice2", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.RICE, "Rice3", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.RICE, "Rice4", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.RICE, "Rice5", R.drawable.icon_food_type_rice)
         };
 
         FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
@@ -139,7 +145,6 @@ public class HomePageFragment extends Fragment {
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             FoodType foodType = (FoodType) gridView.getItemAtPosition(position);
-            Toast.makeText(context, "Selected :" + " " + foodType.getName(), Toast.LENGTH_LONG).show();
         });
     }
 }
