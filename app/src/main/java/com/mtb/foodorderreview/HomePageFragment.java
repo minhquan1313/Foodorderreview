@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.api.LoaiFoodService;
+import com.mtb.foodorderreview.api.NhaHangService;
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.global.User;
@@ -22,6 +23,7 @@ import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
 import com.mtb.foodorderreview.model.LoaiFood;
+import com.mtb.foodorderreview.model.NhaHang;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,36 +100,78 @@ public class HomePageFragment extends Fragment {
     }
 
     private void HomeFoodShopUI(Context context, View view) {
-        Restaurant[] l = {
-                new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food),
-                new Restaurant(2, "b", R.drawable.img_sample_food),
-                new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2),
-                new Restaurant(4, "d", R.drawable.img_sample_food),
-                new Restaurant(5, "e", R.drawable.img_sample_food),
-                new Restaurant(6, "f", R.drawable.img_sample_food),
-        };
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, Arrays.asList(l));
 
+        List<Restaurant> l = new ArrayList<Restaurant>();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, l);
+        NhaHangService.apiService.getListNH().enqueue(new Callback<List<NhaHang>>() {
+            @Override
+            public void onResponse(Call<List<NhaHang>> call, Response<List<NhaHang>> response) {
+                List<NhaHang> list = response.body();
+                int dem = 0;
+                for (NhaHang nhaHang : list) {
+                    l.add(new Restaurant(++dem, nhaHang.getTen(), R.drawable.img_sample_food));
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<NhaHang>> call, Throwable t) {
+
+            }
+        });
         adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
             if (!isLongClick) {
                 RestaurantGlobal.getInstance().setRestaurant(homeFood);
 
                 Intent intent = new Intent(context, RestaurantActivity.class);
-//
-//                intent.putExtra("id", homeFood.getId());
-//                intent.putExtra("name", homeFood.getName());
-//                intent.putExtra("image", homeFood.getImage());
+
+                intent.putExtra("id", homeFood.getId());
+                intent.putExtra("name", homeFood.getName());
+                intent.putExtra("image", homeFood.getImage());
                 startActivity(intent);
             } else {
                 // Do something if it's long click
             }
         });
-
         RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
+
+
+
+//        Restaurant[] l = {
+//                new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food),
+//                new Restaurant(2, "b", R.drawable.img_sample_food),
+//                new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2),
+//                new Restaurant(4, "d", R.drawable.img_sample_food),
+//                new Restaurant(5, "e", R.drawable.img_sample_food),
+//                new Restaurant(6, "f", R.drawable.img_sample_food),
+//        };
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+//        RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, Arrays.asList(l));
+//
+//        adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
+//            if (!isLongClick) {
+//                RestaurantGlobal.getInstance().setRestaurant(homeFood);
+//
+//                Intent intent = new Intent(context, RestaurantActivity.class);
+////
+////                intent.putExtra("id", homeFood.getId());
+////                intent.putExtra("name", homeFood.getName());
+////                intent.putExtra("image", homeFood.getImage());
+//                startActivity(intent);
+//            } else {
+//                // Do something if it's long click
+//            }
+//        });
+//
+//        RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapter);
+  //  }
 
     private void HomeFoodTypeUI(Context context, View view) {
 
@@ -159,7 +203,7 @@ public class HomePageFragment extends Fragment {
 //                new FoodType("Rice4", R.drawable.icon_food_type_rice),
 //                new FoodType("Rice5", R.drawable.icon_food_type_rice)
 //        };
-
+//
 //        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
 
         ExpandableHeightGridView gridView = view.findViewById(R.id.home_food_type_grid_1);
