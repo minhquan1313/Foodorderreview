@@ -32,7 +32,8 @@ public class RestaurantCouponHolder extends RecyclerView.ViewHolder implements V
         restaurant_coupon_claim_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnClickListener.onClick(v, RestaurantCouponHolder.this.getAdapterPosition(), false, item);
+                if (btnClickListener != null)
+                    btnClickListener.onClick(v, RestaurantCouponHolder.this.getAdapterPosition(), false, item);
             }
         });
     }

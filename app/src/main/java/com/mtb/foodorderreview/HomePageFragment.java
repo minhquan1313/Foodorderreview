@@ -91,12 +91,12 @@ public class HomePageFragment extends Fragment {
 
     private void HomeFoodShopUI(Context context, View view) {
         Restaurant[] l = {
-                new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food),
-                new Restaurant(2, "b", R.drawable.img_sample_food),
-                new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2),
-                new Restaurant(4, "d", R.drawable.img_sample_food),
-                new Restaurant(5, "e", R.drawable.img_sample_food),
-                new Restaurant(6, "f", R.drawable.img_sample_food),
+                new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food, "262 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(2, "b", R.drawable.img_sample_food, "263 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2, "264 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(4, "d", R.drawable.img_sample_food, "265 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(5, "e", R.drawable.img_sample_food, "266 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(6, "f", R.drawable.img_sample_food, "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam")
         };
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);

@@ -52,7 +52,6 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
         holder.setItem(item);
         holder.getRestaurant_coupon_detail1().setText(item.getTitle());
         holder.setClickListener(clickListener);
-        holder.setBtnClickListener(btnClickListener);
 
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.getRestaurant_coupon_layout1().getLayoutParams();
         if (margin == -1) margin = lp.rightMargin;
@@ -69,8 +68,10 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
         RestaurantCoupon currentCoupon = CartGlobal.getInstance().getCoupon();
         if (currentCoupon != null && currentCoupon.getId() == item.getId()) {
             holder.getRestaurant_coupon_claim_btn1().setText(this.CANT_USE);
+            holder.setBtnClickListener(null);
         } else {
             holder.getRestaurant_coupon_claim_btn1().setText(this.CAN_USE);
+            holder.setBtnClickListener(btnClickListener);
         }
 
     }

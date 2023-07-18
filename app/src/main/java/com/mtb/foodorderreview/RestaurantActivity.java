@@ -68,6 +68,7 @@ public class RestaurantActivity extends AppCompatActivity {
         Restaurant restaurant = RestaurantGlobal.getInstance().getRestaurant();
 
         restaurant_name1.setText(restaurant.getName());
+        restaurant_location1.setText(restaurant.getAddress());
         restaurant_banner1.setImageResource(restaurant.getImage());
 
         cartGlobal.reset();
