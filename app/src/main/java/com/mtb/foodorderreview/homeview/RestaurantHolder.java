@@ -51,11 +51,15 @@ public class RestaurantHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick(View v) {
-        clickListener.onClick(v, getAdapterPosition(), false, item);
+        if (clickListener != null)
+            clickListener.onClick(v, getAdapterPosition(), false, item);
     }
 
     @Override
     public boolean onLongClick(View v) {
+        if (clickListener != null)
+            clickListener.onClick(v, getAdapterPosition(), true, item);
+
         return false;
     }
 }

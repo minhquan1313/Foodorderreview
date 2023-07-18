@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +15,6 @@ import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.utils.Utils;
-
-import java.util.Locale;
 
 public class FoodSelectActivity extends AppCompatActivity {
     TextView food_select_name,
@@ -45,10 +42,13 @@ public class FoodSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_select);
+
         initialization();
         updateQuantityUi();
         onQuantityChangeBtns();
-        backBtn(food_select_back_btn);
+
+        Utils.CommonUIFunction.backBtn(this, food_select_back_btn);
+
         addToCartBtn();
     }
 
@@ -68,7 +68,9 @@ public class FoodSelectActivity extends AppCompatActivity {
         food = RestaurantFoodGlobal.getInstance().getFood();
 
         food_select_name.setText(food.getName());
-        food_select_price.setText(String.format("%,d" + Utils.CURRENCY, food.getPrice()));
+
+        String money = Utils.currency(food.getPrice());
+        food_select_price.setText(money);
         food_select_banner.setImageResource(food.getImage());
         food_select_description.setText(food.getDescription());
 
@@ -98,12 +100,8 @@ public class FoodSelectActivity extends AppCompatActivity {
         });
     }
 
-    private void backBtn(LinearLayout btn) {
-        btn.setOnClickListener(v -> finish());
-    }
-
     private void updateQuantityUi() {
-        String price = String.format(Locale.getDefault(), "%,d" + Utils.CURRENCY, countQuantity * food.getPrice());
+        String price = Utils.currency(countQuantity * food.getPrice());
         String newBtnText = ADD_TO_CART_STR + price;
         food_select_quantity_text.setText(String.valueOf(countQuantity));
         food_select_add_to_cart_btn.setText(newBtnText);
@@ -114,7 +112,6 @@ public class FoodSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cartGlobal.addFood(new CartFood(food, countQuantity));
-                Toast.makeText(FoodSelectActivity.this, "" + cartGlobal.getFoods().size(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent();
                 setResult(2, intent);

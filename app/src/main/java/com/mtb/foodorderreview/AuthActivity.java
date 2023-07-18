@@ -121,7 +121,6 @@ public class AuthActivity extends AppCompatActivity {
 
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
 
-
         if (authUsername.trim().length() != 0 && authPassword.trim().length() != 0) {
             requestId = "1";
             requestToken = "abcxyz";

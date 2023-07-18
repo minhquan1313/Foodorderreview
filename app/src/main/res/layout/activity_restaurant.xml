@@ -173,7 +173,7 @@
                         android:id="@+id/restaurant_detail1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng Chuyên cháo lòng :>"
+                        android:text="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam, distinctio!"
                         android:textColor="@color/grey_3"
                         android:textSize="14sp" />
 
@@ -381,7 +381,6 @@
                 tools:itemCount="1"
                 tools:listitem="@layout/adapter_restaurant_coupon" />
 
-
             <!-- Foods -->
             <com.mtb.foodorderreview.components.ExpandableHeightGridView
                 android:id="@+id/restaurant_food_grid"
@@ -389,8 +388,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
                 android:layout_marginTop="20sp"
-                android:verticalSpacing="8sp"
-                android:horizontalSpacing="8sp"
+
+                android:verticalSpacing="12sp"
+                android:horizontalSpacing="12sp"
+
                 android:listSelector="@color/transparent"
                 android:nestedScrollingEnabled="true"
                 android:numColumns="2"

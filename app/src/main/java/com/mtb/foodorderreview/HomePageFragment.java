@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +23,7 @@ import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
 import com.mtb.foodorderreview.model.LoaiFood;
 import com.mtb.foodorderreview.model.NhaHang;
+import com.mtb.foodorderreview.service.FoodCategoryType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,11 +85,11 @@ public class HomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         initialization(view);
         HomeFoodTypeUI(getContext(), view);
         HomeFoodShopUI(getContext(), view);
-        //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         return view;
     }
 
@@ -131,8 +131,6 @@ public class HomePageFragment extends Fragment {
                 intent.putExtra("name", homeFood.getName());
                 intent.putExtra("image", homeFood.getImage());
                 startActivity(intent);
-            } else {
-                // Do something if it's long click
             }
         });
         RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
@@ -212,7 +210,6 @@ public class HomePageFragment extends Fragment {
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             FoodType foodType = (FoodType) gridView.getItemAtPosition(position);
-            Toast.makeText(context, "Selected :" + " " + foodType.getName(), Toast.LENGTH_LONG).show();
         });
     }
 }

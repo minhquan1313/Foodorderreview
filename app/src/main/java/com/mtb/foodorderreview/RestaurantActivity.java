@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +21,8 @@ import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.restaurentview.RestaurantFoodGridAdapter;
+import com.mtb.foodorderreview.utils.ItemClickListener;
+import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.Arrays;
 
@@ -36,7 +37,6 @@ public class RestaurantActivity extends AppCompatActivity {
     LinearLayout linear_btn_restaurant_back1;
     CartGlobal cartGlobal;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +44,14 @@ public class RestaurantActivity extends AppCompatActivity {
 
         initialization();
 
-        updateCart();
+        updateCartUI();
 
-        backBtn(linear_btn_restaurant_back1);
-        cartBtn();
+        Utils.CommonUIFunction.backBtn(this, linear_btn_restaurant_back1);
 
         couponsRecycler();
         foodGrid();
+
+        cartBtn();
     }
 
     private void initialization() {
@@ -67,51 +68,60 @@ public class RestaurantActivity extends AppCompatActivity {
         Restaurant restaurant = RestaurantGlobal.getInstance().getRestaurant();
 
         restaurant_name1.setText(restaurant.getName());
+        restaurant_location1.setText(restaurant.getAddress());
         restaurant_banner1.setImageResource(restaurant.getImage());
 
         cartGlobal.reset();
         cartGlobal.setRestaurant(restaurant);
     }
 
-    private void backBtn(LinearLayout btn) {
-        btn.setOnClickListener(v -> finish());
-    }
-
     private void cartBtn() {
 
-        restaurant_cart_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Checkout activity
-                Toast.makeText(RestaurantActivity.this, "Cart click ne", Toast.LENGTH_SHORT).show();
-            }
+        restaurant_cart_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CartCheckoutActivity.class);
+            startActivityIfNeeded(intent, 3);
         });
     }
 
-    public void updateCart() {
-        if (cartGlobal.getFoods().size() == 0) {
+    public void updateCartUI() {
+        if (cartGlobal.getFoodList().size() == 0) {
             restaurant_cart_btn.setVisibility(View.INVISIBLE);
             return;
         }
 
         restaurant_cart_btn.setVisibility(View.VISIBLE);
 
-        restaurant_cart_quantity_text.setText(String.valueOf(cartGlobal.getFoods().size()));
+        restaurant_cart_quantity_text.setText(String.valueOf(cartGlobal.getFoodList().size()));
     }
 
     private void couponsRecycler() {
         RestaurantCoupon[] l = {
-                new RestaurantCoupon("Giảm 40% luôn, lụm liền đi", "", 0.6),
-                new RestaurantCoupon("Giảm 10% nè", "", 0.1),
-                new RestaurantCoupon("Hihi Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè", "",
-                        0.1),
-                new RestaurantCoupon("d", "", 0.1),
-                new RestaurantCoupon("e", "", 0.1),
-                new RestaurantCoupon("f", "", 0.1),
+                new RestaurantCoupon(1, "Giảm 40% luôn, lụm liền đi", "", 0.6, RestaurantCoupon.DiscountType.PERCENT),
+                new RestaurantCoupon(2, "Giảm 10% nè", "", 0.1, RestaurantCoupon.DiscountType.PERCENT),
+                new RestaurantCoupon(3, "Hihi Giảm 10% nè. Giảm 10% nè. Giảm 10% nè.", "", 0.1, RestaurantCoupon.DiscountType.PERCENT),
+                new RestaurantCoupon(4, "Giam 15k", "", 15000, RestaurantCoupon.DiscountType.FIXED),
+                new RestaurantCoupon(5, "Giam 20k", "", 20000, RestaurantCoupon.DiscountType.FIXED),
+                new RestaurantCoupon(6, "Giam 10%", "", 0.1, RestaurantCoupon.DiscountType.PERCENT),
         };
 
+        final int[] couponPosition = {-1};
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
         RestaurantCouponRecyclerAdapter adapter = new RestaurantCouponRecyclerAdapter(this, Arrays.asList(l));
+        adapter.setBtnClickListener(new ItemClickListener<RestaurantCoupon>() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick, RestaurantCoupon item) {
+                if (!isLongClick) {
+                    cartGlobal.setCoupon(item);
+
+                    if (couponPosition[0] != -1)
+                        adapter.notifyItemChanged(couponPosition[0]);
+
+                    adapter.notifyItemChanged(position);
+                    couponPosition[0] = position;
+                }
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.restaurant_coupon_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
@@ -143,11 +153,9 @@ public class RestaurantActivity extends AppCompatActivity {
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             RestaurantFood f = (RestaurantFood) gridView.getItemAtPosition(position);
-//            RestaurantGlobal.getInstance().setRestaurant();
-
             RestaurantFoodGlobal.getInstance().setFood(f);
-            Intent intent = new Intent(this, FoodSelectActivity.class);
 
+            Intent intent = new Intent(this, FoodSelectActivity.class);
             startActivityIfNeeded(intent, 2);
         });
     }
@@ -155,8 +163,17 @@ public class RestaurantActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2) {
-            updateCart();
+
+        switch (requestCode) {
+            // Add food to cart
+            case 2:
+                updateCartUI();
+                break;
+
+            // Checkout
+            case 3:
+                break;
         }
+
     }
 }

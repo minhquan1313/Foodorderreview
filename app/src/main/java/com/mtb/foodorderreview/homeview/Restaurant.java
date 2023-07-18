@@ -8,15 +8,16 @@ public class Restaurant {
     //    private static int ID = 0;
     private String name;
     private int image;
+    private String address;
 
     private static List<Restaurant> list = new ArrayList<>();
 
-    public Restaurant(int id, String name, int image) {
-//        if (id > ID) ID = id;
 
+    public Restaurant(int id, String name, int image, String address) {
         this.id = id;
         this.name = name;
         this.image = image;
+        this.address = address;
     }
 
     public int getId() {
@@ -41,5 +42,13 @@ public class Restaurant {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

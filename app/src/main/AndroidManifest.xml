@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FoodOrderReview"
         tools:targetApi="31">
         <activity
+            android:name=".CartCheckoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".FoodSelectActivity"
             android:exported="false" />
         <activity
