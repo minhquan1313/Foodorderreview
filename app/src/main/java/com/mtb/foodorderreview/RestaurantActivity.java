@@ -13,18 +13,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mtb.foodorderreview.api.FoodService;
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.homeview.Restaurant;
+import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
+import com.mtb.foodorderreview.model.Food;
+import com.mtb.foodorderreview.model.LoaiFood;
+import com.mtb.foodorderreview.model.NhaHang;
 import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.restaurentview.RestaurantFoodGridAdapter;
 import com.mtb.foodorderreview.utils.ItemClickListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RestaurantActivity extends AppCompatActivity {
     TextView restaurant_name1,
@@ -136,22 +147,29 @@ public class RestaurantActivity extends AppCompatActivity {
     }
 
     private void foodGrid() {
-        RestaurantFood[] l = {
-                new RestaurantFood(1, "Bún bò 1", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        13000),
-                new RestaurantFood(2, "Bún bò 2", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        14000),
-                new RestaurantFood(3, "Bún bò 3", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        15000),
-                new RestaurantFood(4, "Bún bò 4", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        16000),
-                new RestaurantFood(5, "Bún bò 5", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        17000),
-                new RestaurantFood(6, "Bún bò 6", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
-                        18000),
-        };
+        int idNhaHang = getIntent().getExtras().getInt("id");
+        List<RestaurantFood> list = new ArrayList<>();
+        RestaurantFoodGridAdapter adapter = new RestaurantFoodGridAdapter(this,list);
+        FoodService.apiService.getListFoodByNhaHang(idNhaHang).enqueue(new Callback<List<Food>>() {
 
-        RestaurantFoodGridAdapter adapter = new RestaurantFoodGridAdapter(this, Arrays.asList(l));
+
+            @Override
+            public void onResponse(Call<List<Food>> call, Response<List<Food>> response) {
+                List<Food> listFood = response.body();
+
+                for (Food l : listFood) {
+                    list.add(new RestaurantFood(l.getId(), l.getTen(), "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
+                            l.getGiaTien().intValue()));
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Food>> call, Throwable t) {
+
+            }
+        });
 
         ExpandableHeightGridView gridView = findViewById(R.id.restaurant_food_grid);
         gridView.setAdapter(adapter);
