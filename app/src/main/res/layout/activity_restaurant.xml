@@ -389,8 +389,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
                 android:layout_marginTop="20sp"
-                android:verticalSpacing="8sp"
-                android:horizontalSpacing="8sp"
+
+                android:verticalSpacing="12sp"
+                android:horizontalSpacing="12sp"
+
                 android:listSelector="@color/transparent"
                 android:nestedScrollingEnabled="true"
                 android:numColumns="2"

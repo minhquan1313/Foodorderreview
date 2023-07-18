@@ -10,16 +10,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.R;
+import com.mtb.foodorderreview.global.CartGlobal;
+import com.mtb.foodorderreview.utils.ItemClickListener;
 
 import java.util.List;
 
 public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<RestaurantCouponHolder> {
     private List<RestaurantCoupon> list;
+    private final String CAN_USE = "Dùng";
+    private final String CANT_USE = "Đã dùng";
     private final LayoutInflater inflater;
+    private ItemClickListener<RestaurantCoupon> clickListener;
+    private ItemClickListener<RestaurantCoupon> btnClickListener;
+
+    private int margin = -1;
 
     public RestaurantCouponRecyclerAdapter(Context context, List<RestaurantCoupon> list) {
         this.list = list;
         this.inflater = LayoutInflater.from(context);
+    }
+
+    public void setClickListener(ItemClickListener<RestaurantCoupon> clickListener) {
+        this.clickListener = clickListener;
+    }
+
+    public void setBtnClickListener(ItemClickListener<RestaurantCoupon> btnClickListener) {
+        this.btnClickListener = btnClickListener;
     }
 
     @NonNull
@@ -33,14 +49,32 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
     public void onBindViewHolder(@NonNull RestaurantCouponHolder holder, int position) {
         RestaurantCoupon item = list.get(position);
 
+        holder.setItem(item);
         holder.getRestaurant_coupon_detail1().setText(item.getTitle());
+        holder.setClickListener(clickListener);
+        holder.setBtnClickListener(btnClickListener);
 
-        if (position > 0) {
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.getRestaurant_coupon_layout1().getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.getRestaurant_coupon_layout1().getLayoutParams();
+        if (margin == -1) margin = lp.rightMargin;
+
+        if (position != 0) {
             lp.leftMargin = 0;
-            holder.getRestaurant_coupon_layout1().setLayoutParams(lp);
         }
+
+        if (position < list.size() - 1) {
+            lp.rightMargin = this.margin / 2;
+        }
+        holder.getRestaurant_coupon_layout1().setLayoutParams(lp);
+
+        RestaurantCoupon currentCoupon = CartGlobal.getInstance().getCoupon();
+        if (currentCoupon != null && currentCoupon.getId() == item.getId()) {
+            holder.getRestaurant_coupon_claim_btn1().setText(this.CANT_USE);
+        } else {
+            holder.getRestaurant_coupon_claim_btn1().setText(this.CAN_USE);
+        }
+
     }
+
 
     @Override
     public int getItemCount() {

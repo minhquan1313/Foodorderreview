@@ -1,6 +1,5 @@
 package com.mtb.foodorderreview;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -13,27 +12,28 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
+    FragmentManager fragmentManager;
+    BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Auth(this);
 
-        Init();
+        initialization();
+
+        bottomNavigation();
     }
 
-//    private void Auth(Context context) {
-//        Intent intent = new Intent(context, AuthActivity.class);
-//        startActivity(intent);
-//    }
+    private void initialization() {
+        navigationView = findViewById(R.id.bottom_navigation1);
 
-    private void Init() {
-        BottomNavigationView navigationView = findViewById(R.id.bottom_navigation1);
-        Intent restaurantIntent = new Intent(this, HomePageFragment.class);
+        fragmentManager = getSupportFragmentManager();
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+    }
+
+    private void bottomNavigation() {
         int mainFrameId = R.id.main_frame_layout1;
 
         fragmentManager
@@ -72,4 +72,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

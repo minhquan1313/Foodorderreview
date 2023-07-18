@@ -9,12 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.R;
+import com.mtb.foodorderreview.utils.ItemClickListener;
 
-public class RestaurantCouponHolder extends RecyclerView.ViewHolder {
-    private String item;
-    private TextView restaurant_coupon_detail1;
-    private Button restaurant_coupon_claim_btn1;
-    private RelativeLayout restaurant_coupon_layout1;
+public class RestaurantCouponHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    private RestaurantCoupon item;
+    private final TextView restaurant_coupon_detail1;
+    private final Button restaurant_coupon_claim_btn1;
+    private final RelativeLayout restaurant_coupon_layout1;
+    private ItemClickListener<RestaurantCoupon> clickListener;
+    private ItemClickListener<RestaurantCoupon> btnClickListener;
+
 
     public RestaurantCouponHolder(@NonNull View itemView) {
         super(itemView);
@@ -22,6 +26,23 @@ public class RestaurantCouponHolder extends RecyclerView.ViewHolder {
         restaurant_coupon_detail1 = itemView.findViewById(R.id.restaurant_coupon_detail1);
         restaurant_coupon_claim_btn1 = itemView.findViewById(R.id.restaurant_coupon_claim_btn1);
         restaurant_coupon_layout1 = itemView.findViewById(R.id.restaurant_coupon_layout1);
+
+        itemView.setOnClickListener(this);
+
+        restaurant_coupon_claim_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnClickListener.onClick(v, RestaurantCouponHolder.this.getAdapterPosition(), false, item);
+            }
+        });
+    }
+
+    public void setClickListener(ItemClickListener<RestaurantCoupon> clickListener) {
+        this.clickListener = clickListener;
+    }
+
+    public void setBtnClickListener(ItemClickListener<RestaurantCoupon> btnClickListener) {
+        this.btnClickListener = btnClickListener;
     }
 
     public RelativeLayout getRestaurant_coupon_layout1() {
@@ -36,11 +57,25 @@ public class RestaurantCouponHolder extends RecyclerView.ViewHolder {
         return restaurant_coupon_claim_btn1;
     }
 
-    public String getItem() {
+    public RestaurantCoupon getItem() {
         return item;
     }
 
-    public void setItem(String item) {
+    public void setItem(RestaurantCoupon item) {
         this.item = item;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (clickListener != null)
+            clickListener.onClick(v, getAdapterPosition(), false, item);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (clickListener != null)
+            clickListener.onClick(v, getAdapterPosition(), true, item);
+
+        return false;
     }
 }

@@ -45,6 +45,7 @@ public class FoodSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_select);
+
         initialization();
         updateQuantityUi();
         onQuantityChangeBtns();
@@ -114,7 +115,7 @@ public class FoodSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cartGlobal.addFood(new CartFood(food, countQuantity));
-                Toast.makeText(FoodSelectActivity.this, "" + cartGlobal.getFoods().size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(FoodSelectActivity.this, "" + cartGlobal.getFoodList().size(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent();
                 setResult(2, intent);

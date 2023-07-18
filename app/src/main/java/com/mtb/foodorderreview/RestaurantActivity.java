@@ -22,6 +22,7 @@ import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.restaurentview.RestaurantFoodGridAdapter;
+import com.mtb.foodorderreview.utils.ItemClickListener;
 
 import java.util.Arrays;
 
@@ -79,39 +80,54 @@ public class RestaurantActivity extends AppCompatActivity {
 
     private void cartBtn() {
 
-        restaurant_cart_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Checkout activity
-                Toast.makeText(RestaurantActivity.this, "Cart click ne", Toast.LENGTH_SHORT).show();
-            }
+        restaurant_cart_btn.setOnClickListener(v -> {
+            // Checkout activity
+            Toast.makeText(RestaurantActivity.this, "Cart click ne", Toast.LENGTH_SHORT).show();
         });
     }
 
     public void updateCart() {
-        if (cartGlobal.getFoods().size() == 0) {
+        if (cartGlobal.getFoodList().size() == 0) {
             restaurant_cart_btn.setVisibility(View.INVISIBLE);
             return;
         }
 
         restaurant_cart_btn.setVisibility(View.VISIBLE);
 
-        restaurant_cart_quantity_text.setText(String.valueOf(cartGlobal.getFoods().size()));
+        restaurant_cart_quantity_text.setText(String.valueOf(cartGlobal.getFoodList().size()));
     }
 
     private void couponsRecycler() {
         RestaurantCoupon[] l = {
-                new RestaurantCoupon("Giảm 40% luôn, lụm liền đi", "", 0.6),
-                new RestaurantCoupon("Giảm 10% nè", "", 0.1),
-                new RestaurantCoupon("Hihi Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè", "",
-                        0.1),
-                new RestaurantCoupon("d", "", 0.1),
-                new RestaurantCoupon("e", "", 0.1),
-                new RestaurantCoupon("f", "", 0.1),
+                new RestaurantCoupon(1, "Giảm 40% luôn, lụm liền đi", "", 0.6),
+                new RestaurantCoupon(2, "Giảm 10% nè", "", 0.1),
+                new RestaurantCoupon(3, "Hihi Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè", "", 0.1),
+                new RestaurantCoupon(4, "d", "", 0.1),
+                new RestaurantCoupon(5, "e", "", 0.1),
+                new RestaurantCoupon(6, "f", "", 0.1),
         };
 
+        final int[] couponPosition = {-1};
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
         RestaurantCouponRecyclerAdapter adapter = new RestaurantCouponRecyclerAdapter(this, Arrays.asList(l));
+        adapter.setBtnClickListener(new ItemClickListener<RestaurantCoupon>() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick, RestaurantCoupon item) {
+                if (!isLongClick) {
+                    cartGlobal.setCoupon(item);
+
+                    if (couponPosition[0] != -1)
+                        adapter.notifyItemChanged(couponPosition[0]);
+
+                    adapter.notifyItemChanged(position);
+                    couponPosition[0] = position;
+
+                    Toast.makeText(RestaurantActivity.this, "Btn coupon click " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         RecyclerView recyclerView = findViewById(R.id.restaurant_coupon_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
