@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.api.FoodService;
+import com.mtb.foodorderreview.api.NhaHangService;
+import com.mtb.foodorderreview.api.UuDaiService;
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
@@ -23,6 +25,7 @@ import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
 import com.mtb.foodorderreview.model.Food;
 import com.mtb.foodorderreview.model.LoaiFood;
 import com.mtb.foodorderreview.model.NhaHang;
+import com.mtb.foodorderreview.model.UuDai;
 import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
@@ -41,7 +44,9 @@ public class RestaurantActivity extends AppCompatActivity {
     TextView restaurant_name1,
             restaurant_detail1,
             restaurant_location1,
-            restaurant_cart_quantity_text;
+            restaurant_cart_quantity_text,
+            rate,
+            countDanhGia;
     ImageView restaurant_banner1;
     RelativeLayout restaurant_cart_btn;
     RestaurantCoupon coupon;
@@ -73,7 +78,8 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_cart_btn = findViewById(R.id.restaurant_cart_btn);
         restaurant_cart_quantity_text = findViewById(R.id.restaurant_cart_quantity_text);
         linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
-
+        rate = findViewById(R.id.rate);
+        countDanhGia = findViewById(R.id.count_danh_gia);
         cartGlobal = CartGlobal.getInstance();
 
         Restaurant restaurant = RestaurantGlobal.getInstance().getRestaurant();
@@ -84,6 +90,34 @@ public class RestaurantActivity extends AppCompatActivity {
 
         cartGlobal.reset();
         cartGlobal.setRestaurant(restaurant);
+
+
+        //Tải lượng đánh giá trung bình của 1 nhà hàng
+        putRatingOfRestaurant();
+    }
+
+    private void putRatingOfRestaurant(){
+        int idNhaHang = getIntent().getExtras().getInt("id");
+        NhaHangService.apiService.getRatingOfRestaurant(idNhaHang).enqueue(new Callback<Double>() {
+            @Override
+            public void onResponse(Call<Double> call, Response<Double> response) {
+                rate.setText(response.body().toString());
+            }
+            @Override
+            public void onFailure(Call<Double> call, Throwable t) {
+            }
+        });
+        NhaHangService.apiService.getCountOfRate(idNhaHang).enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                countDanhGia.setText(response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
     }
 
     private void backBtn(LinearLayout btn) {
@@ -110,19 +144,33 @@ public class RestaurantActivity extends AppCompatActivity {
     }
 
     private void couponsRecycler() {
-        RestaurantCoupon[] l = {
-                new RestaurantCoupon(1, "Giảm 40% luôn, lụm liền đi", "", 0.6),
-                new RestaurantCoupon(2, "Giảm 10% nè", "", 0.1),
-                new RestaurantCoupon(3, "Hihi Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè Giảm 10% nè", "", 0.1),
-                new RestaurantCoupon(4, "d", "", 0.1),
-                new RestaurantCoupon(5, "e", "", 0.1),
-                new RestaurantCoupon(6, "f", "", 0.1),
-        };
+        int idNhaHang = getIntent().getExtras().getInt("id");
+        List<RestaurantCoupon> l = new ArrayList<>();
+
+//
 
         final int[] couponPosition = {-1};
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
-        RestaurantCouponRecyclerAdapter adapter = new RestaurantCouponRecyclerAdapter(this, Arrays.asList(l));
+        RestaurantCouponRecyclerAdapter adapter = new RestaurantCouponRecyclerAdapter(this, l);
+
+        UuDaiService.apiService.getListUuDaiByNhaHang(idNhaHang).enqueue(new Callback<List<UuDai>>() {
+            @Override
+            public void onResponse(Call<List<UuDai>> call, Response<List<UuDai>> response) {
+                List<UuDai> uuDaiList = response.body();
+                for(UuDai u : uuDaiList){
+                    l.add(new RestaurantCoupon(u.getId(), u.getNoiDung(), u.getId().toString(), u.getGiaTri()));
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<UuDai>> call, Throwable t) {
+
+            }
+        });
+
+
         adapter.setBtnClickListener(new ItemClickListener<RestaurantCoupon>() {
             @Override
             public void onClick(View view, int position, boolean isLongClick, RestaurantCoupon item) {
