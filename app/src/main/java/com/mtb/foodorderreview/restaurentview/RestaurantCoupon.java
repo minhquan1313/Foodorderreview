@@ -38,6 +38,17 @@ public class RestaurantCoupon {
 
     public enum DiscountType {
         PERCENT,
-        FIXED
+        FIXED;
+
+        public int getValue() {
+            switch (this) {
+                case PERCENT:
+                    return 1;
+                case FIXED:
+                    return 2;
+                default:
+                    return 1;
+            }
+        }
     }
 }

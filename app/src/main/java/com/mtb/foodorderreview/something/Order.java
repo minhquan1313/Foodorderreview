@@ -72,17 +72,25 @@ public class Order {
 
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     public enum STATE {
-        PENDING, DELIVERED;
+        PENDING,
+        PREPARING,
+        DELIVERING,
+        DELIVERED;
 
         public int getValue() {
             switch (this) {
                 case PENDING:
                     return 1;
-                case DELIVERED:
+                case PREPARING:
                     return 2;
-            }
+                case DELIVERING:
+                    return 2;
+                case DELIVERED:
+                    return 4;
 
-            return 1;
+                default:
+                    return 1;
+            }
         }
     }
 }

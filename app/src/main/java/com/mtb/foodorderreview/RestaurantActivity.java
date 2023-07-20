@@ -170,8 +170,11 @@ public class RestaurantActivity extends AppCompatActivity {
                 updateCartUI();
                 break;
 
-            // Checkout
+            // Checkout ok
             case 3:
+                Intent intent = new Intent(this, DeliveryActivity.class);
+                startActivity(intent);
+
                 finish();
                 break;
         }

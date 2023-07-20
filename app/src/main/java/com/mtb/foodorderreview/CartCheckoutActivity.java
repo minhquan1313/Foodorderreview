@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -63,16 +62,13 @@ public class CartCheckoutActivity extends AppCompatActivity {
 
                 Order order = new Order(cartGlobal.getRestaurant(), cartGlobal.getFoodList());
                 //Call api here to set orderId
-                
+
                 cartGlobal.reset();
 
                 Intent intent = new Intent();
                 setResult(3, intent);
-                Toast.makeText(CartCheckoutActivity.this, "Dat ngay click", Toast.LENGTH_SHORT).show();
 
                 finish();
-
-                // herehereherehereherehereherehereherehere
             }
         });
     }
