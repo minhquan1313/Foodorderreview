@@ -47,7 +47,7 @@ public class FoodSelectActivity extends AppCompatActivity {
         updateQuantityUi();
         onQuantityChangeBtns();
 
-        Utils.CommonUIFunction.backBtn(this, food_select_back_btn);
+        Utils.UI.backBtn(this, food_select_back_btn);
 
         addToCartBtn();
     }
@@ -114,7 +114,7 @@ public class FoodSelectActivity extends AppCompatActivity {
                 cartGlobal.addFood(new CartFood(food, countQuantity));
 
                 Intent intent = new Intent();
-                setResult(2, intent);
+                setResult(1, intent);
 
                 finish();
             }

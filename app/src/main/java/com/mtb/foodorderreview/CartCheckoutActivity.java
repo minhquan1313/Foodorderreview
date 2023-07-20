@@ -1,17 +1,18 @@
 package com.mtb.foodorderreview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mtb.foodorderreview.checkout.CartFoodListViewAdapter;
 import com.mtb.foodorderreview.components.ExpandableHeightListView;
 import com.mtb.foodorderreview.global.CartGlobal;
+import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.something.Order;
 import com.mtb.foodorderreview.utils.Utils;
 
@@ -34,7 +35,7 @@ public class CartCheckoutActivity extends AppCompatActivity {
 
         initialization();
 
-        Utils.CommonUIFunction.backBtn(this, cart_checkout_back_btn);
+        Utils.UI.backBtn(this, cart_checkout_back_btn);
 
         listView();
 
@@ -61,10 +62,13 @@ public class CartCheckoutActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Order order = new Order(cartGlobal.getRestaurant(), cartGlobal.getFoodList());
-                //Call api here to set orderId,
+                OrderGlobal.getInstance().setOrder(order);
 
-                Toast.makeText(CartCheckoutActivity.this, "Dat ngay click", Toast.LENGTH_SHORT).show();
-                // herehereherehereherehereherehereherehere
+                cartGlobal.reset();
+
+                Intent intent = new Intent();
+                setResult(1, intent);
+                finish();
             }
         });
     }

@@ -26,7 +26,7 @@ import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.restaurentview.RestaurantFoodGridAdapter;
-import com.mtb.foodorderreview.utils.ItemClickListener;
+import com.mtb.foodorderreview.utils.IClickListener;
 import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         updateCartUI();
 
-        Utils.CommonUIFunction.backBtn(this, linear_btn_restaurant_back1);
+        Utils.UI.backBtn(this, linear_btn_restaurant_back1);
 
         couponsRecycler();
         foodGrid();
@@ -86,13 +86,6 @@ public class RestaurantActivity extends AppCompatActivity {
         cartGlobal.setRestaurant(restaurant);
     }
 
-    private void cartBtn() {
-
-        restaurant_cart_btn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, CartCheckoutActivity.class);
-            startActivityIfNeeded(intent, 3);
-        });
-    }
 
     public void updateCartUI() {
         if (cartGlobal.getFoodList().size() == 0) {
@@ -119,7 +112,7 @@ public class RestaurantActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         RestaurantCouponRecyclerAdapter adapter = new RestaurantCouponRecyclerAdapter(this, Arrays.asList(l));
-        adapter.setBtnClickListener(new ItemClickListener<RestaurantCoupon>() {
+        adapter.setBtnClickListener(new IClickListener<RestaurantCoupon>() {
             @Override
             public void onClick(View view, int position, boolean isLongClick, RestaurantCoupon item) {
                 if (!isLongClick) {
@@ -178,6 +171,14 @@ public class RestaurantActivity extends AppCompatActivity {
         });
     }
 
+    private void cartBtn() {
+
+        restaurant_cart_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CartCheckoutActivity.class);
+            startActivityIfNeeded(intent, 3);
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -185,11 +186,17 @@ public class RestaurantActivity extends AppCompatActivity {
         switch (requestCode) {
             // Add food to cart
             case 2:
+                if (resultCode != 1) return;
                 updateCartUI();
                 break;
 
-            // Checkout
+            // Checkout ok
             case 3:
+                if (resultCode != 1) return;
+                Intent intent = new Intent(this, DeliveryActivity.class);
+                startActivity(intent);
+
+                finish();
                 break;
         }
 

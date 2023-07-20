@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
-import com.mtb.foodorderreview.global.User;
+import com.mtb.foodorderreview.global.UserGlobal;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -165,12 +165,12 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void onSuccessHandle() {
-        User.getInstance().setData(
+        UserGlobal.getInstance().setData(
                 Integer.parseInt(requestId),
                 authUsername,
                 authName,
                 authTel,
-                R.drawable.img_user_avatar,
+                R.drawable.img_sample_user_avatar,
                 authEmail,
                 authAddress,
                 requestToken,

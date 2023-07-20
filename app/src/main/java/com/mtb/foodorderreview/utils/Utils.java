@@ -3,7 +3,14 @@ package com.mtb.foodorderreview.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.core.content.ContextCompat;
+
+import com.mtb.foodorderreview.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -67,9 +74,21 @@ public class Utils {
         return simpleDateFormat.parse(date);
     }
 
-    public static class CommonUIFunction {
+    public static class UI {
         public static void backBtn(Context context, LinearLayout btn) {
             btn.setOnClickListener(v -> ((Activity) context).finish());
+        }
+
+        public static void setBackgroundTint(Context context, Button button, int id) {
+            button.setBackgroundTintList(ContextCompat.getColorStateList(context, id));
+        }
+
+        public static void setBackgroundTint(Context context, ImageView img, int id) {
+            img.setColorFilter(ContextCompat.getColor(context, id), android.graphics.PorterDuff.Mode.SRC_IN);
+        }
+
+        public static void setSrc(String url, ImageView imageView) {
+            Picasso.get().load(url).error(R.drawable.img_sample_user_avatar).into(imageView);
         }
     }
 }

@@ -12,6 +12,7 @@ public class Order {
     private Date createdAt;
     private STATE state;
     private List<CartFood> cartFood;
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
     public Order(Restaurant restaurant, List<CartFood> cartFood) {
         this.restaurant = restaurant;
@@ -20,13 +21,14 @@ public class Order {
         this.cartFood = cartFood;
     }
 
-    public Order(int id, Restaurant restaurant, Date createdAt, STATE state, List<CartFood> cartFood) {
+    public Order(int id, Restaurant restaurant, Date createdAt, List<CartFood> cartFood, STATE state) {
         this.id = id;
         this.restaurant = restaurant;
         this.createdAt = createdAt;
         this.state = state;
         this.cartFood = cartFood;
     }
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
     public int getId() {
         return id;
@@ -68,19 +70,27 @@ public class Order {
         this.cartFood = cartFood;
     }
 
-    //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     public enum STATE {
-        PENDING, DELIVERED;
+        PENDING,
+        PREPARING,
+        DELIVERING,
+        DELIVERED;
 
         public int getValue() {
             switch (this) {
                 case PENDING:
                     return 1;
-                case DELIVERED:
+                case PREPARING:
                     return 2;
-            }
+                case DELIVERING:
+                    return 3;
+                case DELIVERED:
+                    return 4;
 
-            return 1;
+                default:
+                    return -1;
+            }
         }
     }
 }
