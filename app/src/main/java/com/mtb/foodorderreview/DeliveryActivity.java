@@ -37,7 +37,7 @@ public class DeliveryActivity extends AppCompatActivity {
         initialization();
 
         updateUI(orderGlobal.getOrder().getState());
-        updateStateDelivering();
+        updateUIDelivering();
     }
 
     private void initialization() {
@@ -55,46 +55,44 @@ public class DeliveryActivity extends AppCompatActivity {
         delivery_delivery_location_address_text = findViewById(R.id.delivery_delivery_location_address_text);
     }
 
-
     public void updateUI(Order.STATE state) {
 
         delivery_delivery_location_address_text.setText(UserGlobal.getInstance().getAddress());
 
         switch (state) {
             case PENDING:
-                updateStatePending();
-
+                updateUIPending();
                 break;
             case PREPARING:
-                updateStatePreparing();
+                updateUIPreparing();
             case DELIVERING:
-                updateStateDelivering();
+                updateUIDelivering();
                 break;
             case DELIVERED:
-                updateStateDelivered();
-
+                updateUIDelivered();
                 break;
         }
     }
 
-    private void updateStatePending() {
+    private void updateUIPending() {
 
     }
 
-    private void updateStatePreparing() {
+    private void updateUIPreparing() {
         delivery_status_text.setText("Nhà hàng đang chuẩn bị");
 
     }
 
-    private void updateStateDelivering() {
-        updateStatePreparing();
+    private void updateUIDelivering() {
+        updateUIPreparing();
 
         delivery_status_text.setText("Shipper đang giao");
         delivery_fake_line_shipping.setBackgroundResource(R.color.primary);
-        delivery_icon_image_shipping.setColorFilter(ContextCompat.getColor(this, R.color.primary), android.graphics.PorterDuff.Mode.SRC_IN);
+        delivery_icon_image_shipping.setColorFilter(ContextCompat.getColor(this, R.color.primary),
+                android.graphics.PorterDuff.Mode.SRC_IN);
         delivery_icon_image_shipping.setBackgroundResource(R.drawable.shape_border_box_primary);
     }
 
-    private void updateStateDelivered() {
+    private void updateUIDelivered() {
     }
 }
