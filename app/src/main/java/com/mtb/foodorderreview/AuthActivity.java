@@ -170,7 +170,7 @@ public class AuthActivity extends AppCompatActivity {
                 authUsername,
                 authName,
                 authTel,
-                R.drawable.img_user_avatar,
+                R.drawable.img_sample_user_avatar,
                 authEmail,
                 authAddress,
                 requestToken,

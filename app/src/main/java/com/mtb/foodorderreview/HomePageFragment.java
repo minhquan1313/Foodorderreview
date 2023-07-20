@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
 import com.mtb.foodorderreview.service.FoodCategoryType;
+import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.Arrays;
 
@@ -33,6 +35,7 @@ public class HomePageFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     TextView home_page_user_name;
+    ImageView home_user_avatar1;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -85,8 +88,12 @@ public class HomePageFragment extends Fragment {
 
     private void initialization(View v) {
         home_page_user_name = v.findViewById(R.id.home_page_user_name);
+        home_user_avatar1 = v.findViewById(R.id.home_user_avatar1);
 
         home_page_user_name.setText(UserGlobal.getInstance().getName());
+
+        String url = "https://cdn.britannica.com/16/234216-050-C66F8665/beagle-hound-dog.jpg";
+        Utils.UI.setSrc(url, home_user_avatar1);
     }
 
     private void HomeFoodShopUI(Context context, View view) {

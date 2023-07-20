@@ -10,21 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.R;
-import com.mtb.foodorderreview.utils.ItemClickListener;
+import com.mtb.foodorderreview.utils.IClickListener;
 
 import java.util.List;
 
 public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantHolder> {
     private List<Restaurant> list;
     private final LayoutInflater inflater;
-    private ItemClickListener<Restaurant> clickListener;
+    private IClickListener<Restaurant> clickListener;
 
     public RestaurantRecyclerAdapter(Context context, List<Restaurant> list) {
         this.list = list;
         this.inflater = LayoutInflater.from(context);
     }
 
-    public void setClickListener(ItemClickListener<Restaurant> clickListener) {
+    public void setClickListener(IClickListener<Restaurant> clickListener) {
         this.clickListener = clickListener;
     }
 

@@ -21,7 +21,7 @@ import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.restaurentview.RestaurantFoodGridAdapter;
-import com.mtb.foodorderreview.utils.ItemClickListener;
+import com.mtb.foodorderreview.utils.IClickListener;
 import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.Arrays;
@@ -101,7 +101,7 @@ public class RestaurantActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
         RestaurantCouponRecyclerAdapter adapter = new RestaurantCouponRecyclerAdapter(this, Arrays.asList(l));
-        adapter.setBtnClickListener(new ItemClickListener<RestaurantCoupon>() {
+        adapter.setBtnClickListener(new IClickListener<RestaurantCoupon>() {
             @Override
             public void onClick(View view, int position, boolean isLongClick, RestaurantCoupon item) {
                 if (!isLongClick) {

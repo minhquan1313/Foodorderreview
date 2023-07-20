@@ -9,14 +9,14 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.R;
-import com.mtb.foodorderreview.utils.ItemClickListener;
+import com.mtb.foodorderreview.utils.IClickListener;
 
 public class RestaurantHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private Restaurant item;
     private TextView food_shop_name1;
     private CardView food_shop_cardView1;
     private ImageView food_shop_image1;
-    private ItemClickListener<Restaurant> clickListener;
+    private IClickListener<Restaurant> clickListener;
 
 
     public RestaurantHolder(@NonNull View itemView) {
@@ -29,7 +29,7 @@ public class RestaurantHolder extends RecyclerView.ViewHolder implements View.On
         food_shop_image1 = itemView.findViewById(R.id.food_shop_image1);
     }
 
-    public void setClickListener(ItemClickListener<Restaurant> clickListener) {
+    public void setClickListener(IClickListener<Restaurant> clickListener) {
         this.clickListener = clickListener;
     }
 

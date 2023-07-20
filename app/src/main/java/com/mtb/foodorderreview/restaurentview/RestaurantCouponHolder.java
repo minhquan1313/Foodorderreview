@@ -9,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.R;
-import com.mtb.foodorderreview.utils.ItemClickListener;
+import com.mtb.foodorderreview.utils.IClickListener;
 
 public class RestaurantCouponHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     private RestaurantCoupon item;
     private final TextView restaurant_coupon_detail1;
     private final Button restaurant_coupon_claim_btn1;
     private final RelativeLayout restaurant_coupon_layout1;
-    private ItemClickListener<RestaurantCoupon> clickListener;
-    private ItemClickListener<RestaurantCoupon> btnClickListener;
+    private IClickListener<RestaurantCoupon> clickListener;
+    private IClickListener<RestaurantCoupon> btnClickListener;
 
 
     public RestaurantCouponHolder(@NonNull View itemView) {
@@ -38,11 +38,11 @@ public class RestaurantCouponHolder extends RecyclerView.ViewHolder implements V
         });
     }
 
-    public void setClickListener(ItemClickListener<RestaurantCoupon> clickListener) {
+    public void setClickListener(IClickListener<RestaurantCoupon> clickListener) {
         this.clickListener = clickListener;
     }
 
-    public void setBtnClickListener(ItemClickListener<RestaurantCoupon> btnClickListener) {
+    public void setBtnClickListener(IClickListener<RestaurantCoupon> btnClickListener) {
         this.btnClickListener = btnClickListener;
     }
 

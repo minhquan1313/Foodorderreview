@@ -202,7 +202,7 @@
                             <ImageView
                                 android:layout_width="46sp"
                                 android:layout_height="46sp"
-                                android:src="@drawable/img_user_avatar"
+                                android:src="@drawable/img_sample_user_avatar"
                                 android:scaleType="centerCrop" />
                         </androidx.cardview.widget.CardView>
 

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.R;
 import com.mtb.foodorderreview.global.CartGlobal;
-import com.mtb.foodorderreview.utils.ItemClickListener;
+import com.mtb.foodorderreview.utils.IClickListener;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
     private final String CAN_USE = "Dùng";
     private final String CANT_USE = "Đã dùng";
     private final LayoutInflater inflater;
-    private ItemClickListener<RestaurantCoupon> clickListener;
-    private ItemClickListener<RestaurantCoupon> btnClickListener;
+    private IClickListener<RestaurantCoupon> clickListener;
+    private IClickListener<RestaurantCoupon> btnClickListener;
 
     private int margin = -1;
 
@@ -30,11 +30,11 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
         this.inflater = LayoutInflater.from(context);
     }
 
-    public void setClickListener(ItemClickListener<RestaurantCoupon> clickListener) {
+    public void setClickListener(IClickListener<RestaurantCoupon> clickListener) {
         this.clickListener = clickListener;
     }
 
-    public void setBtnClickListener(ItemClickListener<RestaurantCoupon> btnClickListener) {
+    public void setBtnClickListener(IClickListener<RestaurantCoupon> btnClickListener) {
         this.btnClickListener = btnClickListener;
     }
 

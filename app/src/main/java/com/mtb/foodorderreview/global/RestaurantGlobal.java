@@ -4,7 +4,7 @@ import com.mtb.foodorderreview.homeview.Restaurant;
 
 public class RestaurantGlobal {
     private Restaurant restaurant;
-    private static RestaurantGlobal restaurantGlobal = new RestaurantGlobal();
+    private static final RestaurantGlobal restaurantGlobal = new RestaurantGlobal();
 
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     public static RestaurantGlobal getInstance() {
@@ -14,6 +14,7 @@ public class RestaurantGlobal {
     private RestaurantGlobal() {
     }
 
+    //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     public Restaurant getRestaurant() {
         return restaurant;
     }

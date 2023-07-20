@@ -34,7 +34,7 @@ public class MainEmptyActivity extends AppCompatActivity {
                 "Anh_Ba",
                 "Anh Ba",
                 "0123456789",
-                R.drawable.img_user_avatar,
+                R.drawable.img_sample_user_avatar,
                 "abcxyz123@gmail.com",
                 "Thành Phố HCM",
                 "lakjwdliawjdljia",
