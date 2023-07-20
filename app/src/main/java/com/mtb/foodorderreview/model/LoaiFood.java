@@ -19,4 +19,6 @@ public class LoaiFood {
     public void setTen(String ten) {
         this.ten = ten;
     }
+
+
 }

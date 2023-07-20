@@ -17,7 +17,7 @@ public interface FoodService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH-mm-ss").create();
 
     FoodService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.104:8081/")
+            .baseUrl("http://192.168.1.6:8085/")
             .addConverterFactory(GsonConverterFactory.create(gson)).build().create(FoodService.class);
     @GET("food/nhahang/{id}/")
     Call<List<Food>> getListFoodByNhaHang(@Path("id") int id);

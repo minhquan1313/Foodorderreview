@@ -173,36 +173,36 @@ public class HomePageFragment extends Fragment {
 
     private void HomeFoodTypeUI(Context context, View view) {
 
-//        List<FoodType> l = new ArrayList<FoodType>();
-//        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, l);
-//        LoaiFoodService.apiService.getAllFood().enqueue(new Callback<List<LoaiFood>>() {
-//            @Override
-//            public void onResponse(Call<List<LoaiFood>> call, Response<List<LoaiFood>> response) {
-//                List<LoaiFood> list = response.body();
-//                for (LoaiFood loaiFood : list)
-//                {
-//                    l.add(new FoodType( loaiFood.getTen().toString(), R.drawable.img_sample_food));
-//                }
-//
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<LoaiFood>> call, Throwable t) {
-//
-//            }
-//        });
+        List<FoodType> l = new ArrayList<FoodType>();
+        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, l);
+        LoaiFoodService.apiService.getAllFood().enqueue(new Callback<List<LoaiFood>>() {
+            @Override
+            public void onResponse(Call<List<LoaiFood>> call, Response<List<LoaiFood>> response) {
+                List<LoaiFood> list = response.body();
+                for (LoaiFood loaiFood : list)
+                {
+                    l.add(new FoodType(loaiFood.getTen().toString(), R.drawable.img_sample_food));
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<LoaiFood>> call, Throwable t) {
+
+            }
+        });
 
 
-        FoodType[] l = {
-                new FoodType("Rice", R.drawable.icon_food_type_rice),
-                new FoodType("Rice2", R.drawable.icon_food_type_rice),
-                new FoodType("Rice3", R.drawable.icon_food_type_rice),
-                new FoodType("Rice4", R.drawable.icon_food_type_rice),
-                new FoodType("Rice5", R.drawable.icon_food_type_rice)
-        };
+//        FoodType[] l = {
+//                new FoodType("Rice", R.drawable.icon_food_type_rice),
+//                new FoodType("Rice2", R.drawable.icon_food_type_rice),
+//                new FoodType("Rice3", R.drawable.icon_food_type_rice),
+//                new FoodType("Rice4", R.drawable.icon_food_type_rice),
+//                new FoodType("Rice5", R.drawable.icon_food_type_rice)
+//        };
 
-        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
+//        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
 
         ExpandableHeightGridView gridView = view.findViewById(R.id.home_food_type_grid_1);
         gridView.setAdapter(adapter);
