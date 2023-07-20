@@ -35,7 +35,7 @@ public class CartCheckoutActivity extends AppCompatActivity {
 
         initialization();
 
-        Utils.CommonUIFunction.backBtn(this, cart_checkout_back_btn);
+        Utils.UI.backBtn(this, cart_checkout_back_btn);
 
         listView();
 
@@ -63,12 +63,11 @@ public class CartCheckoutActivity extends AppCompatActivity {
 
                 Order order = new Order(cartGlobal.getRestaurant(), cartGlobal.getFoodList());
                 OrderGlobal.getInstance().setOrder(order);
-                //Call api here to set orderId
 
                 cartGlobal.reset();
+
                 Intent intent = new Intent();
                 setResult(1, intent);
-
                 finish();
             }
         });

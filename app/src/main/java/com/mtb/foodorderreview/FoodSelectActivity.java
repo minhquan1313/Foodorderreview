@@ -47,7 +47,7 @@ public class FoodSelectActivity extends AppCompatActivity {
         updateQuantityUi();
         onQuantityChangeBtns();
 
-        Utils.CommonUIFunction.backBtn(this, food_select_back_btn);
+        Utils.UI.backBtn(this, food_select_back_btn);
 
         addToCartBtn();
     }

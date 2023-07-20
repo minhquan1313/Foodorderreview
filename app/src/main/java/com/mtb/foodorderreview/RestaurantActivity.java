@@ -46,7 +46,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         updateCartUI();
 
-        Utils.CommonUIFunction.backBtn(this, linear_btn_restaurant_back1);
+        Utils.UI.backBtn(this, linear_btn_restaurant_back1);
 
         couponsRecycler();
         foodGrid();
