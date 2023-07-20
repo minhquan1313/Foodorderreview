@@ -75,13 +75,6 @@ public class RestaurantActivity extends AppCompatActivity {
         cartGlobal.setRestaurant(restaurant);
     }
 
-    private void cartBtn() {
-
-        restaurant_cart_btn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, CartCheckoutActivity.class);
-            startActivityIfNeeded(intent, 3);
-        });
-    }
 
     public void updateCartUI() {
         if (cartGlobal.getFoodList().size() == 0) {
@@ -160,6 +153,14 @@ public class RestaurantActivity extends AppCompatActivity {
         });
     }
 
+    private void cartBtn() {
+
+        restaurant_cart_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CartCheckoutActivity.class);
+            startActivityIfNeeded(intent, 3);
+        });
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -167,11 +168,13 @@ public class RestaurantActivity extends AppCompatActivity {
         switch (requestCode) {
             // Add food to cart
             case 2:
+                if (resultCode != 1) return;
                 updateCartUI();
                 break;
 
             // Checkout ok
             case 3:
+                if (resultCode != 1) return;
                 Intent intent = new Intent(this, DeliveryActivity.class);
                 startActivity(intent);
 

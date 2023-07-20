@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
-import com.mtb.foodorderreview.global.User;
+import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.homeview.FoodType;
 import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
@@ -86,7 +86,7 @@ public class HomePageFragment extends Fragment {
     private void initialization(View v) {
         home_page_user_name = v.findViewById(R.id.home_page_user_name);
 
-        home_page_user_name.setText(User.getInstance().getName());
+        home_page_user_name.setText(UserGlobal.getInstance().getName());
     }
 
     private void HomeFoodShopUI(Context context, View view) {

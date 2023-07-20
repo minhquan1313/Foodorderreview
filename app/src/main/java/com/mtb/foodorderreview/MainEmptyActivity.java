@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mtb.foodorderreview.global.User;
+import com.mtb.foodorderreview.global.UserGlobal;
 
 public class MainEmptyActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class MainEmptyActivity extends AppCompatActivity {
 
 //        initFakeUser();
 
-        if (User.getInstance().getToken() != null) {
+        if (UserGlobal.getInstance().getToken() != null) {
             activityIntent = new Intent(this, MainActivity.class);
         } else {
             activityIntent = new Intent(this, AuthActivity.class);
@@ -29,7 +29,7 @@ public class MainEmptyActivity extends AppCompatActivity {
     }
 
     private void initFakeUser() {
-        User.getInstance().setData(
+        UserGlobal.getInstance().setData(
                 1,
                 "Anh_Ba",
                 "Anh Ba",

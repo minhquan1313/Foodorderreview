@@ -21,7 +21,7 @@ public class Order {
         this.cartFood = cartFood;
     }
 
-    public Order(int id, Restaurant restaurant, Date createdAt, STATE state, List<CartFood> cartFood) {
+    public Order(int id, Restaurant restaurant, Date createdAt, List<CartFood> cartFood, STATE state) {
         this.id = id;
         this.restaurant = restaurant;
         this.createdAt = createdAt;
@@ -84,12 +84,12 @@ public class Order {
                 case PREPARING:
                     return 2;
                 case DELIVERING:
-                    return 2;
+                    return 3;
                 case DELIVERED:
                     return 4;
 
                 default:
-                    return 1;
+                    return -1;
             }
         }
     }

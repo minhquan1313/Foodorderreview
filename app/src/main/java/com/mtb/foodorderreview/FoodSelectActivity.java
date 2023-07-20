@@ -114,7 +114,7 @@ public class FoodSelectActivity extends AppCompatActivity {
                 cartGlobal.addFood(new CartFood(food, countQuantity));
 
                 Intent intent = new Intent();
-                setResult(2, intent);
+                setResult(1, intent);
 
                 finish();
             }

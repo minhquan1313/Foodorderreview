@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
+        android:scrollbars="none"
         android:fillViewport="true">
 
         <LinearLayout
@@ -65,7 +66,6 @@
                     <LinearLayout
                         android:layout_width="40sp"
                         android:layout_height="40sp"
-                        android:background="@drawable/shape_border_box_primary"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -74,6 +74,7 @@
                             android:layout_height="match_parent"
                             android:importantForAccessibility="no"
                             android:padding="10sp"
+                            android:background="@drawable/shape_border_box_primary"
                             app:srcCompat="@drawable/icon_notepad"
                             app:tint="@color/primary" />
 
@@ -89,7 +90,6 @@
                     <LinearLayout
                         android:layout_width="40sp"
                         android:layout_height="40sp"
-                        android:background="@drawable/shape_border_box"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -99,7 +99,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:importantForAccessibility="no"
-                            android:padding="10sp"
+                            android:padding="6sp"
+                            android:background="@drawable/shape_border_box"
                             app:srcCompat="@drawable/icon_food_cooking"
                             app:tint="@color/grey_3" />
 
@@ -115,7 +116,6 @@
                     <LinearLayout
                         android:layout_width="40sp"
                         android:layout_height="40sp"
-                        android:background="@drawable/shape_border_box"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -124,8 +124,9 @@
                             android:id="@+id/delivery_icon_image_shipping"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/shape_border_box"
                             android:importantForAccessibility="no"
-                            android:padding="10sp"
+                            android:padding="6sp"
                             app:srcCompat="@drawable/icon_shipping"
                             app:tint="@color/grey_3" />
 
@@ -151,7 +152,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:importantForAccessibility="no"
-                            android:padding="10sp"
+                            android:padding="6sp"
+                            android:background="@drawable/shape_border_box"
                             app:srcCompat="@drawable/icon_home"
                             app:tint="@color/grey_3" />
 
@@ -173,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20sp"
                     android:textColor="@color/grey_4"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     android:text="Đợi xíu nha" />
 
                 <androidx.cardview.widget.CardView
@@ -198,8 +200,8 @@
                             android:outlineSpotShadowColor="@color/transparent">
 
                             <ImageView
-                                android:layout_width="40sp"
-                                android:layout_height="40sp"
+                                android:layout_width="46sp"
+                                android:layout_height="46sp"
                                 android:src="@drawable/img_user_avatar"
                                 android:scaleType="centerCrop" />
                         </androidx.cardview.widget.CardView>
@@ -220,7 +222,6 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="6sp"
                                 android:textColor="@color/grey_4"
                                 android:textSize="13sp"
                                 android:text="Tài xế" />
@@ -228,8 +229,8 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="40sp"
-                            android:layout_height="40sp"
+                            android:layout_width="46sp"
+                            android:layout_height="46sp"
                             android:gravity="center_vertical"
                             android:background="@drawable/shape_border_box_primary"
                             android:backgroundTint="@color/primary"
@@ -247,8 +248,8 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="40sp"
-                            android:layout_height="40sp"
+                            android:layout_width="46sp"
+                            android:layout_height="46sp"
                             android:gravity="center_vertical"
                             android:background="@drawable/shape_border_box_primary"
                             android:backgroundTint="@color/primary"

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mtb.foodorderreview.checkout.CartFoodListViewAdapter;
 import com.mtb.foodorderreview.components.ExpandableHeightListView;
 import com.mtb.foodorderreview.global.CartGlobal;
+import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.something.Order;
 import com.mtb.foodorderreview.utils.Utils;
 
@@ -61,12 +62,12 @@ public class CartCheckoutActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Order order = new Order(cartGlobal.getRestaurant(), cartGlobal.getFoodList());
+                OrderGlobal.getInstance().setOrder(order);
                 //Call api here to set orderId
 
                 cartGlobal.reset();
-
                 Intent intent = new Intent();
-                setResult(3, intent);
+                setResult(1, intent);
 
                 finish();
             }
