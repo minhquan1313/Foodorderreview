@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.something.Order;
+import com.mtb.foodorderreview.utils.Utils;
 
 public class DeliveryActivity extends AppCompatActivity {
     View delivery_fake_line_prepare,
@@ -26,6 +28,7 @@ public class DeliveryActivity extends AppCompatActivity {
             delivery_restaurant_address_text,
             delivery_delivery_location_text,
             delivery_delivery_location_address_text;
+    LinearLayout delivery_back_btn;
 
     OrderGlobal orderGlobal = OrderGlobal.getInstance();
 
@@ -35,6 +38,8 @@ public class DeliveryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_delivery);
 
         initialization();
+
+        Utils.CommonUIFunction.backBtn(this, delivery_back_btn);
 
         updateUI(orderGlobal.getOrder().getState());
         updateUIDelivering();
@@ -53,6 +58,7 @@ public class DeliveryActivity extends AppCompatActivity {
         delivery_restaurant_address_text = findViewById(R.id.delivery_restaurant_address_text);
         delivery_delivery_location_text = findViewById(R.id.delivery_delivery_location_text);
         delivery_delivery_location_address_text = findViewById(R.id.delivery_delivery_location_address_text);
+        delivery_back_btn = findViewById(R.id.delivery_back_btn);
     }
 
     public void updateUI(Order.STATE state) {
