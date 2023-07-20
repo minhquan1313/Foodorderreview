@@ -383,7 +383,6 @@
                 tools:itemCount="1"
                 tools:listitem="@layout/adapter_restaurant_coupon" />
 
-
             <!-- Foods -->
             <com.mtb.foodorderreview.components.ExpandableHeightGridView
                 android:id="@+id/restaurant_food_grid"
@@ -451,7 +450,6 @@
 
         <!-- Floating number -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/restaurant_cart_quantity_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipChildren="false"

@@ -1,6 +1,6 @@
 package com.mtb.foodorderreview.global;
 
-public class User {
+public class UserGlobal {
     private int id;
     private String userName;
     private String name;
@@ -10,10 +10,10 @@ public class User {
     private String address;
     private String token;
     private boolean isAdmin;
-    private static User instance = new User();
+    private static UserGlobal instance = new UserGlobal();
 
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    public static User getInstance() {
+    public static UserGlobal getInstance() {
         return instance;
     }
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -30,7 +30,7 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    private User() {
+    private UserGlobal() {
     }
 
     public int getId() {

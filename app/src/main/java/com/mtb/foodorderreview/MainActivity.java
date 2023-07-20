@@ -2,7 +2,6 @@ package com.mtb.foodorderreview;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.bottom_navigation_home1) {
-                    Toast.makeText(MainActivity.this, "Home ne", Toast.LENGTH_SHORT).show();
                     fragmentManager
                             .beginTransaction()
                             .replace(mainFrameId, HomePageFragment.class, null)
@@ -61,11 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (id == R.id.bottom_navigation_order1) {
-                    Toast.makeText(MainActivity.this, "Order ne", Toast.LENGTH_SHORT).show();
                 }
 
                 if (id == R.id.bottom_navigation_profile1) {
-                    Toast.makeText(MainActivity.this, "Profile ne", Toast.LENGTH_SHORT).show();
                 }
 
                 return true;

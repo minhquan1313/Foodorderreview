@@ -58,6 +58,40 @@ public class CartGlobal {
         this.foodList.add(food);
     }
 
+    public void removeFood(CartFood food) {
+        this.foodList.remove(food);
+    }
+
+    public int calSubtotal() {
+        int s = 0;
+
+        for (CartFood c : foodList) {
+            s = s + c.getQuantity() * c.getFood().getPrice();
+        }
+
+        return s;
+    }
+
+    public int calDiscount() {
+        int s = 0;
+        int subTotal = this.calSubtotal();
+
+        if (coupon == null) return 0;
+        double discountV = coupon.getDiscount();
+
+        switch (coupon.getType()) {
+            case FIXED:
+                s = (int) Math.floor(discountV);
+                break;
+
+            case PERCENT:
+                s = (int) Math.floor(subTotal * discountV);
+                break;
+        }
+
+        return s;
+    }
+
 //    public RestaurantCoupon findCouponById(int id) {
 //        for (RestaurantCoupon f : couponList)
 //            if (f.getId() == id) {

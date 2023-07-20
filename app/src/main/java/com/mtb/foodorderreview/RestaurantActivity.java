@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +29,8 @@ import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.restaurentview.RestaurantFoodGridAdapter;
-import com.mtb.foodorderreview.utils.ItemClickListener;
+import com.mtb.foodorderreview.utils.IClickListener;
+import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,7 +53,6 @@ public class RestaurantActivity extends AppCompatActivity {
     LinearLayout linear_btn_restaurant_back1;
     CartGlobal cartGlobal;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +60,14 @@ public class RestaurantActivity extends AppCompatActivity {
 
         initialization();
 
-        updateCart();
+        updateCartUI();
 
-        backBtn(linear_btn_restaurant_back1);
-        cartBtn();
+        Utils.UI.backBtn(this, linear_btn_restaurant_back1);
 
         couponsRecycler();
         foodGrid();
+
+        cartBtn();
     }
 
     private void initialization() {
@@ -120,19 +120,8 @@ public class RestaurantActivity extends AppCompatActivity {
         });
     }
 
-    private void backBtn(LinearLayout btn) {
-        btn.setOnClickListener(v -> finish());
-    }
 
-    private void cartBtn() {
-
-        restaurant_cart_btn.setOnClickListener(v -> {
-            // Checkout activity
-            Toast.makeText(RestaurantActivity.this, "Cart click ne", Toast.LENGTH_SHORT).show();
-        });
-    }
-
-    public void updateCart() {
+    public void updateCartUI() {
         if (cartGlobal.getFoodList().size() == 0) {
             restaurant_cart_btn.setVisibility(View.INVISIBLE);
             return;
@@ -182,12 +171,9 @@ public class RestaurantActivity extends AppCompatActivity {
 
                     adapter.notifyItemChanged(position);
                     couponPosition[0] = position;
-
-                    Toast.makeText(RestaurantActivity.this, "Btn coupon click " + item.getTitle(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
 
         RecyclerView recyclerView = findViewById(R.id.restaurant_coupon_recycler_1);
         recyclerView.setLayoutManager(layoutManager);
@@ -226,20 +212,41 @@ public class RestaurantActivity extends AppCompatActivity {
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             RestaurantFood f = (RestaurantFood) gridView.getItemAtPosition(position);
-//            RestaurantGlobal.getInstance().setRestaurant();
-
             RestaurantFoodGlobal.getInstance().setFood(f);
-            Intent intent = new Intent(this, FoodSelectActivity.class);
 
+            Intent intent = new Intent(this, FoodSelectActivity.class);
             startActivityIfNeeded(intent, 2);
+        });
+    }
+
+    private void cartBtn() {
+
+        restaurant_cart_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, CartCheckoutActivity.class);
+            startActivityIfNeeded(intent, 3);
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2) {
-            updateCart();
+
+        switch (requestCode) {
+            // Add food to cart
+            case 2:
+                if (resultCode != 1) return;
+                updateCartUI();
+                break;
+
+            // Checkout ok
+            case 3:
+                if (resultCode != 1) return;
+                Intent intent = new Intent(this, DeliveryActivity.class);
+                startActivity(intent);
+
+                finish();
+                break;
         }
+
     }
 }
