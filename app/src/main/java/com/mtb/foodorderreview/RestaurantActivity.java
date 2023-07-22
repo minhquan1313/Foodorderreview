@@ -81,7 +81,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
 
     public void updateCartUI() {
-        if (cartGlobal.getFoodList().size() == 0 || cartGlobal.getRestaurant() != restaurant) {
+        if (cartGlobal.getFoodList().size() == 0 || cartGlobal.getRestaurant().getId() != restaurant.getId()) {
             restaurant_cart_btn.setVisibility(View.INVISIBLE);
             return;
         }

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
+import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.global.RestaurantListGlobal;
@@ -27,6 +28,7 @@ import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
 import com.mtb.foodorderreview.service.FoodCategoryType;
 import com.mtb.foodorderreview.utils.IChangeListener;
+import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.Arrays;
 
@@ -38,7 +40,8 @@ import java.util.Arrays;
 public class HomePageFragment extends Fragment {
     TextView home_page_user_name,
             home_shipping_quantity_text;
-    ImageView home_user_avatar1;
+    ImageView home_user_avatar1,
+            home_cart_btn_image;
     RelativeLayout home_shipping_btn;
     Button home_page_view_all_restaurant_btn;
     LinearLayout home_cart_btn;
@@ -90,18 +93,29 @@ public class HomePageFragment extends Fragment {
         homeFoodShopUI(getContext(), view);
         viewAllResBtn(getContext(), view);
         cartBtn(getContext());
+        updateCartBtnUi(getContext());
         shippingBtn(getContext());
         updateShippingBtnUi();
         OrderGlobal.getInstance().addListener(new IChangeListener<OrderGlobal>() {
             @Override
             public int getId() {
-                return 999;
-//                here here here here here here here here here
+                return 1;
             }
 
             @Override
             public void dataChange(OrderGlobal obj) {
                 updateShippingBtnUi();
+            }
+        });
+        CartGlobal.getInstance().addListener(new IChangeListener<CartGlobal>() {
+            @Override
+            public int getId() {
+                return 2;
+            }
+
+            @Override
+            public void dataChange(CartGlobal obj) {
+                updateCartBtnUi(getContext());
             }
         });
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -143,6 +157,7 @@ public class HomePageFragment extends Fragment {
     private void initialization(View v) {
         home_page_user_name = v.findViewById(R.id.home_page_user_name);
         home_user_avatar1 = v.findViewById(R.id.home_user_avatar1);
+        home_cart_btn_image = v.findViewById(R.id.home_cart_btn_image);
         home_page_view_all_restaurant_btn = v.findViewById(R.id.home_page_view_all_restaurant_btn);
         home_cart_btn = v.findViewById(R.id.home_cart_btn);
         home_shipping_btn = v.findViewById(R.id.home_shipping_btn);
@@ -222,8 +237,6 @@ public class HomePageFragment extends Fragment {
         home_cart_btn.setOnClickListener(v -> {
             Intent intent = new Intent(context, CartCheckoutActivity.class);
             getActivity().startActivityIfNeeded(intent, 3);
-
-
         });
     }
 
@@ -249,5 +262,18 @@ public class HomePageFragment extends Fragment {
 
         home_shipping_btn.setVisibility(View.VISIBLE);
         home_shipping_quantity_text.setText("1");
+    }
+
+    private void updateCartBtnUi(Context context) {
+        CartGlobal cartGlobal = CartGlobal.getInstance();
+        if (cartGlobal.getFoodList().size() == 0) {
+            home_cart_btn.setBackgroundResource(R.drawable.shape_border_box);
+            Utils.UI.setBackgroundTint(context, home_cart_btn_image, R.color.grey_5);
+            return;
+        }
+
+        home_cart_btn.setBackgroundResource(R.drawable.shape_border_box_primary);
+        Utils.UI.setBackgroundTint(context, home_cart_btn_image, R.color.primary);
+
     }
 }

@@ -83,6 +83,10 @@ public class Utils {
             button.setBackgroundTintList(ContextCompat.getColorStateList(context, id));
         }
 
+        public static void setBackgroundTint(Context context, LinearLayout button, int id) {
+            button.setBackgroundTintList(ContextCompat.getColorStateList(context, id));
+        }
+
         public static void setBackgroundTint(Context context, ImageView img, int id) {
             img.setColorFilter(ContextCompat.getColor(context, id), android.graphics.PorterDuff.Mode.SRC_IN);
         }

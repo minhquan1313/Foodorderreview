@@ -2,6 +2,7 @@ package com.mtb.foodorderreview.global;
 
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
+import com.mtb.foodorderreview.utils.IChangeListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,8 @@ public class CartGlobal {
     private Restaurant restaurant;
     private List<CartFood> foodList = new ArrayList<>();
     private RestaurantCoupon coupon;
+    private List<IChangeListener<CartGlobal>> changeListeners = new ArrayList<>();
+
     //    private List<RestaurantCoupon> couponList = new ArrayList<>();
     private static final CartGlobal instance = new CartGlobal();
 
@@ -26,9 +29,24 @@ public class CartGlobal {
         restaurant = null;
         coupon = null;
         foodList = new ArrayList<>();
+
+        runListener();
 //        couponList = new ArrayList<>();
     }
 
+    public void addListener(IChangeListener<CartGlobal> changeListener) {
+        for (IChangeListener<CartGlobal> c : changeListeners) {
+            if (c.getId() == changeListener.getId()) return;
+        }
+
+        this.changeListeners.add(changeListener);
+    }
+
+    private void runListener() {
+        this.changeListeners.forEach(r -> {
+            r.dataChange(instance);
+        });
+    }
 
     public Restaurant getRestaurant() {
         return restaurant;
@@ -56,10 +74,12 @@ public class CartGlobal {
         }
 
         this.foodList.add(food);
+        runListener();
     }
 
     public void removeFood(CartFood food) {
         this.foodList.remove(food);
+        runListener();
     }
 
     public int calSubtotal() {
@@ -114,6 +134,7 @@ public class CartGlobal {
 
     public void setCoupon(RestaurantCoupon coupon) {
         this.coupon = coupon;
+        runListener();
     }
 
     public List<CartFood> getFoodList() {

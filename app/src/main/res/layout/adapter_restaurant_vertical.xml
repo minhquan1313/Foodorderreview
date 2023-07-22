@@ -19,8 +19,8 @@
 
             <ImageView
                 android:id="@+id/adapter_restaurant_image"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
+                android:layout_width="80sp"
+                android:layout_height="80sp"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="0sp"
                 android:src="@drawable/img_sample_food"
@@ -43,18 +43,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1.02km"
+                    android:textSize="12sp"
                     android:textColor="@color/grey_4" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" - "
+                    android:textSize="12sp"
+
                     android:textColor="@color/grey_4" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10 phút"
+                    android:textSize="12sp"
+
                     android:textColor="@color/grey_4" />
             </LinearLayout>
 
@@ -63,8 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:text="Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ "
-                android:textSize="18sp"
-
+                android:textSize="15sp"
                 android:maxLines="2"
                 android:ellipsize="end"
 
@@ -81,8 +85,8 @@
                 android:layout_marginHorizontal="16sp">
 
                 <ImageView
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
+                    android:layout_width="16sp"
+                    android:layout_height="16sp"
                     android:scaleType="centerInside"
                     android:src="@drawable/icon_star_fill"
                     android:importantForAccessibility="no" />
@@ -91,6 +95,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.6"
+                    android:textSize="12sp"
+
                     android:layout_marginStart="4sp"
                     android:textFontWeight="600" />
 
@@ -98,18 +104,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" - "
+                    android:textSize="12sp"
+
                     android:textColor="@color/grey_4" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100+"
+                    android:textSize="12sp"
+
                     android:textColor="@color/grey_4" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" đánh giá"
+                    android:textSize="12sp"
+
                     android:textColor="@color/grey_4" />
             </LinearLayout>
         </LinearLayout>

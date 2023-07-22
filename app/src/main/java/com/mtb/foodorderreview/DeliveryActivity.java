@@ -49,7 +49,7 @@ public class DeliveryActivity extends AppCompatActivity {
     }
 
     private void watchOrder() {
-        if (order.getState() != Order.STATE.PENDING) {
+        if (order.getState() == Order.STATE.PENDING) {
             delivery_fake_submit_btn.setEnabled(false);
             Utils.UI.setBackgroundTint(this, delivery_fake_submit_btn, R.color.grey_3);
             return;
