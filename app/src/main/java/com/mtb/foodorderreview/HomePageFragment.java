@@ -212,14 +212,14 @@ public class HomePageFragment extends Fragment {
 
     private void homeFoodTypeUI(Context context, View view) {
         FoodType[] l = {
-                new FoodType(FoodCategoryType.RICE, "Cơm", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.COFFEE, "Cà phê", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.NODDLE, "Mì", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.FAST_FOOD, "Fast food", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.MILK_TEA, "Trà sữa", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.RICE, "Cơm", R.drawable.img_food_type_rice),
+                new FoodType(FoodCategoryType.COFFEE, "Cà phê", R.drawable.img_food_type_coffee),
+                new FoodType(FoodCategoryType.NODDLE, "Mì", R.drawable.img_food_type_noddle),
+                new FoodType(FoodCategoryType.FAST_FOOD, "Fast food", R.drawable.img_food_type_fastfood),
+                new FoodType(FoodCategoryType.MILK_TEA, "Trà sữa", R.drawable.img_food_type_milktea),
                 new FoodType(FoodCategoryType.SNACK, "Snack", R.drawable.img_food_type_snack),
-                new FoodType(FoodCategoryType.SPECIALTY, "Đặc trưng", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.HEALTHY, "Healthy", R.drawable.icon_food_type_rice)
+                new FoodType(FoodCategoryType.SPECIALTY, "Đặc trưng", R.drawable.img_food_type_specialty),
+                new FoodType(FoodCategoryType.HEALTHY, "Healthy", R.drawable.img_food_type_healthy)
         };
 
         FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
