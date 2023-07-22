@@ -40,20 +40,20 @@ public class DeliveryActivity extends AppCompatActivity {
 
         initialization();
         Utils.UI.backBtn(this, delivery_back_btn);
-        updateUI(order.getState());
 
         submitBtnClick();
+        updateUI(order.getState());
 
         watchOrder();
 
     }
 
     private void watchOrder() {
-        if (order.getState() == Order.STATE.PENDING) {
-            delivery_fake_submit_btn.setEnabled(false);
-            Utils.UI.setBackgroundTint(this, delivery_fake_submit_btn, R.color.grey_3);
-            return;
-        }
+//        if (order.getState() == Order.STATE.PENDING) {
+//            delivery_fake_submit_btn.setEnabled(false);
+//            Utils.UI.setBackgroundTint(this, delivery_fake_submit_btn, R.color.grey_3);
+//            return;
+//        }
 
         if ("callApiToCreateOrderSuccess" != null) {
 
