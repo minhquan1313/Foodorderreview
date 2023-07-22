@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
+import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.global.RestaurantListGlobal;
 import com.mtb.foodorderreview.global.UserGlobal;
@@ -24,6 +26,7 @@ import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
 import com.mtb.foodorderreview.service.FoodCategoryType;
+import com.mtb.foodorderreview.utils.IChangeListener;
 
 import java.util.Arrays;
 
@@ -34,10 +37,11 @@ import java.util.Arrays;
  */
 public class HomePageFragment extends Fragment {
     TextView home_page_user_name,
-            restaurant_cart_quantity_text;
+            home_shipping_quantity_text;
     ImageView home_user_avatar1;
     RelativeLayout home_shipping_btn;
     Button home_page_view_all_restaurant_btn;
+    LinearLayout home_cart_btn;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -85,10 +89,25 @@ public class HomePageFragment extends Fragment {
         homeFoodTypeUI(getContext(), view);
         homeFoodShopUI(getContext(), view);
         viewAllResBtn(getContext(), view);
+        cartBtn(getContext());
+        shippingBtn(getContext());
+        updateShippingBtnUi();
+        OrderGlobal.getInstance().addListener(new IChangeListener<OrderGlobal>() {
+            @Override
+            public int getId() {
+                return 999;
+//                here here here here here here here here here
+            }
 
+            @Override
+            public void dataChange(OrderGlobal obj) {
+                updateShippingBtnUi();
+            }
+        });
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         return view;
     }
+
 
     private void viewAllResBtn(Context context, View view) {
         home_page_view_all_restaurant_btn.setOnClickListener(new View.OnClickListener() {
@@ -125,11 +144,15 @@ public class HomePageFragment extends Fragment {
         home_page_user_name = v.findViewById(R.id.home_page_user_name);
         home_user_avatar1 = v.findViewById(R.id.home_user_avatar1);
         home_page_view_all_restaurant_btn = v.findViewById(R.id.home_page_view_all_restaurant_btn);
+        home_cart_btn = v.findViewById(R.id.home_cart_btn);
+        home_shipping_btn = v.findViewById(R.id.home_shipping_btn);
+        home_shipping_quantity_text = v.findViewById(R.id.home_shipping_quantity_text);
 
         home_page_user_name.setText(UserGlobal.getInstance().getName());
 
-//        String url = "https://cdn.britannica.com/16/234216-050-C66F8665/beagle-hound-dog.jpg";
-//        Utils.UI.setSrc(url, home_user_avatar1);
+        // String url =
+        // "https://cdn.britannica.com/16/234216-050-C66F8665/beagle-hound-dog.jpg";
+        // Utils.UI.setSrc(url, home_user_avatar1);
     }
 
     private void homeFoodShopUI(Context context, View view) {
@@ -153,7 +176,8 @@ public class HomePageFragment extends Fragment {
                         "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam")
         };
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL,
                 false);
         RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, Arrays.asList(l));
 
@@ -173,11 +197,14 @@ public class HomePageFragment extends Fragment {
 
     private void homeFoodTypeUI(Context context, View view) {
         FoodType[] l = {
-                new FoodType(FoodCategoryType.RICE, "Rice", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.RICE, "Rice2", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.RICE, "Rice3", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.RICE, "Rice4", R.drawable.icon_food_type_rice),
-                new FoodType(FoodCategoryType.RICE, "Rice5", R.drawable.icon_food_type_rice)
+                new FoodType(FoodCategoryType.RICE, "Cơm", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.COFFEE, "Cà phê", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.NODDLE, "Mì", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.FAST_FOOD, "Fast food", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.MILK_TEA, "Trà sữa", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.SNACK, "Snack", R.drawable.img_food_type_snack),
+                new FoodType(FoodCategoryType.SPECIALTY, "Đặc trưng", R.drawable.icon_food_type_rice),
+                new FoodType(FoodCategoryType.HEALTHY, "Healthy", R.drawable.icon_food_type_rice)
         };
 
         FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
@@ -189,5 +216,38 @@ public class HomePageFragment extends Fragment {
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             FoodType foodType = (FoodType) gridView.getItemAtPosition(position);
         });
+    }
+
+    private void cartBtn(Context context) {
+        home_cart_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CartCheckoutActivity.class);
+            getActivity().startActivityIfNeeded(intent, 3);
+
+
+        });
+    }
+
+    private void shippingBtn(Context context) {
+
+        home_shipping_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (OrderGlobal.getInstance().getOrder() == null) return;
+
+                Intent intent = new Intent(context, DeliveryActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void updateShippingBtnUi() {
+        home_shipping_btn.setVisibility(View.INVISIBLE);
+
+        OrderGlobal orderGlobal = OrderGlobal.getInstance();
+        if (orderGlobal.getOrder() == null) return;
+
+
+        home_shipping_btn.setVisibility(View.VISIBLE);
+        home_shipping_quantity_text.setText("1");
     }
 }
