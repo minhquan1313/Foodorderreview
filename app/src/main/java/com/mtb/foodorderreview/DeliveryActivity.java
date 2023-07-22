@@ -52,7 +52,7 @@ public class DeliveryActivity extends AppCompatActivity {
             delivery_fake_submit_btn.setBackgroundResource(R.color.grey_3);
             return;
         }
-
+// goi api
         if ("callApiToCreateOrderSuccess" != null) {
 
             int idSample = -1;

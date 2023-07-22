@@ -13,8 +13,12 @@ import com.mtb.foodorderreview.checkout.CartFoodListViewAdapter;
 import com.mtb.foodorderreview.components.ExpandableHeightListView;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.OrderGlobal;
+import com.mtb.foodorderreview.model.DonHang;
 import com.mtb.foodorderreview.something.Order;
 import com.mtb.foodorderreview.utils.Utils;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class CartCheckoutActivity extends AppCompatActivity {
     ExpandableHeightListView cart_checkout_listview;
@@ -62,6 +66,7 @@ public class CartCheckoutActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Order order = new Order(cartGlobal.getRestaurant(), cartGlobal.getFoodList());
+                DonHang donHang = new DonHang(null,3, LocalDateTime.now(),"abbb",1);
                 OrderGlobal.getInstance().setOrder(order);
 
                 cartGlobal.reset();

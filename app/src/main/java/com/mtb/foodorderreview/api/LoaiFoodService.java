@@ -17,7 +17,7 @@ public interface LoaiFoodService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH-mm-ss").create();
 
     LoaiFoodService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.6:8085/")
+            .baseUrl("http://192.168.1.7:8085/")
             .addConverterFactory(GsonConverterFactory.create(gson)).build().create(LoaiFoodService.class);
     @GET("loaifood")
     Call<List<LoaiFood>> getAllFood();
