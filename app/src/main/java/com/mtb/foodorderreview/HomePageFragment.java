@@ -31,6 +31,7 @@ import com.mtb.foodorderreview.utils.IChangeListener;
 import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +44,8 @@ public class HomePageFragment extends Fragment {
     ImageView home_user_avatar1,
             home_cart_btn_image;
     RelativeLayout home_shipping_btn;
-    Button home_page_view_all_restaurant_btn;
+    Button home_page_view_all_restaurant_btn,
+            home_coupon_order_now_btn;
     LinearLayout home_cart_btn;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -92,10 +94,12 @@ public class HomePageFragment extends Fragment {
         homeFoodTypeUI(getContext(), view);
         homeFoodShopUI(getContext(), view);
         viewAllResBtn(getContext(), view);
+        couponOrderNowBtn(getContext(), view);
         cartBtn(getContext());
         updateCartBtnUi(getContext());
         shippingBtn(getContext());
         updateShippingBtnUi();
+
         OrderGlobal.getInstance().addListener(new IChangeListener<OrderGlobal>() {
             @Override
             public int getId() {
@@ -122,43 +126,12 @@ public class HomePageFragment extends Fragment {
         return view;
     }
 
-
-    private void viewAllResBtn(Context context, View view) {
-        home_page_view_all_restaurant_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Restaurant[] l = {
-                        new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food,
-                                "262 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-
-                        new Restaurant(2, "b", R.drawable.img_sample_food,
-                                "263 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-
-                        new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2,
-                                "264 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-
-                        new Restaurant(4, "d", R.drawable.img_sample_food,
-                                "265 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-
-                        new Restaurant(5, "e", R.drawable.img_sample_food,
-                                "266 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-
-                        new Restaurant(6, "f", R.drawable.img_sample_food,
-                                "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam")
-                };
-                RestaurantListGlobal.getInstance().setList(Arrays.asList(l));
-
-                Intent intent = new Intent(context, RestaurantListActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
     private void initialization(View v) {
         home_page_user_name = v.findViewById(R.id.home_page_user_name);
         home_user_avatar1 = v.findViewById(R.id.home_user_avatar1);
         home_cart_btn_image = v.findViewById(R.id.home_cart_btn_image);
         home_page_view_all_restaurant_btn = v.findViewById(R.id.home_page_view_all_restaurant_btn);
+        home_coupon_order_now_btn = v.findViewById(R.id.home_coupon_order_now_btn);
         home_cart_btn = v.findViewById(R.id.home_cart_btn);
         home_shipping_btn = v.findViewById(R.id.home_shipping_btn);
         home_shipping_quantity_text = v.findViewById(R.id.home_shipping_quantity_text);
@@ -170,7 +143,7 @@ public class HomePageFragment extends Fragment {
         // Utils.UI.setSrc(url, home_user_avatar1);
     }
 
-    private void homeFoodShopUI(Context context, View view) {
+    private List<Restaurant> getAllRestaurants() {
         Restaurant[] l = {
                 new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food,
                         "262 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
@@ -191,10 +164,38 @@ public class HomePageFragment extends Fragment {
                         "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam")
         };
 
+        return Arrays.asList(l);
+    }
+
+    private void viewAllResBtn(Context context, View view) {
+        home_page_view_all_restaurant_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RestaurantListGlobal.getInstance().setList(getAllRestaurants());
+
+                Intent intent = new Intent(context, RestaurantListActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void couponOrderNowBtn(Context context, View view) {
+        home_coupon_order_now_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RestaurantListGlobal.getInstance().setList(getAllRestaurants());
+
+                Intent intent = new Intent(context, RestaurantListActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void homeFoodShopUI(Context context, View view) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, Arrays.asList(l));
+        RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, getAllRestaurants());
 
         adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
             if (!isLongClick) {
@@ -230,6 +231,50 @@ public class HomePageFragment extends Fragment {
 
         gridView.setOnItemClickListener((parent, view1, position, id) -> {
             FoodType foodType = (FoodType) gridView.getItemAtPosition(position);
+
+            int foodTypeId = foodType.getId();
+            List<Restaurant> restaurants;
+
+            switch (foodTypeId) {
+                case FoodCategoryType.RICE:
+                    restaurants = getAllRestaurants();
+                    break;
+                case FoodCategoryType.COFFEE:
+                    restaurants = getAllRestaurants();
+
+                    break;
+                case FoodCategoryType.NODDLE:
+                    restaurants = getAllRestaurants();
+
+                    break;
+                case FoodCategoryType.FAST_FOOD:
+                    restaurants = getAllRestaurants();
+
+                    break;
+                case FoodCategoryType.MILK_TEA:
+                    restaurants = getAllRestaurants();
+
+                    break;
+                case FoodCategoryType.SNACK:
+                    restaurants = getAllRestaurants();
+
+                    break;
+                case FoodCategoryType.SPECIALTY:
+                    restaurants = getAllRestaurants();
+
+                    break;
+                case FoodCategoryType.HEALTHY:
+                    restaurants = getAllRestaurants();
+                    break;
+                default:
+                    restaurants = getAllRestaurants();
+            }
+
+            RestaurantListGlobal.getInstance().setList(restaurants);
+
+            Intent intent = new Intent(context, RestaurantListActivity.class);
+            intent.putExtra("TITLE", foodType.getName());
+            startActivity(intent);
         });
     }
 
@@ -245,7 +290,8 @@ public class HomePageFragment extends Fragment {
         home_shipping_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (OrderGlobal.getInstance().getOrder() == null) return;
+                if (OrderGlobal.getInstance().getOrder() == null)
+                    return;
 
                 Intent intent = new Intent(context, DeliveryActivity.class);
                 startActivity(intent);
@@ -257,8 +303,8 @@ public class HomePageFragment extends Fragment {
         home_shipping_btn.setVisibility(View.INVISIBLE);
 
         OrderGlobal orderGlobal = OrderGlobal.getInstance();
-        if (orderGlobal.getOrder() == null) return;
-
+        if (orderGlobal.getOrder() == null)
+            return;
 
         home_shipping_btn.setVisibility(View.VISIBLE);
         home_shipping_quantity_text.setText("1");

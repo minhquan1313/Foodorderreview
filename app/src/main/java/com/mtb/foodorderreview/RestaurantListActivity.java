@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,7 @@ import com.mtb.foodorderreview.utils.Utils;
 
 public class RestaurantListActivity extends AppCompatActivity {
     ListView restaurant_list_listview;
+    TextView restaurant_list_header_text;
     LinearLayout restaurant_list_back_btn;
 
     RestaurantListGlobal restaurantListGlobal = RestaurantListGlobal.getInstance();
@@ -34,7 +36,17 @@ public class RestaurantListActivity extends AppCompatActivity {
 
     private void initialization() {
         restaurant_list_listview = findViewById(R.id.restaurant_list_listview);
+        restaurant_list_header_text = findViewById(R.id.restaurant_list_header_text);
         restaurant_list_back_btn = findViewById(R.id.restaurant_list_back_btn);
+
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("TITLE");
+
+        if (title != null) {
+            String originalTitle = restaurant_list_header_text.getText().toString();
+            String newTitle = originalTitle + " - " + title;
+            restaurant_list_header_text.setText(newTitle);
+        }
     }
 
     private void setRestaurantListV() {
