@@ -32,6 +32,7 @@ import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -161,7 +162,15 @@ public class HomePageFragment extends Fragment {
                         "266 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
 
                 new Restaurant(6, "f", R.drawable.img_sample_food,
-                        "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam")
+                        "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(7, "Tau hu", R.drawable.img_sample_food,
+                        "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(8, "Com binh dan", R.drawable.img_sample_food,
+                        "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(9, "Mi cay", R.drawable.img_sample_food,
+                        "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
+                new Restaurant(10, "Oc de nhat", R.drawable.img_sample_food,
+                        "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
         };
 
         return Arrays.asList(l);
@@ -195,7 +204,9 @@ public class HomePageFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false);
-        RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, getAllRestaurants());
+
+        List<Restaurant> l = getAllRestaurants().stream().limit(5).collect(Collectors.toList());
+        RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, l);
 
         adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
             if (!isLongClick) {

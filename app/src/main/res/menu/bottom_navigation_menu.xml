@@ -7,10 +7,10 @@
         android:title="Home" />
     <item
         android:id="@+id/bottom_navigation_order1"
-        android:icon="@drawable/icon_shopping_cart"
+        android:icon="@drawable/icon_list_2"
         android:title="Order" />
     <item
         android:id="@+id/bottom_navigation_profile1"
-        android:icon="@drawable/icon_shopping_cart"
+        android:icon="@drawable/icon_user"
         android:title="Profile" />
 </menu>
