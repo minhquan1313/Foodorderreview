@@ -25,6 +25,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.mtb.foodorderreview.utils.Utils;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -235,6 +236,9 @@ public class AuthActivity extends AppCompatActivity {
 //                authAddress,
 //                requestToken,
 //                requestIsAdmin);
+
+        Utils.writeFile(this, MainEmptyActivity.USER_DATA_USERNAME_FILE, authUsername);
+        Utils.writeFile(this, MainEmptyActivity.USER_DATA_PASSWORD_FILE, authPassword);
 
         startActivity(new Intent(this, MainActivity.class));
         finish();

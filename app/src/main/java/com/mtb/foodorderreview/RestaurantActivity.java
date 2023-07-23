@@ -82,7 +82,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         restaurant_name1.setText(restaurant.getName());
         restaurant_location1.setText(restaurant.getAddress());
-        restaurant_banner1.setImageResource(restaurant.getImage());
+        Utils.UI.setSrc(restaurant.getImage(), restaurant_banner1);
 
 //        if (cartGlobal.getRestaurant() != restaurant) {
 //            cartGlobal.reset();

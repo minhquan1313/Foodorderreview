@@ -18,7 +18,7 @@
             app:cardCornerRadius="12sp">
 
             <ImageView
-                android:id="@+id/adapter_restaurant_image"
+                android:id="@+id/adapter_order_image"
                 android:layout_width="80sp"
                 android:layout_height="80sp"
                 android:scaleType="centerCrop"
@@ -40,30 +40,32 @@
                 android:layout_marginHorizontal="16sp">
 
                 <TextView
+                    android:id="@+id/adapter_order_state_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.02km"
-                    android:textSize="12sp"
+                    android:text="Đã giao"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/svn_poppins_medium"
                     android:textColor="@color/grey_4" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" • "
-                    android:textSize="12sp"
+                    android:textSize="13sp"
                     android:textColor="@color/grey_4" />
 
                 <TextView
+                    android:id="@+id/adapter_order_date_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 phút"
-                    android:textSize="12sp"
-
+                    android:text="12/12/2023"
+                    android:textSize="13sp"
                     android:textColor="@color/grey_4" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/adapter_restaurant_name_text"
+                android:id="@+id/adapter_order_name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:text="Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ Quán phở Lệ "
@@ -80,29 +82,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:gravity="end"
                 android:layout_marginHorizontal="16sp">
 
-                <ImageView
-                    android:layout_width="16sp"
-                    android:layout_height="16sp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/icon_star_fill"
-                    android:importantForAccessibility="no" />
+                <TextView
+                    android:id="@+id/adapter_order_price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12,000đ"
+                    android:textSize="12sp"
+                    android:textColor="@color/grey_4" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.6"
+                    android:text=" • "
                     android:textSize="12sp"
 
-                    android:layout_marginStart="4sp"
-                    android:textFontWeight="600" />
+                    android:textColor="@color/grey_4" />
 
                 <TextView
+                    android:id="@+id/adapter_order_quantity_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" - "
+                    android:text="3"
                     android:textSize="12sp"
 
                     android:textColor="@color/grey_4" />
@@ -110,17 +113,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100+"
+                    android:text=" món"
                     android:textSize="12sp"
-
-                    android:textColor="@color/grey_4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" đánh giá"
-                    android:textSize="12sp"
-
                     android:textColor="@color/grey_4" />
             </LinearLayout>
         </LinearLayout>

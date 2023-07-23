@@ -12,6 +12,7 @@ public class Order {
     private Date createdAt;
     private STATE state;
     private List<CartFood> cartFood;
+    private int finalPrice;
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
     public Order(Restaurant restaurant, List<CartFood> cartFood) {
@@ -21,12 +22,13 @@ public class Order {
         this.cartFood = cartFood;
     }
 
-    public Order(int id, Restaurant restaurant, Date createdAt, List<CartFood> cartFood, STATE state) {
+    public Order(int id, Restaurant restaurant, Date createdAt, List<CartFood> cartFood, STATE state, int finalPrice) {
         this.id = id;
         this.restaurant = restaurant;
         this.createdAt = createdAt;
         this.state = state;
         this.cartFood = cartFood;
+        this.finalPrice = finalPrice;
     }
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -36,6 +38,14 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(int finalPrice) {
+        this.finalPrice = finalPrice;
     }
 
     public void setRestaurant(Restaurant restaurant) {
@@ -60,6 +70,20 @@ public class Order {
 
     public STATE getState() {
         return state;
+    }
+
+    public String getStateStr() {
+        switch (state) {
+            case PENDING:
+                return "Đang đặt món";
+            case PREPARING:
+                return "Đang chuẩn bị";
+            case DELIVERING:
+                return "Đang giao";
+            case DELIVERED:
+                return "Đã giao";
+        }
+        return "";
     }
 
     public List<CartFood> getCartFood() {
@@ -91,6 +115,21 @@ public class Order {
                 default:
                     return -1;
             }
+        }
+
+        public static STATE getState(int id) {
+            switch (id) {
+                case 1:
+                    return PENDING;
+                case 2:
+                    return PREPARING;
+                case 3:
+                    return DELIVERING;
+                case 4:
+                    return DELIVERED;
+            }
+
+            return PENDING;
         }
     }
 }

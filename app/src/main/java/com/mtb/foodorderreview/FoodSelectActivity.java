@@ -76,7 +76,7 @@ public class FoodSelectActivity extends AppCompatActivity {
 
         String money = Utils.currency(food.getPrice());
         food_select_price.setText(money);
-        food_select_banner.setImageResource(food.getImage());
+        Utils.UI.setSrc(food.getImage(), food_select_banner);
         food_select_description.setText(food.getDescription());
 
         cartGlobal = CartGlobal.getInstance();

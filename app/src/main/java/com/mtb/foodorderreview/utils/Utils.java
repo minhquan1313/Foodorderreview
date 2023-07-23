@@ -22,6 +22,7 @@ import java.util.Locale;
 
 public class Utils {
     public static final String CURRENCY = "đ";
+    public static final String URL_SAMPLE_IMAGE = "https://hellothucung.com/wp-content/uploads/2022/01/Poodle-mau-vang-mo-2.jpg";
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public static void writeFile(Context context, String fileName, String text) {
@@ -34,7 +35,7 @@ public class Utils {
         }
     }
 
-    public static String readFile(Context context, String fileName, String text) {
+    public static String readFile(Context context, String fileName) {
         try {
             FileInputStream inputStream = null;
             inputStream = context.openFileInput(fileName);
@@ -43,7 +44,7 @@ public class Utils {
             StringBuilder temp = new StringBuilder();
 
             while ((c = inputStream.read()) != -1) {
-                temp.append(Character.toString((char) c));
+                temp.append((char) c);
             }
 
             inputStream.close();
@@ -81,6 +82,10 @@ public class Utils {
 
         public static void setBackgroundTint(Context context, Button button, int id) {
             button.setBackgroundTintList(ContextCompat.getColorStateList(context, id));
+        }
+
+        public static void setBackgroundTint(Context context, Button button) {
+            button.setBackgroundTintList(null);
         }
 
         public static void setBackgroundTint(Context context, LinearLayout button, int id) {

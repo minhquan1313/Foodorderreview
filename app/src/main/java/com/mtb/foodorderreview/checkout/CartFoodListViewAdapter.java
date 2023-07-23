@@ -53,7 +53,7 @@ public class CartFoodListViewAdapter extends BaseAdapter {
         cart_food_name = convertView.findViewById(R.id.cart_food_name);
         cart_food_price = convertView.findViewById(R.id.cart_food_price);
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        cart_food_image.setImageResource(item.getFood().getImage());
+        Utils.UI.setSrc(item.getFood().getImage(), cart_food_image);
         cart_food_quantity.setText(String.valueOf(item.getQuantity()));
         cart_food_name.setText(item.getFood().getName());
         cart_food_price.setText(Utils.currency(item.getFood().getPrice() * item.getQuantity()));

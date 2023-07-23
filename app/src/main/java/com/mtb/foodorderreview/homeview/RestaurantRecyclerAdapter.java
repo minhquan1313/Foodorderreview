@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.R;
 import com.mtb.foodorderreview.utils.IClickListener;
+import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.List;
 
@@ -40,8 +41,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantHo
         Restaurant item = list.get(position);
 
         holder.getFood_shop_name1().setText(item.getName());
-        holder.getFood_shop_image1().setImageResource(item.getImage());
-
+        Utils.UI.setSrc(item.getImage(), holder.getFood_shop_image1());
         holder.setClickListener(clickListener);
         holder.setItem(item);
 

@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.isChecked())
                     return false;
+                
                 int id = item.getItemId();
 
                 if (id == R.id.bottom_navigation_home1) {
@@ -62,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (id == R.id.bottom_navigation_order1) {
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(mainFrameId, OrdersFragment.class, null)
+                            .setReorderingAllowed(true)
+                            .addToBackStack("order") // Name can be null
+                            .commit();
                 }
 
                 if (id == R.id.bottom_navigation_profile1) {
@@ -69,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                             .beginTransaction()
                             .replace(mainFrameId, ProfileFragment.class, null)
                             .setReorderingAllowed(true)
-                            .addToBackStack("home") // Name can be null
+                            .addToBackStack("profile") // Name can be null
                             .commit();
                 }
 

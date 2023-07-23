@@ -273,7 +273,7 @@
             <com.mtb.foodorderreview.components.ExpandableHeightGridView
                 android:id="@+id/home_food_type_grid_1"
                 android:layout_width="match_parent"
-                android:layout_height="308dp"
+                android:layout_height="98dp"
 
                 android:layout_marginHorizontal="20sp"
                 android:layout_marginTop="20sp"
