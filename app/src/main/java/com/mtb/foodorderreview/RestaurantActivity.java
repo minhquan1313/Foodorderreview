@@ -71,7 +71,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         restaurant_name1.setText(restaurant.getName());
         restaurant_location1.setText(restaurant.getAddress());
-        restaurant_banner1.setImageResource(restaurant.getImage());
+        Utils.UI.setSrc(restaurant.getImage(), restaurant_banner1);
 
 //        if (cartGlobal.getRestaurant() != restaurant) {
 //            cartGlobal.reset();
@@ -127,17 +127,17 @@ public class RestaurantActivity extends AppCompatActivity {
 
     private void foodGrid() {
         RestaurantFood[] l = {
-                new RestaurantFood(1, "Bún bò 1", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
+                new RestaurantFood(1, "Bún bò 1", "Bún bò thơm ngon mời ban ăn nha", Utils.URL_SAMPLE_IMAGE,
                         13000),
-                new RestaurantFood(2, "Bún bò 2", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
+                new RestaurantFood(2, "Bún bò 2", "Bún bò thơm ngon mời ban ăn nha", Utils.URL_SAMPLE_IMAGE,
                         14000),
-                new RestaurantFood(3, "Bún bò 3", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
+                new RestaurantFood(3, "Bún bò 3", "Bún bò thơm ngon mời ban ăn nha", Utils.URL_SAMPLE_IMAGE,
                         15000),
-                new RestaurantFood(4, "Bún bò 4", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
+                new RestaurantFood(4, "Bún bò 4", "Bún bò thơm ngon mời ban ăn nha", Utils.URL_SAMPLE_IMAGE,
                         16000),
-                new RestaurantFood(5, "Bún bò 5", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
+                new RestaurantFood(5, "Bún bò 5", "Bún bò thơm ngon mời ban ăn nha", Utils.URL_SAMPLE_IMAGE,
                         17000),
-                new RestaurantFood(6, "Bún bò 6", "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
+                new RestaurantFood(6, "Bún bò 6", "Bún bò thơm ngon mời ban ăn nha", Utils.URL_SAMPLE_IMAGE,
                         18000),
         };
 

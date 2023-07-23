@@ -3,10 +3,10 @@ package com.mtb.foodorderreview.homeview;
 public class Restaurant {
     private int id;
     private String name;
-    private int image;
+    private String image;
     private String address;
 
-    public Restaurant(int id, String name, int image, String address) {
+    public Restaurant(int id, String name, String image, String address) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -29,11 +29,11 @@ public class Restaurant {
         this.name = name;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

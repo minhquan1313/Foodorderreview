@@ -146,30 +146,30 @@ public class HomePageFragment extends Fragment {
 
     private List<Restaurant> getAllRestaurants() {
         Restaurant[] l = {
-                new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food,
+                new Restaurant(1, "Cháo lòng bà Bảy", Utils.URL_SAMPLE_IMAGE,
                         "262 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
 
-                new Restaurant(2, "b", R.drawable.img_sample_food,
+                new Restaurant(2, "b", Utils.URL_SAMPLE_IMAGE,
                         "263 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
 
-                new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2,
+                new Restaurant(3, "Cơm tấm anh da đen", Utils.URL_SAMPLE_IMAGE,
                         "264 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
 
-                new Restaurant(4, "d", R.drawable.img_sample_food,
+                new Restaurant(4, "d", Utils.URL_SAMPLE_IMAGE,
                         "265 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
 
-                new Restaurant(5, "e", R.drawable.img_sample_food,
+                new Restaurant(5, "e", Utils.URL_SAMPLE_IMAGE,
                         "266 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
 
-                new Restaurant(6, "f", R.drawable.img_sample_food,
+                new Restaurant(6, "f", Utils.URL_SAMPLE_IMAGE,
                         "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(7, "Tau hu", R.drawable.img_sample_food,
+                new Restaurant(7, "Tau hu", Utils.URL_SAMPLE_IMAGE,
                         "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(8, "Com binh dan", R.drawable.img_sample_food,
+                new Restaurant(8, "Com binh dan", Utils.URL_SAMPLE_IMAGE,
                         "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(9, "Mi cay", R.drawable.img_sample_food,
+                new Restaurant(9, "Mi cay", Utils.URL_SAMPLE_IMAGE,
                         "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
-                new Restaurant(10, "Oc de nhat", R.drawable.img_sample_food,
+                new Restaurant(10, "Oc de nhat", Utils.URL_SAMPLE_IMAGE,
                         "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
         };
 

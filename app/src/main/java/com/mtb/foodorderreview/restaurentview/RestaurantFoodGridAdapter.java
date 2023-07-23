@@ -60,7 +60,7 @@ public class RestaurantFoodGridAdapter extends BaseAdapter {
         restaurant_food_des.setText(item.getDescription());
         restaurant_food_name.setText(item.getName());
 
-        restaurant_food_cover.setImageResource(item.getImage());
+        Utils.UI.setSrc(item.getImage(), restaurant_food_cover);
 
         return convertView;
     }

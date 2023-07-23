@@ -91,13 +91,13 @@ public class OrdersFragment extends Fragment {
     }
 
     private RestaurantFood getRestFoodById(int id) {
-        RestaurantFood f = new RestaurantFood(id, "Sample food " + id, "Sample description", R.drawable.img_sample_food,
+        RestaurantFood f = new RestaurantFood(id, "Sample food " + id, "Sample description", Utils.URL_SAMPLE_IMAGE,
                 15000);
         return f;
     }
 
     private Restaurant getRestaurantById(int id) {
-        Restaurant f = new Restaurant(id, "Restaurant name " + id, R.drawable.img_sample_food_2, "Restaurant address");
+        Restaurant f = new Restaurant(id, "Restaurant name " + id, Utils.URL_SAMPLE_IMAGE, "Restaurant address");
         return f;
     }
 

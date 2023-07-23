@@ -57,7 +57,7 @@ public class OrderListViewAdapter extends BaseAdapter {
         adapter_order_price_text = convertView.findViewById(R.id.adapter_order_price_text);
         adapter_order_quantity_text = convertView.findViewById(R.id.adapter_order_quantity_text);
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        adapter_order_image.setImageResource(item.getRestaurant().getImage());
+        Utils.UI.setSrc(item.getRestaurant().getImage(), adapter_order_image);
         adapter_order_state_text.setText(item.getStateStr());
         adapter_order_date_text.setText(Utils.dateStr(item.getCreatedAt()));
         adapter_order_name_text.setText(item.getRestaurant().getName());

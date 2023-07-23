@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mtb.foodorderreview.R;
+import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class RestaurantListViewAdapter extends BaseAdapter {
         adapter_restaurant_image = convertView.findViewById(R.id.adapter_restaurant_image);
         adapter_restaurant_name_text = convertView.findViewById(R.id.adapter_restaurant_name_text);
         //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        adapter_restaurant_image.setImageResource(item.getImage());
+        Utils.UI.setSrc(item.getImage(), adapter_restaurant_image);
         adapter_restaurant_name_text.setText(String.valueOf(item.getName()));
 
         return convertView;

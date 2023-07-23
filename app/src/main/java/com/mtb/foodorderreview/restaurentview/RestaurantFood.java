@@ -4,10 +4,10 @@ public class RestaurantFood {
     private int id;
     private String name;
     private String description;
-    private int image;
+    private String image;
     private int price;
 
-    public RestaurantFood(int id, String name, String description, int image, int price) {
+    public RestaurantFood(int id, String name, String description, String image, int price) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,7 +27,7 @@ public class RestaurantFood {
         return description;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
