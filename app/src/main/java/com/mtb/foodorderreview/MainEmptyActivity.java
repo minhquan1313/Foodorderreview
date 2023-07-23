@@ -22,6 +22,7 @@ public class MainEmptyActivity extends AppCompatActivity {
         String username = Utils.readFile(this, USER_DATA_USERNAME_FILE);
         String pass = Utils.readFile(this, USER_DATA_PASSWORD_FILE);
 
+        fakeUserFromAPI(username, pass);
         // Call api login here
 
         if (UserGlobal.getInstance().getUserName() != null) {
@@ -34,16 +35,18 @@ public class MainEmptyActivity extends AppCompatActivity {
         finish();
     }
 
-//    private void initFakeUser() {
-//        UserGlobal.getInstance().setData(
-//                1,
-//                "Anh_Ba",
-//                "Anh Ba",
-//                "0123456789",
-//                R.drawable.img_sample_user_avatar,
-//                "abcxyz123@gmail.com",
-//                "Thành Phố HCM",
-//                "lakjwdliawjdljia",
-//                false);
-//    }
+    private void fakeUserFromAPI(String username, String password) {
+        if (username.equals("example") && password.equals("example")) {
+            UserGlobal.getInstance().setData(
+                    1,
+                    username,
+                    "Anh Ba",
+                    "0123456789",
+                    R.drawable.img_sample_user_avatar,
+                    "abcxyz123@gmail.com",
+                    "Thành Phố HCM",
+                    "lakjwdliawjdljia",
+                    false);
+        }
+    }
 }

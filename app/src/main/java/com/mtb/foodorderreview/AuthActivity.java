@@ -178,6 +178,7 @@ public class AuthActivity extends AppCompatActivity {
                 requestIsAdmin);
 
         Utils.writeFile(this, MainEmptyActivity.USER_DATA_USERNAME_FILE, authUsername);
+        Utils.writeFile(this, MainEmptyActivity.USER_DATA_PASSWORD_FILE, authPassword);
 
         startActivity(new Intent(this, MainActivity.class));
         finish();
