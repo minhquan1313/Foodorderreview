@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mtb.foodorderreview.api.LoaiFoodService;
 import com.mtb.foodorderreview.api.NhaHangService;
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.CartGlobal;
@@ -28,7 +27,6 @@ import com.mtb.foodorderreview.homeview.FoodType;
 import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
-import com.mtb.foodorderreview.model.LoaiFood;
 import com.mtb.foodorderreview.model.NhaHang;
 import com.mtb.foodorderreview.service.FoodCategoryType;
 import com.mtb.foodorderreview.utils.IChangeListener;
@@ -41,7 +39,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -153,7 +150,7 @@ public class HomePageFragment extends Fragment {
         // Utils.UI.setSrc(url, home_user_avatar1);
     }
 
-    private void HomeFoodShopUI(Context context, View view) {}
+    //    private void HomeFoodShopUI(Context context, View view) {}
     private List<Restaurant> getAllRestaurants() {
         Restaurant[] l = {
                 new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food,
@@ -176,11 +173,9 @@ public class HomePageFragment extends Fragment {
                         "267 Lạc Long Quân, Phường 5, Quận 11, Thành phố Hồ Chí Minh, Việt Nam"),
         };
 
-        return Arrays.asList(l);}
-
-       
-               
+        return Arrays.asList(l);
     }
+
 
     private void viewAllResBtn(Context context, View view) {
         home_page_view_all_restaurant_btn.setOnClickListener(new View.OnClickListener() {
@@ -214,8 +209,8 @@ public class HomePageFragment extends Fragment {
         // List<Restaurant> l = getAllRestaurants().stream().limit(5).collect(Collectors.toList());
         // RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, l);
 
-             List<Restaurant> l = new ArrayList<Restaurant>();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        List<Restaurant> l = new ArrayList<Restaurant>();
+        // LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, l);
         NhaHangService.apiService.getListNH().enqueue(new Callback<List<NhaHang>>() {
             @Override
@@ -223,14 +218,15 @@ public class HomePageFragment extends Fragment {
                 List<NhaHang> list = response.body();
                 int dem = 0;
                 for (NhaHang nhaHang : list) {
-                    l.add(new Restaurant(nhaHang.getId(), nhaHang.getTen(), R.drawable.img_sample_food));
+                    l.add(new Restaurant(nhaHang.getId(), nhaHang.getTen(), R.drawable.img_sample_food, "DC nha hang"));
                 }
 
                 adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<NhaHang>> call, Throwable t) {}
+            public void onFailure(Call<List<NhaHang>> call, Throwable t) {
+            }
         });
         adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
             if (!isLongClick) {
@@ -238,9 +234,6 @@ public class HomePageFragment extends Fragment {
 
                 Intent intent = new Intent(context, RestaurantActivity.class);
 
-                intent.putExtra("id", homeFood.getId());
-                intent.putExtra("name", homeFood.getName());
-                intent.putExtra("image", homeFood.getImage());
                 startActivity(intent);
             }
         });
@@ -324,7 +317,7 @@ public class HomePageFragment extends Fragment {
 //                new FoodType("Rice5", R.drawable.icon_food_type_rice)
 //        };
 
-//        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
+        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
 
         ExpandableHeightGridView gridView = view.findViewById(R.id.home_food_type_grid_1);
         gridView.setAdapter(adapter);

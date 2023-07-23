@@ -6,7 +6,7 @@ public class FoodType {
     private int img;
 
 
-    public FoodType(String name, int img) {
+    public FoodType(int id, String name, int img) {
         this.id = id;
         this.img = img;
         this.name = name;
