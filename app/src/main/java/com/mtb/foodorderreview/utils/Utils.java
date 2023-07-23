@@ -92,7 +92,7 @@ public class Utils {
         }
 
         public static void setSrc(String url, ImageView imageView) {
-            Picasso.get().load(url).error(R.drawable.img_sample_user_avatar).into(imageView);
+            Picasso.get().load(url).error(R.drawable.icon_user).into(imageView);
         }
     }
 }

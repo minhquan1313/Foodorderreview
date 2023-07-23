@@ -25,7 +25,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/svn_poppins_semibold"
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textColor="@color/grey_4"
                 android:text="Tên đăng nhập" />
 
             <EditText
@@ -56,7 +57,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/svn_poppins_semibold"
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textColor="@color/grey_4"
 
                 android:text="Mật khẩu" />
 
