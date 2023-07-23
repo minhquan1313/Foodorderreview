@@ -83,6 +83,10 @@ public class Utils {
             button.setBackgroundTintList(ContextCompat.getColorStateList(context, id));
         }
 
+        public static void setBackgroundTint(Context context, Button button) {
+            button.setBackgroundTintList(null);
+        }
+
         public static void setBackgroundTint(Context context, LinearLayout button, int id) {
             button.setBackgroundTintList(ContextCompat.getColorStateList(context, id));
         }
