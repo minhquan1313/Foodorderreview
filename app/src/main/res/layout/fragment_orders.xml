@@ -3,47 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".RestaurantListActivity">
+    tools:context=".OrdersFragment">
 
     <!--  MainContent  -->
-    <ScrollView
-        android:id="@+id/restaurant_list_scrollview"
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/restaurant_list_navigation"
-        android:scrollbars="none"
-        android:fillViewport="true">
+        android:layout_below="@+id/orders_navigation"
 
+        android:orientation="vertical">
+        <!--            Item-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!-- Content goes here -->
 
-            <!--            Item-->
-            <LinearLayout
+            <ListView
+                android:id="@+id/orders_listview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ListView
-                    android:id="@+id/restaurant_list_listview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/adapter_restaurant_vertical"
-                    android:dividerHeight="1sp"
-                    android:divider="@color/grey_2" />
-
-            </LinearLayout>
+                tools:listitem="@layout/adapter_oder"
+                android:dividerHeight="1sp"
+                android:divider="@color/grey_2" />
 
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
 
     <!--  Navigation  -->
     <LinearLayout
-        android:id="@+id/restaurant_list_navigation"
+        android:id="@+id/orders_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:outlineAmbientShadowColor="@color/grey_2"
@@ -63,33 +55,23 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/restaurant_list_back_btn"
+                android:id="@+id/orders_back_btn"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:background="@drawable/shape_border_box"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:importantForAccessibility="no"
-                    android:padding="10sp"
-                    android:rotation="90"
-                    app:srcCompat="@drawable/icon_down_arrow"
-                    app:tint="@color/grey_5" />
-
             </LinearLayout>
 
             <TextView
-                android:id="@+id/restaurant_list_header_text"
+                android:id="@+id/orders_header_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/svn_poppins_semibold"
                 android:textSize="20sp"
-                android:text="Nhà hàng"
+                android:text="Đơn hàng"
                 android:gravity="center" />
 
             <LinearLayout
