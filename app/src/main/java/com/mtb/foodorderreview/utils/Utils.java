@@ -34,7 +34,7 @@ public class Utils {
         }
     }
 
-    public static String readFile(Context context, String fileName, String text) {
+    public static String readFile(Context context, String fileName) {
         try {
             FileInputStream inputStream = null;
             inputStream = context.openFileInput(fileName);
@@ -43,7 +43,7 @@ public class Utils {
             StringBuilder temp = new StringBuilder();
 
             while ((c = inputStream.read()) != -1) {
-                temp.append(Character.toString((char) c));
+                temp.append((char) c);
             }
 
             inputStream.close();

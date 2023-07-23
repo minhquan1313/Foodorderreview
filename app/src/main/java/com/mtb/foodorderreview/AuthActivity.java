@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.mtb.foodorderreview.global.UserGlobal;
+import com.mtb.foodorderreview.utils.Utils;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -175,6 +176,8 @@ public class AuthActivity extends AppCompatActivity {
                 authAddress,
                 requestToken,
                 requestIsAdmin);
+
+        Utils.writeFile(this, MainEmptyActivity.USER_DATA_USERNAME_FILE, authUsername);
 
         startActivity(new Intent(this, MainActivity.class));
         finish();
