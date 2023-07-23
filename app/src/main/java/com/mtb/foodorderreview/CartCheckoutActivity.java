@@ -1,5 +1,6 @@
 package com.mtb.foodorderreview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -71,15 +72,17 @@ public class CartCheckoutActivity extends AppCompatActivity {
 
                 cartGlobal.reset();
 
+//                Intent intent = new Intent(CartCheckoutActivity.this, DeliveryActivity.class);
+//                startActivity(intent);
                 Intent intent = new Intent();
-                setResult(1, intent);
+                setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });
     }
 
     private void listView() {
-        CartFoodListViewAdapter adapter = new CartFoodListViewAdapter(this, CartGlobal.getInstance().getFoodList());
+        CartFoodListViewAdapter adapter = new CartFoodListViewAdapter(this, cartGlobal.getFoodList());
 
         cart_checkout_listview.setAdapter(adapter);
         cart_checkout_listview.setExpanded(true);
@@ -87,9 +90,14 @@ public class CartCheckoutActivity extends AppCompatActivity {
 
     private void updateUIPrice() {
         int subtotal = cartGlobal.calSubtotal();
-        int shippingFee = SHIPPING_FEE;
+        int shippingFee = subtotal == 0 ? 0 : SHIPPING_FEE;
         int discount = -cartGlobal.calDiscount();
         int total = subtotal + shippingFee + discount;
+
+        if (total == 0) {
+            cart_checkout_submit_btn.setEnabled(false);
+            Utils.UI.setBackgroundTint(this, cart_checkout_submit_btn, R.color.grey_3);
+        }
 
         cart_checkout_subtotal_text.setText(Utils.currency(subtotal));
         cart_checkout_shipping_text.setText(Utils.currency(shippingFee));

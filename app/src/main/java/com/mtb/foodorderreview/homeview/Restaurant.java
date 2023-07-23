@@ -1,19 +1,12 @@
 package com.mtb.foodorderreview.homeview;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Restaurant {
     private int id;
-    //    private static int ID = 0;
     private String name;
     private int image;
     private String address;
 
-    private static List<Restaurant> list = new ArrayList<>();
-
-
-    public Restaurant(int id, String name, int image) {
+    public Restaurant(int id, String name, int image, String address) {
         this.id = id;
         this.name = name;
         this.image = image;

@@ -31,7 +31,7 @@ public class RestaurantRecyclerAdapter extends RecyclerView.Adapter<RestaurantHo
     @NonNull
     @Override
     public RestaurantHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.adapter_home_restaurant, null);
+        View view = inflater.inflate(R.layout.adapter_restaurant_horizontal, null);
         return new RestaurantHolder(view);
     }
 

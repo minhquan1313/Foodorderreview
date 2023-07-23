@@ -1,5 +1,6 @@
 package com.mtb.foodorderreview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mtb.foodorderreview.global.CartFood;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
+import com.mtb.foodorderreview.global.RestaurantGlobal;
+import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.utils.Utils;
 
@@ -32,6 +35,7 @@ public class FoodSelectActivity extends AppCompatActivity {
     int countQuantity = 1;
     final String ADD_TO_CART_STR = "Thêm - ";
     CartGlobal cartGlobal;
+    Restaurant restaurant;
 
     enum Mode {
         INC,
@@ -65,6 +69,7 @@ public class FoodSelectActivity extends AppCompatActivity {
         food_select_share_btn = findViewById(R.id.food_select_share_btn);
         food_select_add_to_cart_btn = findViewById(R.id.food_select_add_to_cart_btn);
 
+        restaurant = RestaurantGlobal.getInstance().getRestaurant();
         food = RestaurantFoodGlobal.getInstance().getFood();
 
         food_select_name.setText(food.getName());
@@ -111,10 +116,14 @@ public class FoodSelectActivity extends AppCompatActivity {
         food_select_add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (cartGlobal.getRestaurant() != restaurant) {
+                    cartGlobal.reset();
+                    cartGlobal.setRestaurant(restaurant);
+                }
                 cartGlobal.addFood(new CartFood(food, countQuantity));
 
                 Intent intent = new Intent();
-                setResult(1, intent);
+                setResult(Activity.RESULT_OK, intent);
 
                 finish();
             }

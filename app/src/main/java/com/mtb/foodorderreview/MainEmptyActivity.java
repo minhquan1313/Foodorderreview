@@ -28,16 +28,16 @@ public class MainEmptyActivity extends AppCompatActivity {
         finish();
     }
 
-    private void initFakeUser() {
-        UserGlobal.getInstance().setData(
-                1,
-                "Anh_Ba",
-                "Anh Ba",
-                "0123456789",
-                R.drawable.img_sample_user_avatar,
-                "abcxyz123@gmail.com",
-                "Thành Phố HCM",
-                "lakjwdliawjdljia",
-                false);
-    }
+//    private void initFakeUser() {
+//        UserGlobal.getInstance().setData(
+//                1,
+//                "Anh_Ba",
+//                "Anh Ba",
+//                "0123456789",
+//                R.drawable.img_sample_user_avatar,
+//                "abcxyz123@gmail.com",
+//                "Thành Phố HCM",
+//                "lakjwdliawjdljia",
+//                false);
+//    }
 }

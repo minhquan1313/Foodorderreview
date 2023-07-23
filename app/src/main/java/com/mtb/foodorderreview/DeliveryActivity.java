@@ -1,5 +1,7 @@
 package com.mtb.foodorderreview;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,21 +40,21 @@ public class DeliveryActivity extends AppCompatActivity {
 
         initialization();
         Utils.UI.backBtn(this, delivery_back_btn);
-        updateUI(order.getState());
 
         submitBtnClick();
+        updateUI(order.getState());
 
         watchOrder();
 
     }
 
     private void watchOrder() {
-        if (order.getState() != Order.STATE.PENDING) {
-            delivery_fake_submit_btn.setEnabled(false);
-            delivery_fake_submit_btn.setBackgroundResource(R.color.grey_3);
-            return;
-        }
-// goi api
+//        if (order.getState() == Order.STATE.PENDING) {
+//            delivery_fake_submit_btn.setEnabled(false);
+//            Utils.UI.setBackgroundTint(this, delivery_fake_submit_btn, R.color.grey_3);
+//            return;
+//        }
+
         if ("callApiToCreateOrderSuccess" != null) {
 
             int idSample = -1;
@@ -63,7 +65,7 @@ public class DeliveryActivity extends AppCompatActivity {
             updateUI(order.getState());
 
             delivery_fake_submit_btn.setEnabled(true);
-
+//            delivery_fake_submit_btn.setBackgroundResource( R.color.primary);
             Utils.UI.setBackgroundTint(this, delivery_fake_submit_btn, R.color.primary);
         }
     }
@@ -142,6 +144,9 @@ public class DeliveryActivity extends AppCompatActivity {
                 order.setState(Order.STATE.DELIVERED);
                 // Call api here
 
+                OrderGlobal.getInstance().reset();
+                Intent intent = new Intent();
+                setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });

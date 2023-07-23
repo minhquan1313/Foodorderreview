@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:clipChildren="false"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".HomePageFragment">
 
     <ScrollView
         android:fillViewport="true"
@@ -99,6 +100,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/home_cart_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -106,6 +108,7 @@
                     android:background="@drawable/shape_border_box">
 
                     <ImageView
+                        android:id="@+id/home_cart_btn_image"
                         android:layout_width="40sp"
                         android:layout_height="40sp"
 
@@ -246,6 +249,7 @@
                             android:textSize="20sp" />
 
                         <Button
+                            android:id="@+id/home_coupon_order_now_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_home_button_order_now"
@@ -307,6 +311,7 @@
                         android:text="Top nhà hàng" />
 
                     <Button
+                        android:id="@+id/home_page_view_all_restaurant_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:minHeight="0sp"
@@ -325,7 +330,7 @@
                     android:id="@+id/home_food_shop_recycler_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/adapter_home_restaurant"
+                    tools:listitem="@layout/adapter_restaurant_horizontal"
                     android:layout_marginTop="16sp"
                     tools:itemCount="1"
                     android:orientation="horizontal" />
@@ -392,7 +397,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/restaurant_cart_quantity_text"
+                    android:id="@+id/home_shipping_quantity_text"
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

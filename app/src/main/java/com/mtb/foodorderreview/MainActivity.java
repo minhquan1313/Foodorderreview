@@ -1,9 +1,12 @@
 package com.mtb.foodorderreview;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
@@ -69,4 +72,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        // Not calling **super**, disables back button in current screen.
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            // Checkout ok
+            case 3:
+                if (resultCode != Activity.RESULT_OK) return;
+                Intent intent = new Intent(this, DeliveryActivity.class);
+                startActivity(intent);
+
+                break;
+            case 4:
+                if (resultCode != Activity.RESULT_OK) return;
+//                Intent intent = new Intent(this, DeliveryActivity.class);
+//                startActivity(intent);
+
+                break;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.mtb.foodorderreview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -47,6 +48,7 @@ public class RestaurantActivity extends AppCompatActivity {
     RestaurantCoupon coupon;
     LinearLayout linear_btn_restaurant_back1;
     CartGlobal cartGlobal;
+    Restaurant restaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,19 +78,21 @@ public class RestaurantActivity extends AppCompatActivity {
 
         cartGlobal = CartGlobal.getInstance();
 
-        Restaurant restaurant = RestaurantGlobal.getInstance().getRestaurant();
+        restaurant = RestaurantGlobal.getInstance().getRestaurant();
 
         restaurant_name1.setText(restaurant.getName());
         restaurant_location1.setText(restaurant.getAddress());
         restaurant_banner1.setImageResource(restaurant.getImage());
 
-        cartGlobal.reset();
-        cartGlobal.setRestaurant(restaurant);
+//        if (cartGlobal.getRestaurant() != restaurant) {
+//            cartGlobal.reset();
+//            cartGlobal.setRestaurant(restaurant);
+//        }
     }
 
 
     public void updateCartUI() {
-        if (cartGlobal.getFoodList().size() == 0) {
+        if (cartGlobal.getFoodList().size() == 0 || cartGlobal.getRestaurant().getId() != restaurant.getId()) {
             restaurant_cart_btn.setVisibility(View.INVISIBLE);
             return;
         }
@@ -186,19 +190,18 @@ public class RestaurantActivity extends AppCompatActivity {
         switch (requestCode) {
             // Add food to cart
             case 2:
-                if (resultCode != 1) return;
+                if (resultCode != Activity.RESULT_OK) return;
                 updateCartUI();
                 break;
 
             // Checkout ok
             case 3:
-                if (resultCode != 1) return;
+                if (resultCode != Activity.RESULT_OK) return;
                 Intent intent = new Intent(this, DeliveryActivity.class);
                 startActivity(intent);
 
                 finish();
                 break;
         }
-
     }
 }
