@@ -2,7 +2,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sign_up_fragment1"
-
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".SignUpFragment">
@@ -23,12 +22,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/svn_poppins_semibold"
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textColor="@color/grey_4"
                 android:text="Số điện thoại" />
 
             <EditText
                 android:id="@+id/sign_up_tel_input"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4sp"
@@ -42,8 +41,6 @@
                 android:textColorHint="@color/grey_3"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
-
-
         </LinearLayout>
 
 
@@ -51,18 +48,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12sp"
-
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/svn_poppins_semibold"
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textColor="@color/grey_4"
                 android:text="Tên đăng nhập" />
 
             <EditText
                 android:id="@+id/sign_up_username_input"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -83,19 +79,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12sp"
-
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/svn_poppins_semibold"
-
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textColor="@color/grey_4"
                 android:text="Mật khẩu" />
 
             <EditText
                 android:id="@+id/sign_up_password_input"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -116,19 +110,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12sp"
-
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/svn_poppins_semibold"
-
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textColor="@color/grey_4"
                 android:text="Họ tên" />
 
             <EditText
                 android:id="@+id/sign_up_name_input"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -149,19 +141,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12sp"
-
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/svn_poppins_semibold"
-
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textColor="@color/grey_4"
                 android:text="Email" />
 
             <EditText
                 android:id="@+id/sign_up_email_input"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -182,19 +172,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12sp"
-
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/svn_poppins_semibold"
-
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textColor="@color/grey_4"
                 android:text="Địa chỉ" />
 
             <EditText
                 android:id="@+id/sign_up_address_input"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -213,10 +201,8 @@
 
         <TextView
             android:id="@+id/fragment_sign_up_response_text"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:textColor="@color/red"
             android:layout_marginTop="4sp"
             android:gravity="center"

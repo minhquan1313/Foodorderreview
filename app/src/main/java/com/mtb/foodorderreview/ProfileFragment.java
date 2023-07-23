@@ -1,12 +1,17 @@
 package com.mtb.foodorderreview;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +19,26 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    CardView profile_avatar_cardview,
+            profile_avatar_image,
+            profile_scrollview,
+            profile_id_text,
+            profile_username_text,
+            profile_name_text,
+            profile_tel_text,
+            profile_email_text,
+            profile_address_text,
+            profile_navigation,
+            profile_back_btn,
+            profile_header_text,
+            profile_save_btn;
+    ImageView x;
+    TextView xx;
+    EditText xxx;
+    LinearLayout xxxx;
+    Button xxxxx;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

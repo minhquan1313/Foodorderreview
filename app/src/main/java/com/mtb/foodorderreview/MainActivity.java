@@ -65,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (id == R.id.bottom_navigation_profile1) {
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(mainFrameId, ProfileFragment.class, null)
+                            .setReorderingAllowed(true)
+                            .addToBackStack("home") // Name can be null
+                            .commit();
                 }
 
                 return true;
