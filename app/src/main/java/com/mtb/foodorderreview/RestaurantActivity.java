@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +39,7 @@ public class RestaurantActivity extends AppCompatActivity {
             restaurant_cart_quantity_text;
     ImageView restaurant_banner1;
     RelativeLayout restaurant_cart_btn;
+    CardView restaurant_rating_card;
     LinearLayout linear_btn_restaurant_back1;
     CartGlobal cartGlobal;
     Restaurant restaurant;
@@ -55,9 +57,11 @@ public class RestaurantActivity extends AppCompatActivity {
 
         couponsRecycler();
         foodGrid();
+        ratingClick();
 
         cartBtn();
     }
+
 
     private void initialization() {
         restaurant_name1 = findViewById(R.id.restaurant_name1);
@@ -67,6 +71,7 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_cart_btn = findViewById(R.id.restaurant_cart_btn);
         restaurant_cart_quantity_text = findViewById(R.id.restaurant_cart_quantity_text);
         linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
+        restaurant_rating_card = findViewById(R.id.restaurant_rating_card);
 
         cartGlobal = CartGlobal.getInstance();
 
@@ -200,5 +205,14 @@ public class RestaurantActivity extends AppCompatActivity {
                 finish();
                 break;
         }
+    }
+
+    private void ratingClick() {
+        restaurant_rating_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
     }
 }
