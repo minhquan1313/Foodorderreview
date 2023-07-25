@@ -3,6 +3,7 @@ package com.mtb.foodorderreview;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +92,7 @@ public class HomePageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         context = getContext();
@@ -104,7 +105,7 @@ public class HomePageFragment extends Fragment {
         updateCartBtnUi(context);
         shippingBtn(context);
         updateShippingBtnUi();
-
+        searchHandle();
         OrderGlobal.getInstance().addListener(new IChangeListener<OrderGlobal>() {
             @Override
             public int getId() {
@@ -337,5 +338,29 @@ public class HomePageFragment extends Fragment {
         home_cart_btn.setBackgroundResource(R.drawable.shape_border_box_primary);
         Utils.UI.setBackgroundTint(context, home_cart_btn_image, R.color.primary);
 
+    }
+
+
+    private void searchHandle() {
+        home_search_inp.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (!((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)))
+                    return false;
+
+                String keyword = home_search_inp.getText().toString().trim();
+
+
+                List<Restaurant> restaurants = getAllRestaurants();
+
+                RestaurantListGlobal.getInstance().setList(restaurants);
+
+                Intent intent = new Intent(context, RestaurantListActivity.class);
+                intent.putExtra("TITLE", keyword);
+                startActivity(intent);
+
+                return true;
+            }
+        });
     }
 }
