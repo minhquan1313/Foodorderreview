@@ -1,5 +1,9 @@
 package com.mtb.foodorderreview.global;
 
+import android.content.Context;
+
+import com.mtb.foodorderreview.utils.Utils;
+
 public class UserGlobal {
     private int id;
     private String userName;
@@ -11,6 +15,9 @@ public class UserGlobal {
     private String token;
     private boolean isAdmin;
     private static UserGlobal instance = new UserGlobal();
+
+    public static final String USER_DATA_USERNAME_FILE = "user_info_username";
+    public static final String USER_DATA_PASSWORD_FILE = "user_info_password";
 
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     public static UserGlobal getInstance() {
@@ -32,6 +39,19 @@ public class UserGlobal {
 
     private UserGlobal() {
     }
+
+    public static void userLogout(Context context) {
+        Utils.deleteFile(context, USER_DATA_USERNAME_FILE);
+        Utils.deleteFile(context, USER_DATA_PASSWORD_FILE);
+
+        instance = new UserGlobal();
+    }
+
+    public static void writeUserToStorage(Context context, String username, String password) {
+        Utils.writeFile(context, USER_DATA_USERNAME_FILE, username);
+        Utils.writeFile(context, USER_DATA_PASSWORD_FILE, password);
+    }
+    //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
     public int getId() {
         return id;

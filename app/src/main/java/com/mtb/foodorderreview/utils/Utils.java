@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import com.mtb.foodorderreview.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
@@ -33,6 +34,12 @@ public class Utils {
             outputStream.close();
         } catch (Exception e) {
         }
+    }
+
+    public static void deleteFile(Context context, String fileName) {
+        File dir = context.getFilesDir();
+        File file = new File(dir, fileName);
+        file.delete();
     }
 
     public static String readFile(Context context, String fileName) {

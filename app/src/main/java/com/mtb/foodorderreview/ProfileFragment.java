@@ -1,6 +1,7 @@
 package com.mtb.foodorderreview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -33,7 +34,8 @@ public class ProfileFragment extends Fragment {
             profile_tel_inp,
             profile_email_inp,
             profile_address_inp;
-    Button profile_save_btn;
+    Button profile_save_btn,
+            profile_logout_btn;
     Context context;
     String name,
             tel,
@@ -94,9 +96,11 @@ public class ProfileFragment extends Fragment {
         makeChangeListener(profile_email_inp, email);
         makeChangeListener(profile_address_inp, address);
         btnSubmit();
+        btnLogout();
 
         return view;
     }
+
 
     private void initialization(View view) {
         profile_avatar_cardview = view.findViewById(R.id.profile_avatar_cardview);
@@ -108,6 +112,7 @@ public class ProfileFragment extends Fragment {
         profile_email_inp = view.findViewById(R.id.profile_email_inp);
         profile_address_inp = view.findViewById(R.id.profile_address_inp);
         profile_save_btn = view.findViewById(R.id.profile_save_btn);
+        profile_logout_btn = view.findViewById(R.id.profile_logout_btn);
     }
 
     private void btnSubmit() {
@@ -193,4 +198,17 @@ public class ProfileFragment extends Fragment {
         Utils.UI.setBackgroundTint(context, profile_save_btn);
     }
 
+    private void btnLogout() {
+        profile_logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserGlobal.userLogout(context);
+                getActivity().finish();
+
+                Intent intent = new Intent(context, MainEmptyActivity.class);
+                startActivity(intent);
+
+            }
+        });
+    }
 }

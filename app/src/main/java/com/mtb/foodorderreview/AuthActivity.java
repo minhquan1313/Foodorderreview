@@ -13,7 +13,6 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.mtb.foodorderreview.global.UserGlobal;
-import com.mtb.foodorderreview.utils.Utils;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -166,22 +165,12 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void onSuccessHandle() {
-        UserGlobal.getInstance().setData(
-                Integer.parseInt(requestId),
-                authUsername,
-                authName,
-                authTel,
-                R.drawable.img_sample_user_avatar,
-                authEmail,
-                authAddress,
-                requestToken,
-                requestIsAdmin);
+        MainEmptyActivity.fakeUserFromAPI(authUsername, authPassword);
 
-        Utils.writeFile(this, MainEmptyActivity.USER_DATA_USERNAME_FILE, authUsername);
-        Utils.writeFile(this, MainEmptyActivity.USER_DATA_PASSWORD_FILE, authPassword);
+        UserGlobal.writeUserToStorage(this, authUsername, authPassword);
 
+        //finish();
         startActivity(new Intent(this, MainActivity.class));
-        finish();
     }
 
     private void onFailHandle(String msg) {
@@ -189,6 +178,11 @@ public class AuthActivity extends AppCompatActivity {
         enableButton(auth_sign_in_btn1);
         enableButton(auth_sign_up_btn1);
         changeUI(state);
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
     public String getString(String bundleName) {
