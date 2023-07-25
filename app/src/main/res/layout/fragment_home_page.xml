@@ -162,7 +162,7 @@
 
 
                 <EditText
-                    android:id="@+id/editTextText"
+                    android:id="@+id/home_search_inp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:ems="10"

@@ -1,5 +1,7 @@
 package com.mtb.foodorderreview;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -203,11 +205,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 UserGlobal.userLogout(context);
-                getActivity().finish();
 
-                Intent intent = new Intent(context, MainEmptyActivity.class);
-                startActivity(intent);
-
+                Intent mStartActivity = new Intent(context, MainEmptyActivity.class);
+                int mPendingIntentId = 123456;
+                PendingIntent mPendingIntent = PendingIntent.getActivity(context, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+                AlarmManager mgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                System.exit(0);
             }
         });
     }

@@ -116,7 +116,7 @@ public class FoodSelectActivity extends AppCompatActivity {
         food_select_add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cartGlobal.getRestaurant() != restaurant) {
+                if (cartGlobal.getRestaurant() == null || cartGlobal.getRestaurant().getId() != restaurant.getId()) {
                     cartGlobal.reset();
                     cartGlobal.setRestaurant(restaurant);
                 }

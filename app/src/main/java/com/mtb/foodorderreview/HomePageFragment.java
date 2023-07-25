@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -48,6 +49,8 @@ public class HomePageFragment extends Fragment {
     Button home_page_view_all_restaurant_btn,
             home_coupon_order_now_btn;
     LinearLayout home_cart_btn;
+    EditText home_search_inp;
+    Context context;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -88,17 +91,18 @@ public class HomePageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        context = getContext();
         initialization(view);
-        homeFoodTypeUI(getContext(), view);
-        homeFoodShopUI(getContext(), view);
-        viewAllResBtn(getContext(), view);
-        couponOrderNowBtn(getContext(), view);
-        cartBtn(getContext());
-        updateCartBtnUi(getContext());
-        shippingBtn(getContext());
+        homeFoodTypeUI(context, view);
+        homeFoodShopUI(context, view);
+        viewAllResBtn(context, view);
+        couponOrderNowBtn(context, view);
+        cartBtn(context);
+        updateCartBtnUi(context);
+        shippingBtn(context);
         updateShippingBtnUi();
 
         OrderGlobal.getInstance().addListener(new IChangeListener<OrderGlobal>() {
@@ -120,7 +124,7 @@ public class HomePageFragment extends Fragment {
 
             @Override
             public void dataChange(CartGlobal obj) {
-                updateCartBtnUi(getContext());
+                updateCartBtnUi(context);
             }
         });
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -134,6 +138,7 @@ public class HomePageFragment extends Fragment {
         home_page_view_all_restaurant_btn = v.findViewById(R.id.home_page_view_all_restaurant_btn);
         home_coupon_order_now_btn = v.findViewById(R.id.home_coupon_order_now_btn);
         home_cart_btn = v.findViewById(R.id.home_cart_btn);
+        home_search_inp = v.findViewById(R.id.home_search_inp);
         home_shipping_btn = v.findViewById(R.id.home_shipping_btn);
         home_shipping_quantity_text = v.findViewById(R.id.home_shipping_quantity_text);
 

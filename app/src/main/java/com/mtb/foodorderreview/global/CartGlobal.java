@@ -26,11 +26,11 @@ public class CartGlobal {
     }
 
     public void reset() {
-        restaurant = null;
-        coupon = null;
-        foodList = new ArrayList<>();
+        this.restaurant = null;
+        this.coupon = null;
+        this.foodList = new ArrayList<>();
 
-        runListener();
+        this.runListener();
 //        couponList = new ArrayList<>();
     }
 

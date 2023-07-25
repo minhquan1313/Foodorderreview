@@ -2,13 +2,17 @@ package com.mtb.foodorderreview.utils;
 
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
 
+import com.mtb.foodorderreview.MainEmptyActivity;
 import com.mtb.foodorderreview.R;
 import com.squareup.picasso.Picasso;
 
@@ -80,6 +84,15 @@ public class Utils {
 
     public static Date dateParse(String date) throws ParseException {
         return simpleDateFormat.parse(date);
+    }
+
+    public static void restartApp(Context context) {
+        Intent mStartActivity = new Intent(context, MainEmptyActivity.class);
+        int mPendingIntentId = 123456;
+        PendingIntent mPendingIntent = PendingIntent.getActivity(context, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager mgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 300, mPendingIntent);
+        System.exit(0);
     }
 
     public static class UI {
