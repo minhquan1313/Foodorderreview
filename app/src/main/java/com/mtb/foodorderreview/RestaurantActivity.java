@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,10 +20,7 @@ import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.homeview.Restaurant;
-import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
 import com.mtb.foodorderreview.model.Food;
-import com.mtb.foodorderreview.model.LoaiFood;
-import com.mtb.foodorderreview.model.NhaHang;
 import com.mtb.foodorderreview.restaurentview.RestaurantCoupon;
 import com.mtb.foodorderreview.restaurentview.RestaurantCouponRecyclerAdapter;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
@@ -49,6 +47,7 @@ public class RestaurantActivity extends AppCompatActivity {
     LinearLayout linear_btn_restaurant_back1;
     CartGlobal cartGlobal;
     Restaurant restaurant;
+    int _id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +138,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private void foodGrid() {
         int idNhaHang = getIntent().getExtras().getInt("id");
         List<RestaurantFood> list = new ArrayList<>();
-        RestaurantFoodGridAdapter adapter = new RestaurantFoodGridAdapter(this,list);
+        RestaurantFoodGridAdapter adapter = new RestaurantFoodGridAdapter(this, list);
         FoodService.apiService.getListFoodByNhaHang(idNhaHang).enqueue(new Callback<List<Food>>() {
 
 
@@ -148,7 +147,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 List<Food> listFood = response.body();
 
                 for (Food l : listFood) {
-                    list.add(new RestaurantFood(l.getId(), l.getTen(), "Bún bò thơm ngon mời ban ăn nha", R.drawable.img_sample_food_2,
+                    list.add(new RestaurantFood(l.getId(), l.getTen(), "Bún bò thơm ngon mời ban ăn nha", Utils.URL_SAMPLE_IMAGE,
                             l.getGiaTien().intValue()));
                 }
 
@@ -157,7 +156,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Food>> call, Throwable t) {
-
+                Toast.makeText(RestaurantActivity.this, "khong render ra dc", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -198,10 +197,17 @@ public class RestaurantActivity extends AppCompatActivity {
             case 3:
                 if (resultCode != Activity.RESULT_OK) return;
                 Intent intent = new Intent(this, DeliveryActivity.class);
+
+
+                intent.putExtra("idDonhang", data.getExtras().getInt("idDonhang"));
                 startActivity(intent);
 
                 finish();
                 break;
         }
+    }
+
+    public void set_id(int id) {
+        _id = id;
     }
 }

@@ -15,8 +15,16 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.mtb.foodorderreview.api.UserService;
 import com.mtb.foodorderreview.global.UserGlobal;
+import com.mtb.foodorderreview.model.User;
 import com.mtb.foodorderreview.utils.Utils;
+
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -112,18 +120,36 @@ public class ProfileFragment extends Fragment {
 
     private void btnSubmit() {
         profile_save_btn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                // Call api here
-                updateVariables();
-                if ("callApiSuccess" != null) {
-                    userGlobal.setName(name);
-                    userGlobal.setAddress(address);
-                    userGlobal.setEmail(email);
-                    userGlobal.setTel(tel);
+                Map<String, Object> map = Map.of(
+                        "taiKhoan", profile_username_text.getText().toString(),
+                        "ten", profile_name_inp.getText().toString(),
+                        "soDienThoai", profile_tel_inp.getText().toString(),
+                        "email", profile_email_inp.getText().toString(),
+                        "diaChi", profile_address_inp.getText().toString()
+                );
+                UserService.apiService.update(Integer.parseInt(profile_id_text.getText().toString()), map).enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        updateVariables();
+                        if ("callApiSuccess" != null) {
+                            userGlobal.setName(name);
+                            userGlobal.setAddress(address);
+                            userGlobal.setEmail(email);
+                            userGlobal.setTel(tel);
 
-                    bindData();
-                }
+                            bindData();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
+                // Call api here
             }
         });
     }

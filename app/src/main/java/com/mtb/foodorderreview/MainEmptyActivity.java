@@ -22,7 +22,7 @@ public class MainEmptyActivity extends AppCompatActivity {
         String username = Utils.readFile(this, USER_DATA_USERNAME_FILE);
         String pass = Utils.readFile(this, USER_DATA_PASSWORD_FILE);
 
-        fakeUserFromAPI(username, pass);
+//        fakeUserFromAPI(username, pass);
         // Call api login here
 
         if (UserGlobal.getInstance().getUserName() != null) {

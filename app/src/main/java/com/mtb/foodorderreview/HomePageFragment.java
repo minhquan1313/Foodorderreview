@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,11 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.api.NhaHangService;
+import com.mtb.foodorderreview.callapi.CallNhaHang;
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
-import com.mtb.foodorderreview.global.RestaurantListGlobal;
 import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.homeview.FoodType;
 import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
@@ -29,6 +30,7 @@ import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantRecyclerAdapter;
 import com.mtb.foodorderreview.model.NhaHang;
 import com.mtb.foodorderreview.service.FoodCategoryType;
+import com.mtb.foodorderreview.utils.ICallback;
 import com.mtb.foodorderreview.utils.IChangeListener;
 import com.mtb.foodorderreview.utils.Utils;
 
@@ -188,10 +190,20 @@ public class HomePageFragment extends Fragment {
         home_page_view_all_restaurant_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RestaurantListGlobal.getInstance().setList(getAllRestaurants());
+//                RestaurantListGlobal.getInstance().setList(getAllRestaurants());
+                CallNhaHang callNhaHang = new CallNhaHang();
+                callNhaHang.getlist();
 
-                Intent intent = new Intent(context, RestaurantListActivity.class);
-                startActivity(intent);
+                callNhaHang.setCallback(new ICallback() {
+                    @Override
+                    public void callback() {
+                        Intent intent = new Intent(context, RestaurantListActivity.class);
+
+                        startActivity(intent);
+                    }
+                });
+
+
             }
         });
     }
@@ -200,10 +212,17 @@ public class HomePageFragment extends Fragment {
         home_coupon_order_now_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RestaurantListGlobal.getInstance().setList(getAllRestaurants());
+                CallNhaHang callNhaHang = new CallNhaHang();
+                callNhaHang.getlist();
 
-                Intent intent = new Intent(context, RestaurantListActivity.class);
-                startActivity(intent);
+                callNhaHang.setCallback(new ICallback() {
+                    @Override
+                    public void callback() {
+                        Intent intent = new Intent(context, RestaurantListActivity.class);
+
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
@@ -225,7 +244,7 @@ public class HomePageFragment extends Fragment {
                 List<NhaHang> list = response.body();
                 int dem = 0;
                 for (NhaHang nhaHang : list) {
-                    l.add(new Restaurant(nhaHang.getId(), nhaHang.getTen(), R.drawable.img_sample_food, "DC nha hang"));
+                    l.add(new Restaurant(nhaHang.getId(), nhaHang.getTen(), nhaHang.getAvatar(), "DC nha hang"));
                 }
 
                 adapter.notifyDataSetChanged();
@@ -240,6 +259,9 @@ public class HomePageFragment extends Fragment {
                 RestaurantGlobal.getInstance().setRestaurant(homeFood);
 
                 Intent intent = new Intent(context, RestaurantActivity.class);
+                intent.putExtra("id", homeFood.getId());
+                intent.putExtra("name", homeFood.getName());
+                intent.putExtra("image", homeFood.getImage());
 
                 startActivity(intent);
             }
@@ -293,36 +315,6 @@ public class HomePageFragment extends Fragment {
 //        recyclerView.setAdapter(adapter);
 //   }
 
-//    private void HomeFoodTypeUI(Context context, View view) {
-
-//        List<FoodType> l = new ArrayList<FoodType>();
-//        FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, l);
-//        LoaiFoodService.apiService.getAllFood().enqueue(new Callback<List<LoaiFood>>() {
-//            @Override
-//            public void onResponse(Call<List<LoaiFood>> call, Response<List<LoaiFood>> response) {
-//                List<LoaiFood> list = response.body();
-//                for (LoaiFood loaiFood : list)
-//                {
-//                    l.add(new FoodType(loaiFood.getTen().toString(), R.drawable.img_sample_food));
-//                }
-//
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<LoaiFood>> call, Throwable t) {
-//
-//            }
-//        });
-
-
-//        FoodType[] l = {
-//                new FoodType("Rice", R.drawable.icon_food_type_rice),
-//                new FoodType("Rice2", R.drawable.icon_food_type_rice),
-//                new FoodType("Rice3", R.drawable.icon_food_type_rice),
-//                new FoodType("Rice4", R.drawable.icon_food_type_rice),
-//                new FoodType("Rice5", R.drawable.icon_food_type_rice)
-//        };
 
         FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));
 
@@ -330,52 +322,63 @@ public class HomePageFragment extends Fragment {
         gridView.setAdapter(adapter);
         gridView.setExpanded(true);
 
-        gridView.setOnItemClickListener((parent, view1, position, id) -> {
-            FoodType foodType = (FoodType) gridView.getItemAtPosition(position);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view1, int position, long id) {
+                FoodType foodType = (FoodType) gridView.getItemAtPosition(position);
 
-            int foodTypeId = foodType.getId();
-            List<Restaurant> restaurants;
+                int foodTypeId = foodType.getId();
+                CallNhaHang callNhaHang = new CallNhaHang();
+                List<Restaurant> restaurants;
 
-            switch (foodTypeId) {
-                case FoodCategoryType.RICE:
-                    restaurants = getAllRestaurants();
-                    break;
-                case FoodCategoryType.COFFEE:
-                    restaurants = getAllRestaurants();
+                switch (foodTypeId) {
+                    case FoodCategoryType.RICE:
+                        callNhaHang.getlist(1);
+                        break;
+                    case FoodCategoryType.COFFEE:
+                        callNhaHang.getlist(2);
 
-                    break;
-                case FoodCategoryType.NODDLE:
-                    restaurants = getAllRestaurants();
+                        break;
+                    case FoodCategoryType.NODDLE:
+                        restaurants = HomePageFragment.this.getAllRestaurants();
 
-                    break;
-                case FoodCategoryType.FAST_FOOD:
-                    restaurants = getAllRestaurants();
+                        break;
+                    case FoodCategoryType.FAST_FOOD:
+                        restaurants = HomePageFragment.this.getAllRestaurants();
 
-                    break;
-                case FoodCategoryType.MILK_TEA:
-                    restaurants = getAllRestaurants();
+                        break;
+                    case FoodCategoryType.MILK_TEA:
+                        restaurants = HomePageFragment.this.getAllRestaurants();
 
-                    break;
-                case FoodCategoryType.SNACK:
-                    restaurants = getAllRestaurants();
+                        break;
+                    case FoodCategoryType.SNACK:
+                        restaurants = HomePageFragment.this.getAllRestaurants();
 
-                    break;
-                case FoodCategoryType.SPECIALTY:
-                    restaurants = getAllRestaurants();
+                        break;
+                    case FoodCategoryType.SPECIALTY:
+                        restaurants = HomePageFragment.this.getAllRestaurants();
 
-                    break;
-                case FoodCategoryType.HEALTHY:
-                    restaurants = getAllRestaurants();
-                    break;
-                default:
-                    restaurants = getAllRestaurants();
+                        break;
+                    case FoodCategoryType.HEALTHY:
+                        restaurants = HomePageFragment.this.getAllRestaurants();
+                        break;
+                    default:
+                        restaurants = HomePageFragment.this.getAllRestaurants();
+                }
+
+//            RestaurantListGlobal.getInstance().setList(restaurants);
+
+
+                callNhaHang.setCallback(new ICallback() {
+                    @Override
+                    public void callback() {
+                        Intent intent = new Intent(context, RestaurantListActivity.class);
+
+                        intent.putExtra("TITLE", foodType.getName());
+                        HomePageFragment.this.startActivity(intent);
+                    }
+                });
             }
-
-            RestaurantListGlobal.getInstance().setList(restaurants);
-
-            Intent intent = new Intent(context, RestaurantListActivity.class);
-            intent.putExtra("TITLE", foodType.getName());
-            startActivity(intent);
         });
     }
 

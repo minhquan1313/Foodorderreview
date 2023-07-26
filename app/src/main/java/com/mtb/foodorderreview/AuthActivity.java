@@ -15,17 +15,14 @@ import androidx.fragment.app.FragmentManager;
 
 import com.mtb.foodorderreview.api.UserService;
 import com.mtb.foodorderreview.global.UserGlobal;
-import com.mtb.foodorderreview.model.LoaiFood;
 import com.mtb.foodorderreview.model.Login;
 import com.mtb.foodorderreview.model.Message;
 import com.mtb.foodorderreview.model.User;
-
-import java.util.List;
+import com.mtb.foodorderreview.utils.Utils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import com.mtb.foodorderreview.utils.Utils;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -140,21 +137,24 @@ public class AuthActivity extends AppCompatActivity {
         sign_in_username_input = findViewById(R.id.sign_in_username_input);
         sign_in_password_input = findViewById(R.id.sign_in_password_input);
         fragment_sign_in_response_text = findViewById(R.id.fragment_sign_in_response_text);
-        Login login = new Login(sign_in_username_input.getText().toString(),sign_in_password_input.getText().toString());
+        Login login = new Login(sign_in_username_input.getText().toString(), sign_in_password_input.getText().toString());
 
-        UserService.apiService.login(login).enqueue(new Callback<Message>() {
+
+        UserService.apiService.login(login).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
-                Message message = response.body();
-                if(message.getStatus() == true)
+            public void onResponse(Call<User> call, Response<User> response) {
+                User user = response.body();
+                if (user != null) {
+                    UserGlobal.getInstance().setData(user.getId(), user.getTaiKhoan(), user.getTen(), user.getSoDienThoai(), R.drawable.img_app_icon,
+                            user.getEmail(), user.getDiaChi(), null, false);
                     onSuccessHandle();
-                else
+                } else
                     onFailHandle("sai tài khoản or mật khẩu");
             }
 
             @Override
-            public void onFailure(Call<Message> call, Throwable t) {
-
+            public void onFailure(Call<User> call, Throwable t) {
+                onFailHandle("sai tài khoản or mật khẩu");
             }
         });
         // Call your API here
@@ -181,9 +181,9 @@ public class AuthActivity extends AppCompatActivity {
         sign_up_email_input = findViewById(R.id.sign_up_email_input);
         sign_up_address_input = findViewById(R.id.sign_up_address_input);
         fragment_sign_up_response_text = findViewById(R.id.fragment_sign_up_response_text);
-        User user = new User(null,sign_up_name_input.getText().toString(),
+        User user = new User(null, sign_up_name_input.getText().toString(),
                 sign_up_username_input.getText().toString()
-                ,sign_up_password_input.getText().toString(),
+                , sign_up_password_input.getText().toString(),
                 sign_up_address_input.getText().toString(),
                 sign_up_tel_input.getText().toString(),
                 null,
@@ -194,7 +194,7 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
                 Message message = response.body();
-                Toast.makeText(AuthActivity.this,message.getMessage().toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(AuthActivity.this, message.getMessage().toString(), Toast.LENGTH_LONG).show();
                 onSuccessHandle();
 
             }
@@ -212,7 +212,6 @@ public class AuthActivity extends AppCompatActivity {
          * if(success) onSuccessHandle()
          * else onFailHandle("Ten dang nhap bi trung")
          */
-
 
 
     }

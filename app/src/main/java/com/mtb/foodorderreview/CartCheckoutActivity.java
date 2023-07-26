@@ -10,16 +10,26 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mtb.foodorderreview.api.DonHangService;
 import com.mtb.foodorderreview.checkout.CartFoodListViewAdapter;
 import com.mtb.foodorderreview.components.ExpandableHeightListView;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.OrderGlobal;
+import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.model.DonHang;
 import com.mtb.foodorderreview.something.Order;
+import com.mtb.foodorderreview.utils.ICallback;
 import com.mtb.foodorderreview.utils.Utils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartCheckoutActivity extends AppCompatActivity {
     ExpandableHeightListView cart_checkout_listview;
@@ -61,22 +71,65 @@ public class CartCheckoutActivity extends AppCompatActivity {
         cartGlobal = CartGlobal.getInstance();
     }
 
+    public static String getStartDate() {
+        DateTimeFormatter oldPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSz");
+        DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime datetime = LocalDateTime.parse(new Date().toInstant().toString(), oldPattern);
+        return datetime.format(newPattern);
+    }
+
+    private ICallback callback;
+
     private void orderSubmit() {
         cart_checkout_submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Order order = new Order(cartGlobal.getRestaurant(), cartGlobal.getFoodList());
-                DonHang donHang = new DonHang(null,3, LocalDateTime.now(),"abbb",1);
-                OrderGlobal.getInstance().setOrder(order);
 
-                cartGlobal.reset();
+                final ZoneId zone = ZoneId.of("Asia/Bangkok");
+                LocalDateTime ldt = LocalDateTime.now();
+                OffsetDateTime odt = ldt.atZone(zone).toOffsetDateTime();
+                String total = cart_checkout_total_text.getText().toString();
+                int index = total.indexOf('đ');
+                total = total.substring(0, index);
+                total = total.replaceFirst(",", "");
+                DonHang donHang = new DonHang(null, 3, odt.toString(), "Đang giao", UserGlobal.getInstance().getId(), Double.parseDouble(total));
+
+                final int[] id = new int[1];
+                DonHangService.apiService.postDH(donHang).enqueue(new Callback<DonHang>() {
+                    @Override
+                    public void onResponse(Call<DonHang> call, Response<DonHang> response) {
+                        DonHang d = response.body();
+                        id[0] = d.getId();
+                        callback.callback();
+
+                        OrderGlobal.getInstance().setOrder(order);
+                    }
+
+                    @Override
+                    public void onFailure(Call<DonHang> call, Throwable t) {
+
+                    }
+                });
+
+                callback = new ICallback() {
+                    @Override
+                    public void callback() {
+                        cartGlobal.reset();
+                        Intent intent = new Intent();
+
+
+                        intent.putExtra("idDonhang", id[0]);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
+                };
+
 
 //                Intent intent = new Intent(CartCheckoutActivity.this, DeliveryActivity.class);
 //                startActivity(intent);
-                Intent intent = new Intent();
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+
             }
         });
     }

@@ -23,6 +23,15 @@ public class User {
         this.avatar = avatar;
     }
 
+    public User(Integer id, String ten, String taiKhoan, String diaChi, String soDienThoai, String email) {
+        this.id = id;
+        this.ten = ten;
+        this.taiKhoan = taiKhoan;
+        this.diaChi = diaChi;
+        this.soDienThoai = soDienThoai;
+        this.email = email;
+    }
+
     public Integer getId() {
         return id;
     }

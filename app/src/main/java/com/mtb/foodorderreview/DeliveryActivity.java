@@ -11,10 +11,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mtb.foodorderreview.api.DonHangService;
 import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.global.UserGlobal;
+import com.mtb.foodorderreview.model.DonHang;
 import com.mtb.foodorderreview.something.Order;
 import com.mtb.foodorderreview.utils.Utils;
+
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DeliveryActivity extends AppCompatActivity {
     View delivery_fake_line_prepare,
@@ -144,10 +152,28 @@ public class DeliveryActivity extends AppCompatActivity {
                 order.setState(Order.STATE.DELIVERED);
                 // Call api here
 
-                OrderGlobal.getInstance().reset();
-                Intent intent = new Intent();
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                Bundle bundle = getIntent().getExtras();
+                int id = bundle.getInt("idDonhang");
+                Map<String, Object> map = Map.of(
+                        "trangThai", "4"
+                );
+
+                DonHangService.apiService.updateST(id, map).enqueue(new Callback<DonHang>() {
+                    @Override
+                    public void onResponse(Call<DonHang> call, Response<DonHang> response) {
+                        OrderGlobal.getInstance().reset();
+                        Intent intent = new Intent();
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<DonHang> call, Throwable t) {
+
+                    }
+                });
+
+
             }
         });
     }

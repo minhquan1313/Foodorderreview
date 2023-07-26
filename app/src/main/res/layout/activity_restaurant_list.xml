@@ -32,9 +32,9 @@
                     android:id="@+id/restaurant_list_listview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/adapter_restaurant_vertical"
+                    android:divider="@color/grey_2"
                     android:dividerHeight="1sp"
-                    android:divider="@color/grey_2" />
+                    tools:listitem="@layout/adapter_restaurant_vertical" />
 
             </LinearLayout>
 

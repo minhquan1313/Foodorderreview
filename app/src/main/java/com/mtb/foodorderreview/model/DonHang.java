@@ -1,13 +1,21 @@
 package com.mtb.foodorderreview.model;
 
-import java.time.LocalDateTime;
-
 public class DonHang {
     private Integer id;
     private Integer trangThai;
-    private LocalDateTime ngayGio;
+    private String ngayGio;
     private String ghiChu;
     private Integer idUser;
+
+    public Double getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(Double tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    private Double tongTien;
 
     public Integer getId() {
         return id;
@@ -25,11 +33,11 @@ public class DonHang {
         this.trangThai = trangThai;
     }
 
-    public LocalDateTime getNgayGio() {
+    public String getNgayGio() {
         return ngayGio;
     }
 
-    public void setNgayGio(LocalDateTime ngayGio) {
+    public void setNgayGio(String ngayGio) {
         this.ngayGio = ngayGio;
     }
 
@@ -49,11 +57,12 @@ public class DonHang {
         this.idUser = idUser;
     }
 
-    public DonHang(Integer id, Integer trangThai, LocalDateTime ngayGio, String ghiChu, Integer idUser) {
+    public DonHang(Integer id, Integer trangThai, String ngayGio, String ghiChu, Integer idUser, Double tongTien) {
         this.id = id;
         this.trangThai = trangThai;
         this.ngayGio = ngayGio;
         this.ghiChu = ghiChu;
         this.idUser = idUser;
+        this.tongTien = tongTien;
     }
 }

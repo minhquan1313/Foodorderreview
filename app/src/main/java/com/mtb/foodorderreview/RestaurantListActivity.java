@@ -10,13 +10,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mtb.foodorderreview.callapi.CallNhaHang;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.global.RestaurantListGlobal;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.homeview.RestaurantListViewAdapter;
 import com.mtb.foodorderreview.utils.Utils;
 
+import java.util.List;
+
 public class RestaurantListActivity extends AppCompatActivity {
+    CallNhaHang callNhaHang = new CallNhaHang();
     ListView restaurant_list_listview;
     TextView restaurant_list_header_text;
     LinearLayout restaurant_list_back_btn;
@@ -50,10 +54,28 @@ public class RestaurantListActivity extends AppCompatActivity {
     }
 
     private void setRestaurantListV() {
+        List<Restaurant> l = RestaurantListGlobal.getInstance().getList();
+        RestaurantListViewAdapter adapter = new RestaurantListViewAdapter(this, l);
+//        NhaHangService.apiService.getListNH().enqueue(new Callback<List<NhaHang>>() {
+//            @Override
+//            public void onResponse(Call<List<NhaHang>> call, Response<List<NhaHang>> response) {
+//                List<NhaHang> nh = response.body();
+//                for (NhaHang n : nh) {
+//                    l.add(new Restaurant(n.getId(), n.getTen(), Utils.URL_SAMPLE_IMAGE, n.getDiaChi()));
+//                }
+//                adapter.notifyDataSetChanged();
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<com.mtb.foodorderreview.model.NhaHang>> call, Throwable t) {
+//
+//            }
+//        });
 
-        RestaurantListViewAdapter adapter = new RestaurantListViewAdapter(this, restaurantListGlobal.getList());
 
         restaurant_list_listview.setAdapter(adapter);
+
         restaurant_list_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
