@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
 
             android:textColor="@color/primary"
-            android:text="Cháo thêm miễn phí"
+            android:text="Giảm 10%"
             android:textSize="14sp"
             android:fontFamily="@font/svn_poppins_semibold"
             android:lines="1"

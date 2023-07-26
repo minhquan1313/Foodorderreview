@@ -36,7 +36,9 @@ public class RestaurantActivity extends AppCompatActivity {
     TextView restaurant_name1,
             restaurant_detail1,
             restaurant_location1,
-            restaurant_cart_quantity_text;
+            restaurant_cart_quantity_text,
+            restaurant_rate_star_text,
+            restaurant_rate_amount_text;
     ImageView restaurant_banner1;
     RelativeLayout restaurant_cart_btn;
     CardView restaurant_rating_card;
@@ -50,6 +52,7 @@ public class RestaurantActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant);
 
         initialization();
+        bindData();
 
         updateCartUI();
 
@@ -70,6 +73,8 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_location1 = findViewById(R.id.restaurant_location1);
         restaurant_cart_btn = findViewById(R.id.restaurant_cart_btn);
         restaurant_cart_quantity_text = findViewById(R.id.restaurant_cart_quantity_text);
+        restaurant_rate_star_text = findViewById(R.id.restaurant_rate_star_text);
+        restaurant_rate_amount_text = findViewById(R.id.restaurant_rate_amount_text);
         linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
         restaurant_rating_card = findViewById(R.id.restaurant_rating_card);
 
@@ -77,8 +82,14 @@ public class RestaurantActivity extends AppCompatActivity {
 
         restaurant = RestaurantGlobal.getInstance().getRestaurant();
 
+
+    }
+
+    private void bindData() {
         restaurant_name1.setText(restaurant.getName());
         restaurant_location1.setText(restaurant.getAddress());
+        restaurant_rate_star_text.setText("1");
+        restaurant_rate_amount_text.setText("1k");
         Utils.UI.setSrc(restaurant.getImage(), restaurant_banner1);
     }
 
@@ -211,7 +222,7 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_rating_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
     }

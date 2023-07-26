@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/pureWhite"
     tools:context=".CartCheckoutActivity">
 
     <LinearLayout
@@ -59,11 +60,11 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1sp"
-            android:background="@color/grey_2"
-            tools:ignore="SmallSp" />
+        <!--        <View-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="1sp"-->
+        <!--            android:background="@color/grey_2"-->
+        <!--            tools:ignore="SmallSp" />-->
     </LinearLayout>
 
     <ScrollView
