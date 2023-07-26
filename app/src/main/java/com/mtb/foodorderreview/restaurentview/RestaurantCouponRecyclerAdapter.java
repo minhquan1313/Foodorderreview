@@ -18,7 +18,7 @@ import java.util.List;
 public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<RestaurantCouponHolder> {
     private List<RestaurantCoupon> list;
     private final String CAN_USE = "Dùng";
-    private final String CANT_USE = "Đã dùng";
+    private final String USED = "Đã dùng";
     private final LayoutInflater inflater;
     private IClickListener<RestaurantCoupon> clickListener;
     private IClickListener<RestaurantCoupon> btnClickListener;
@@ -67,7 +67,7 @@ public class RestaurantCouponRecyclerAdapter extends RecyclerView.Adapter<Restau
 
         RestaurantCoupon currentCoupon = CartGlobal.getInstance().getCoupon();
         if (currentCoupon != null && currentCoupon.getId() == item.getId()) {
-            holder.getRestaurant_coupon_claim_btn1().setText(this.CANT_USE);
+            holder.getRestaurant_coupon_claim_btn1().setText(this.USED);
             holder.setBtnClickListener(null);
         } else {
             holder.getRestaurant_coupon_claim_btn1().setText(this.CAN_USE);

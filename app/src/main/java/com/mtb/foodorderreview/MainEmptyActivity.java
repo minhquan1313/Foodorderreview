@@ -1,5 +1,8 @@
 package com.mtb.foodorderreview;
 
+import static com.mtb.foodorderreview.global.UserGlobal.USER_DATA_PASSWORD_FILE;
+import static com.mtb.foodorderreview.global.UserGlobal.USER_DATA_USERNAME_FILE;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,8 +12,6 @@ import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.utils.Utils;
 
 public class MainEmptyActivity extends AppCompatActivity {
-    protected static final String USER_DATA_USERNAME_FILE = "user_info_username";
-    protected static final String USER_DATA_PASSWORD_FILE = "user_info_password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,11 @@ public class MainEmptyActivity extends AppCompatActivity {
             activityIntent = new Intent(this, AuthActivity.class);
         }
 
-        startActivity(activityIntent);
         finish();
+        startActivity(activityIntent);
     }
 
-    private void fakeUserFromAPI(String username, String password) {
+    public static void fakeUserFromAPI(String username, String password) {
         if (username.equals("example") && password.equals("example")) {
             UserGlobal.getInstance().setData(
                     1,

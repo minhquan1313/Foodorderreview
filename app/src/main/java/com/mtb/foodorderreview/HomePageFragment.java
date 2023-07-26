@@ -3,11 +3,13 @@ package com.mtb.foodorderreview;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -56,6 +58,8 @@ public class HomePageFragment extends Fragment {
     Button home_page_view_all_restaurant_btn,
             home_coupon_order_now_btn;
     LinearLayout home_cart_btn;
+    EditText home_search_inp;
+    Context context;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -99,16 +103,17 @@ public class HomePageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        context = getContext();
         initialization(view);
-        homeFoodTypeUI(getContext(), view);
-        homeFoodShopUI(getContext(), view);
-        viewAllResBtn(getContext(), view);
-        couponOrderNowBtn(getContext(), view);
-        cartBtn(getContext());
-        updateCartBtnUi(getContext());
-        shippingBtn(getContext());
+        homeFoodTypeUI(context, view);
+        homeFoodShopUI(context, view);
+        viewAllResBtn(context, view);
+        couponOrderNowBtn(context, view);
+        cartBtn(context);
+        updateCartBtnUi(context);
+        shippingBtn(context);
         updateShippingBtnUi();
-
+        searchHandle();
         OrderGlobal.getInstance().addListener(new IChangeListener<OrderGlobal>() {
             @Override
             public int getId() {
@@ -128,7 +133,7 @@ public class HomePageFragment extends Fragment {
 
             @Override
             public void dataChange(CartGlobal obj) {
-                updateCartBtnUi(getContext());
+                updateCartBtnUi(context);
             }
         });
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -142,6 +147,7 @@ public class HomePageFragment extends Fragment {
         home_page_view_all_restaurant_btn = v.findViewById(R.id.home_page_view_all_restaurant_btn);
         home_coupon_order_now_btn = v.findViewById(R.id.home_coupon_order_now_btn);
         home_cart_btn = v.findViewById(R.id.home_cart_btn);
+        home_search_inp = v.findViewById(R.id.home_search_inp);
         home_shipping_btn = v.findViewById(R.id.home_shipping_btn);
         home_shipping_quantity_text = v.findViewById(R.id.home_shipping_quantity_text);
 
@@ -425,5 +431,29 @@ public class HomePageFragment extends Fragment {
         home_cart_btn.setBackgroundResource(R.drawable.shape_border_box_primary);
         Utils.UI.setBackgroundTint(context, home_cart_btn_image, R.color.primary);
 
+    }
+
+
+    private void searchHandle() {
+        home_search_inp.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (!((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)))
+                    return false;
+
+                String keyword = home_search_inp.getText().toString().trim();
+
+
+                List<Restaurant> restaurants = getAllRestaurants();
+
+                RestaurantListGlobal.getInstance().setList(restaurants);
+
+                Intent intent = new Intent(context, RestaurantListActivity.class);
+                intent.putExtra("TITLE", keyword);
+                startActivity(intent);
+
+                return true;
+            }
+        });
     }
 }

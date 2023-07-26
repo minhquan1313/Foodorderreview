@@ -167,7 +167,7 @@
                         android:letterSpacing=".03"
                         android:text="Cháo bà bảy - Lạc Long Quân"
                         android:textFontWeight="600"
-                        android:textSize="28sp" />
+                        android:textSize="24sp" />
 
                     <TextView
                         android:id="@+id/restaurant_detail1"
@@ -228,6 +228,8 @@
 
             <!-- Rating -->
             <androidx.cardview.widget.CardView
+
+                android:id="@+id/restaurant_rating_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
@@ -264,6 +266,7 @@
                                 app:tint="@color/yellow" />
 
                             <TextView
+                                android:id="@+id/restaurant_rate_star_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4sp"
@@ -308,6 +311,7 @@
                                 app:tint="@color/primaryDarker" />
 
                             <TextView
+                                android:id="@+id/restaurant_rate_amount_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4sp"

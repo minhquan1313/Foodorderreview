@@ -235,12 +235,12 @@ public class AuthActivity extends AppCompatActivity {
 //                authAddress,
 //                requestToken,
 //                requestIsAdmin);
+        MainEmptyActivity.fakeUserFromAPI(authUsername, authPassword);
 
-        Utils.writeFile(this, MainEmptyActivity.USER_DATA_USERNAME_FILE, authUsername);
-        Utils.writeFile(this, MainEmptyActivity.USER_DATA_PASSWORD_FILE, authPassword);
+        UserGlobal.writeUserToStorage(this, authUsername, authPassword);
 
+        //finish();
         startActivity(new Intent(this, MainActivity.class));
-        finish();
     }
 
     private void onFailHandle(String msg) {
@@ -248,6 +248,11 @@ public class AuthActivity extends AppCompatActivity {
         enableButton(auth_sign_in_btn1);
         enableButton(auth_sign_up_btn1);
         changeUI(state);
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
     public String getString(String bundleName) {
