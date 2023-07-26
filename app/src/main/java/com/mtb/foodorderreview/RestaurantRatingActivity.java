@@ -1,6 +1,8 @@
 package com.mtb.foodorderreview;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +34,7 @@ public class RestaurantRatingActivity extends AppCompatActivity {
 
     Button restaurant_rating_submit_btn;
     int starCount = 0;
+    String note = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,16 @@ public class RestaurantRatingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_rating);
 
         initialization();
+
         starsClick();
+        userNote();
+        rateSubmit();
 
         listview();
 
         Utils.UI.backBtn(this, restaurant_rating_back_btn);
     }
+
 
     private void initialization() {
         restaurant_rating_listview = findViewById(R.id.restaurant_rating_listview);
@@ -123,4 +130,39 @@ public class RestaurantRatingActivity extends AppCompatActivity {
         });
     }
 
+    private void userNote() {
+        restaurant_rating_note_input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                note = s.toString().trim();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void rateSubmit() {
+        restaurant_rating_submit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (starCount == 0 || note.equals("")) return;
+
+                onUserRateSubmit();
+            }
+        });
+    }
+
+    private void onUserRateSubmit() {
+        // API here
+//        note;
+//        starCount;
+    }
 }
