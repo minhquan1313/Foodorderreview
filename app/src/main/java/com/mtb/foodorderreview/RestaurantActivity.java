@@ -56,7 +56,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         updateCartUI();
 
-        Utils.UI.backBtn(this, linear_btn_restaurant_back1);
+        Utils.UI.backBtn(RestaurantActivity.this, linear_btn_restaurant_back1);
 
         couponsRecycler();
         foodGrid();
@@ -64,7 +64,6 @@ public class RestaurantActivity extends AppCompatActivity {
 
         cartBtn();
     }
-
 
     private void initialization() {
         restaurant_name1 = findViewById(R.id.restaurant_name1);
@@ -81,7 +80,6 @@ public class RestaurantActivity extends AppCompatActivity {
         cartGlobal = CartGlobal.getInstance();
 
         restaurant = RestaurantGlobal.getInstance().getRestaurant();
-
 
     }
 
@@ -107,9 +105,11 @@ public class RestaurantActivity extends AppCompatActivity {
     private void couponsRecycler() {
         List<RestaurantCoupon> l = new ArrayList<RestaurantCoupon>() {
             {
-                add(new RestaurantCoupon(1, "Giảm 40% luôn, lụm liền đi", "", 0.6, RestaurantCoupon.DiscountType.PERCENT));
+                add(new RestaurantCoupon(1, "Giảm 40% luôn, lụm liền đi", "", 0.6,
+                        RestaurantCoupon.DiscountType.PERCENT));
                 add(new RestaurantCoupon(2, "Giảm 10% nè", "", 0.1, RestaurantCoupon.DiscountType.PERCENT));
-                add(new RestaurantCoupon(3, "Hihi Giảm 10% nè. Giảm 10% nè. Giảm 10% nè.", "", 0.1, RestaurantCoupon.DiscountType.PERCENT));
+                add(new RestaurantCoupon(3, "Hihi Giảm 10% nè. Giảm 10% nè. Giảm 10% nè.", "", 0.1,
+                        RestaurantCoupon.DiscountType.PERCENT));
                 add(new RestaurantCoupon(4, "Giam 15k", "", 15000, RestaurantCoupon.DiscountType.FIXED));
                 add(new RestaurantCoupon(5, "Giam 20k", "", 20000, RestaurantCoupon.DiscountType.FIXED));
                 add(new RestaurantCoupon(6, "Giam 10%", "", 0.1, RestaurantCoupon.DiscountType.PERCENT));
@@ -121,17 +121,19 @@ public class RestaurantActivity extends AppCompatActivity {
         int pos = -1;
         if (coupon != null) {
             for (RestaurantCoupon c : l) {
-                if (c.getId() == coupon.getId()) pos = l.indexOf(c);
+                if (c.getId() == coupon.getId())
+                    pos = l.indexOf(c);
             }
         }
 
         int[] couponPostRef = {pos};
 
-        Toast.makeText(this, "" + couponPostRef[0], Toast.LENGTH_SHORT).show();
+        Toast.makeText(RestaurantActivity.this, "" + couponPostRef[0], Toast.LENGTH_SHORT).show();
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(RestaurantActivity.this,
+                LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = findViewById(R.id.restaurant_coupon_recycler_1);
-        RestaurantCouponRecyclerAdapter adapter = new RestaurantCouponRecyclerAdapter(this, l);
+        RestaurantCouponRecyclerAdapter adapter = new RestaurantCouponRecyclerAdapter(RestaurantActivity.this, l);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -167,7 +169,7 @@ public class RestaurantActivity extends AppCompatActivity {
                         18000),
         };
 
-        RestaurantFoodGridAdapter adapter = new RestaurantFoodGridAdapter(this, Arrays.asList(l));
+        RestaurantFoodGridAdapter adapter = new RestaurantFoodGridAdapter(RestaurantActivity.this, Arrays.asList(l));
 
         ExpandableHeightGridView gridView = findViewById(R.id.restaurant_food_grid);
         gridView.setAdapter(adapter);
@@ -189,7 +191,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private void cartBtn() {
 
         restaurant_cart_btn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, CartCheckoutActivity.class);
+            Intent intent = new Intent(RestaurantActivity.this, CartCheckoutActivity.class);
             startActivityIfNeeded(intent, 3);
         });
     }
@@ -210,7 +212,7 @@ public class RestaurantActivity extends AppCompatActivity {
             case 3:
                 if (resultCode != Activity.RESULT_OK)
                     return;
-                Intent intent = new Intent(this, DeliveryActivity.class);
+                Intent intent = new Intent(RestaurantActivity.this, DeliveryActivity.class);
                 startActivity(intent);
 
                 finish();
@@ -222,7 +224,8 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_rating_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(RestaurantActivity.this, RestaurantRatingActivity.class);
+                startActivity(intent);
             }
         });
     }

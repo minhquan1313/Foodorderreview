@@ -119,5 +119,9 @@ public class Utils {
         public static void setSrc(String url, ImageView imageView) {
             Picasso.get().load(url).error(R.drawable.icon_user).into(imageView);
         }
+
+        public static void setSrc(int src, ImageView img) {
+            img.setImageResource(src);
+        }
     }
 }
