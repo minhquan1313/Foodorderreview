@@ -33,4 +33,7 @@ public interface DonHangService {
     @PATCH("/donhang/{id}")
     Call<DonHang> updateST(@Path("id") int id, @Body Map<String, Object> map);
 
+    @GET("/donhang/user/{id}")
+    Call<List<DonHang>> getListDonhangByIDUser(@Path("id") int id);
+
 }

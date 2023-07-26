@@ -18,7 +18,6 @@ import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.model.Login;
 import com.mtb.foodorderreview.model.Message;
 import com.mtb.foodorderreview.model.User;
-import com.mtb.foodorderreview.utils.Utils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +36,7 @@ public class AuthActivity extends AppCompatActivity {
             sign_in_username_input,
             sign_in_password_input;
     TextView fragment_sign_in_response_text;
-    private String authUsername = "example",
+    private String authUsername = "example123",
             authPassword = "example",
             authTel = "",
             authName = "",
@@ -65,6 +64,7 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
 
         init();
+        //signIn();
     }
 
     private void init() {

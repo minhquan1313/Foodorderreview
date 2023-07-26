@@ -105,6 +105,8 @@ public class CartCheckoutActivity extends AppCompatActivity {
                         callback.callback();
 
                         OrderGlobal.getInstance().setOrder(order);
+                        order.setId(id[0]);
+                        order.setState(Order.STATE.getState(d.getTrangThai()));
                     }
 
                     @Override
@@ -120,7 +122,7 @@ public class CartCheckoutActivity extends AppCompatActivity {
                         Intent intent = new Intent();
 
 
-                        intent.putExtra("idDonhang", id[0]);
+                        //intent.putExtra("idDonhang", id[0]);
                         setResult(Activity.RESULT_OK, intent);
                         finish();
                     }

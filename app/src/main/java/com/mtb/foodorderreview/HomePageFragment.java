@@ -25,6 +25,7 @@ import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.global.RestaurantGlobal;
+import com.mtb.foodorderreview.global.RestaurantListGlobal;
 import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.homeview.FoodType;
 import com.mtb.foodorderreview.homeview.FoodTypeGridAdapter;
@@ -288,38 +289,6 @@ public class HomePageFragment extends Fragment {
                 new FoodType(FoodCategoryType.SPECIALTY, "Đặc trưng", R.drawable.img_food_type_specialty),
                 new FoodType(FoodCategoryType.HEALTHY, "Healthy", R.drawable.img_food_type_healthy)
         };
-
-
-//        Restaurant[] l = {
-//                new Restaurant(1, "Cháo lòng bà Bảy", R.drawable.img_sample_food),
-//                new Restaurant(2, "b", R.drawable.img_sample_food),
-//                new Restaurant(3, "Cơm tấm anh da đen", R.drawable.img_sample_food_2),
-//                new Restaurant(4, "d", R.drawable.img_sample_food),
-//                new Restaurant(5, "e", R.drawable.img_sample_food),
-//                new Restaurant(6, "f", R.drawable.img_sample_food),
-//        };
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-//        RestaurantRecyclerAdapter adapter = new RestaurantRecyclerAdapter(context, Arrays.asList(l));
-//
-//        adapter.setClickListener((view1, position, isLongClick, homeFood) -> {
-//            if (!isLongClick) {
-//                RestaurantGlobal.getInstance().setRestaurant(homeFood);
-//
-//                Intent intent = new Intent(context, RestaurantActivity.class);
-////
-////                intent.putExtra("id", homeFood.getId());
-////                intent.putExtra("name", homeFood.getName());
-////                intent.putExtra("image", homeFood.getImage());
-//                startActivity(intent);
-//            } else {
-//                // Do something if it's long click
-//            }
-//        });
-//
-//        RecyclerView recyclerView = view.findViewById(R.id.home_food_shop_recycler_1);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(adapter);
-//   }
 
 
         FoodTypeGridAdapter adapter = new FoodTypeGridAdapter(context, Arrays.asList(l));

@@ -31,7 +31,6 @@ import com.mtb.foodorderreview.utils.IClickListener;
 import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -161,7 +160,9 @@ public class RestaurantActivity extends AppCompatActivity {
     }
 
     private void foodGrid() {
-        int idNhaHang = getIntent().getExtras().getInt("id");
+        int idNhaHang = RestaurantGlobal.getInstance().getRestaurant().getId();
+//        int idNhaHang = getIntent().getExtras().getInt("id");
+
         List<RestaurantFood> list = new ArrayList<>();
         RestaurantFoodGridAdapter adapter = new RestaurantFoodGridAdapter(this, list);
         FoodService.apiService.getListFoodByNhaHang(idNhaHang).enqueue(new Callback<List<Food>>() {
@@ -225,10 +226,10 @@ public class RestaurantActivity extends AppCompatActivity {
             // Checkout ok
             case 3:
                 if (resultCode != Activity.RESULT_OK) return;
-                Intent intent = new Intent(this, DeliveryActivity.class);
+                Intent intent = new Intent(RestaurantActivity.this, DeliveryActivity.class);
 
 
-                intent.putExtra("idDonhang", data.getExtras().getInt("idDonhang"));
+                //intent.putExtra("idDonhang", data.getExtras().getInt("idDonhang"));
                 startActivity(intent);
 
                 finish();
@@ -239,6 +240,7 @@ public class RestaurantActivity extends AppCompatActivity {
     public void set_id(int id) {
         _id = id;
     }
+
     private void ratingClick() {
         restaurant_rating_card.setOnClickListener(new View.OnClickListener() {
             @Override

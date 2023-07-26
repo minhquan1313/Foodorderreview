@@ -52,7 +52,7 @@ public class DeliveryActivity extends AppCompatActivity {
         submitBtnClick();
         updateUI(order.getState());
 
-        watchOrder();
+//        watchOrder();
 
     }
 
@@ -153,7 +153,8 @@ public class DeliveryActivity extends AppCompatActivity {
                 // Call api here
 
                 Bundle bundle = getIntent().getExtras();
-                int id = bundle.getInt("idDonhang");
+                int id = order.getId();
+//                int id = bundle.getInt("idDonhang");
                 Map<String, Object> map = Map.of(
                         "trangThai", "4"
                 );
