@@ -124,5 +124,15 @@ public class Utils {
         public static void setSrc(int src, ImageView img) {
             img.setImageResource(src);
         }
+
+        public static void disableBtn(Context context, Button btn) {
+            btn.setEnabled(false);
+            setBackgroundTint(context, btn, R.color.grey_3);
+        }
+
+        public static void enableBtn(Context context, Button btn) {
+            btn.setEnabled(true);
+            setBackgroundTint(context, btn);
+        }
     }
 }

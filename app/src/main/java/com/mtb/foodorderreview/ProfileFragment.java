@@ -111,7 +111,6 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-
     private void initialization(View view) {
         profile_avatar_cardview = view.findViewById(R.id.profile_avatar_cardview);
         profile_avatar_image = view.findViewById(R.id.profile_avatar_image);
@@ -172,11 +171,11 @@ public class ProfileFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String str = s.toString();
                 if (str.trim().equals(init)) {
-                    disableBtn();
+                    Utils.UI.disableBtn(context, profile_save_btn);
+
                     return;
                 }
-
-                enableBtn();
+                Utils.UI.enableBtn(context, profile_save_btn);
             }
 
             @Override
@@ -213,17 +212,7 @@ public class ProfileFragment extends Fragment {
         profile_email_inp.setText(email);
         profile_address_inp.setText(address);
 
-        disableBtn();
-    }
-
-    private void disableBtn() {
-        profile_save_btn.setEnabled(false);
-        Utils.UI.setBackgroundTint(context, profile_save_btn, R.color.grey_3);
-    }
-
-    private void enableBtn() {
-        profile_save_btn.setEnabled(true);
-        Utils.UI.setBackgroundTint(context, profile_save_btn);
+        Utils.UI.disableBtn(context, profile_save_btn);
     }
 
     private void btnLogout() {
@@ -234,7 +223,8 @@ public class ProfileFragment extends Fragment {
 
                 Intent mStartActivity = new Intent(context, MainEmptyActivity.class);
                 int mPendingIntentId = 123456;
-                PendingIntent mPendingIntent = PendingIntent.getActivity(context, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+                PendingIntent mPendingIntent = PendingIntent.getActivity(context, mPendingIntentId, mStartActivity,
+                        PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager mgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
                 System.exit(0);
