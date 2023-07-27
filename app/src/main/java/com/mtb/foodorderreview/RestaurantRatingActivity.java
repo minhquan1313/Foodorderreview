@@ -1,5 +1,6 @@
 package com.mtb.foodorderreview;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mtb.foodorderreview.components.ExpandableHeightListView;
+import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.restaurentview.RestaurantUserRate;
 import com.mtb.foodorderreview.restaurentview.RestaurantUserRateListViewAdapter;
 import com.mtb.foodorderreview.utils.Utils;
@@ -35,23 +37,29 @@ public class RestaurantRatingActivity extends AppCompatActivity {
     Button restaurant_rating_submit_btn;
     int starCount = 0;
     String note = "";
+    RestaurantUserRateListViewAdapter adapter;
+    List<RestaurantUserRate> l;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_rating);
 
+        context = RestaurantRatingActivity.this;
+
         initialization();
 
+        setStar(starCount);
         starsClick();
         userNote();
         rateSubmit();
+        updateSubmitBtn();
 
         listview();
 
         Utils.UI.backBtn(this, restaurant_rating_back_btn);
     }
-
 
     private void initialization() {
         restaurant_rating_listview = findViewById(R.id.restaurant_rating_listview);
@@ -66,12 +74,12 @@ public class RestaurantRatingActivity extends AppCompatActivity {
     }
 
     private void activeStar(ImageView star) {
-        Utils.UI.setBackgroundTint(RestaurantRatingActivity.this, star, R.color.yellow);
+        Utils.UI.setBackgroundTint(context, star, R.color.yellow);
         Utils.UI.setSrc(R.drawable.icon_star_fill, star);
     }
 
     private void deActiveStar(ImageView star) {
-        Utils.UI.setBackgroundTint(RestaurantRatingActivity.this, star, R.color.grey_3);
+        Utils.UI.setBackgroundTint(context, star, R.color.grey_3);
         Utils.UI.setSrc(R.drawable.icon_star, star);
     }
 
@@ -81,7 +89,6 @@ public class RestaurantRatingActivity extends AppCompatActivity {
         deActiveStar(restaurant_rating_star_3_image);
         deActiveStar(restaurant_rating_star_4_image);
         deActiveStar(restaurant_rating_star_5_image);
-
 
         switch (count) {
             case 5:
@@ -98,7 +105,7 @@ public class RestaurantRatingActivity extends AppCompatActivity {
     }
 
     private void listview() {
-        List<RestaurantUserRate> l = new ArrayList<>() {
+        l = new ArrayList<>() {
             {
                 add(new RestaurantUserRate("Anh tư", 5, "Quá ngon"));
                 add(new RestaurantUserRate("Anh năm", 4, "Quá ngon"));
@@ -106,8 +113,7 @@ public class RestaurantRatingActivity extends AppCompatActivity {
             }
         };
 
-        RestaurantUserRateListViewAdapter adapter = new RestaurantUserRateListViewAdapter(RestaurantRatingActivity.this,
-                l);
+        adapter = new RestaurantUserRateListViewAdapter(context, l);
         restaurant_rating_listview.setAdapter(adapter);
     }
 
@@ -123,9 +129,10 @@ public class RestaurantRatingActivity extends AppCompatActivity {
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                starCount = count;
-                // here here here here here here
-                setStar(count);
+                starCount = count == starCount ? 0 : count;
+
+                setStar(starCount);
+                updateSubmitBtn();
             }
         });
     }
@@ -153,16 +160,27 @@ public class RestaurantRatingActivity extends AppCompatActivity {
         restaurant_rating_submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (starCount == 0 || note.equals("")) return;
-
+                if (starCount == 0) return;
+                Utils.UI.disableBtn(context, restaurant_rating_submit_btn);
                 onUserRateSubmit();
             }
         });
     }
 
+    private void updateSubmitBtn() {
+        if (starCount == 0) {
+            Utils.UI.disableBtn(context, restaurant_rating_submit_btn);
+            return;
+        }
+        Utils.UI.enableBtn(context, restaurant_rating_submit_btn);
+    }
+
     private void onUserRateSubmit() {
         // API here
-//        note;
-//        starCount;
+
+        l.add(0, new RestaurantUserRate(UserGlobal.getInstance().getName(), starCount, note));
+
+        adapter.notifyDataSetChanged();
+        Utils.UI.enableBtn(context, restaurant_rating_submit_btn);
     }
 }

@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.mtb.foodorderreview.global.UserGlobal;
+import com.mtb.foodorderreview.utils.Utils;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -25,13 +26,11 @@ public class AuthActivity extends AppCompatActivity {
             authEmail = "",
             requestId = "",
             requestToken = "";
-    private Boolean
-            requestIsAdmin = false;
+    private Boolean requestIsAdmin = false;
 
     enum State {
         SIGN_IN, SIGN_UP
     }
-
 
     private Button auth_sign_in_btn1, auth_sign_up_btn1;
     private State state = State.SIGN_UP;
@@ -109,13 +108,12 @@ public class AuthActivity extends AppCompatActivity {
             auth_sign_up_btn1.setTypeface(typeface);
         }
 
-
     }
 
     private void signIn() {
         // Call your API here
-        disableButton(auth_sign_up_btn1);
-        disableButton(auth_sign_in_btn1);
+        Utils.UI.disableBtn(AuthActivity.this, auth_sign_up_btn1);
+        Utils.UI.disableBtn(AuthActivity.this, auth_sign_in_btn1);
         String s = authUsername + " " +
                 authPassword + " ";
 
@@ -135,8 +133,8 @@ public class AuthActivity extends AppCompatActivity {
 
     private void signUp() {
         // Call your API here
-        disableButton(auth_sign_up_btn1);
-        disableButton(auth_sign_in_btn1);
+        Utils.UI.disableBtn(AuthActivity.this, auth_sign_up_btn1);
+        Utils.UI.disableBtn(AuthActivity.this, auth_sign_in_btn1);
 
         String s = authUsername + " " +
                 authPassword + " " +
@@ -152,16 +150,7 @@ public class AuthActivity extends AppCompatActivity {
          * else onFailHandle("Ten dang nhap bi trung")
          */
 
-
         onFailHandle("Ai cho mi đăng ký:))");
-    }
-
-    private void disableButton(Button btn) {
-        btn.setEnabled(false);
-    }
-
-    private void enableButton(Button btn) {
-        btn.setEnabled(true);
     }
 
     private void onSuccessHandle() {
@@ -169,14 +158,14 @@ public class AuthActivity extends AppCompatActivity {
 
         UserGlobal.writeUserToStorage(this, authUsername, authPassword);
 
-        //finish();
+        // finish();
         startActivity(new Intent(this, MainActivity.class));
     }
 
     private void onFailHandle(String msg) {
         authResponse = msg;
-        enableButton(auth_sign_in_btn1);
-        enableButton(auth_sign_up_btn1);
+        Utils.UI.enableBtn(AuthActivity.this, auth_sign_in_btn1);
+        Utils.UI.enableBtn(AuthActivity.this, auth_sign_up_btn1);
         changeUI(state);
     }
 

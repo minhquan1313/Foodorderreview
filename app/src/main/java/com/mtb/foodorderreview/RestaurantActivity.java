@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -127,8 +126,6 @@ public class RestaurantActivity extends AppCompatActivity {
         }
 
         int[] couponPostRef = {pos};
-
-        Toast.makeText(RestaurantActivity.this, "" + couponPostRef[0], Toast.LENGTH_SHORT).show();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(RestaurantActivity.this,
                 LinearLayoutManager.HORIZONTAL, false);
