@@ -166,8 +166,8 @@
                         android:layout_height="wrap_content"
                         android:letterSpacing=".03"
                         android:text="Cháo bà bảy - Lạc Long Quân"
-                        android:textFontWeight="600"
-                        android:textSize="24sp" />
+                        android:fontFamily="@font/svn_poppins_semibold"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/restaurant_detail1"

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    tools:context=".OrderDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/order_detail_navigation"
+
+        android:orientation="vertical">
+        <!--            Item-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/order_detail_restaurant_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20sp"
+                android:layout_marginTop="12sp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/order_detail_restaurant_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:letterSpacing=".03"
+                    android:text="Cháo bà bảy - Lạc Long Quân Cháo bà bảy - Lạc Long Quân"
+                    android:fontFamily="@font/svn_poppins_semibold"
+                    android:gravity="center"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:gravity="center"
+                    android:layout_marginStart="12sp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:importantForAccessibility="no"
+                        android:padding="10sp"
+                        app:srcCompat="@drawable/icon_down_arrow"
+                        android:rotation="-90"
+                        app:tint="@color/grey_5" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="28sp"
+                android:paddingTop="4sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mã đơn hàng: "
+                    android:textColor="@color/grey_4"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/order_detail_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123456"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Các món đã đặt:"
+                android:paddingHorizontal="28sp"
+                android:layout_marginTop="8sp"
+                android:fontFamily="@font/svn_poppins_medium"
+                android:textSize="15sp" />
+
+            <com.mtb.foodorderreview.components.ExpandableHeightListView
+                android:id="@+id/order_detail_listview"
+                android:layout_width="match_parent"
+                android:layout_height="291dp"
+                android:paddingHorizontal="20sp"
+                android:scrollbars="none"
+                android:divider="@color/transparent"
+                android:dividerHeight="10sp"
+                android:listSelector="@color/transparent"
+                tools:listitem="@layout/adapter_cart_food" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginVertical="12sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Chi tiết"
+                    android:fontFamily="@font/svn_poppins_semibold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8sp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:text="Trạng thái" />
+
+                    <TextView
+                        android:id="@+id/order_detail_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Đang giao" />
+                </LinearLayout>
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="4sp"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="0sp"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:text="Phí giao hàng" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:textSize="14sp"-->
+                <!--                        android:text="15,000d" />-->
+                <!--                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4sp"
+                    android:layout_marginBottom="4sp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:text="Tổng tiền" />
+
+                    <TextView
+                        android:id="@+id/order_detail_final_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="95,000d" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--  Navigation  -->
+    <LinearLayout
+        android:id="@+id/order_detail_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:outlineAmbientShadowColor="@color/grey_2"
+        android:background="@color/pureWhite"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20sp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/order_detail_back_btn"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:importantForAccessibility="no"
+                    android:padding="10sp"
+                    android:rotation="90"
+                    app:srcCompat="@drawable/icon_down_arrow"
+                    app:tint="@color/grey_5" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/svn_poppins_semibold"
+                android:textSize="16sp"
+                android:text="Chi tiết đơn hàng"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/grey_2"
+            tools:ignore="SmallSp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

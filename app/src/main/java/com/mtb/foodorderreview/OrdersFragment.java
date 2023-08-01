@@ -1,15 +1,18 @@
 package com.mtb.foodorderreview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
 import com.mtb.foodorderreview.global.CartFood;
+import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.homeview.OrderListViewAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
@@ -192,6 +195,19 @@ public class OrdersFragment extends Fragment {
         };
 
         OrderListViewAdapter adapter = new OrderListViewAdapter(context, Arrays.asList(l));
+
+        orders_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Order item = (Order) orders_listview.getItemAtPosition(position);
+
+                OrderGlobal.getInstance().reset();
+                OrderGlobal.getInstance().setOrder(item);
+
+                Intent intent = new Intent(context, OrderDetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         orders_listview.setAdapter(adapter);
     }

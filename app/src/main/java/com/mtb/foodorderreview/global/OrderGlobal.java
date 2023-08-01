@@ -8,7 +8,7 @@ import java.util.List;
 
 public class OrderGlobal {
     private Order order;
-    private List<IChangeListener<OrderGlobal>> changeListeners = new ArrayList<>();
+    private final List<IChangeListener<OrderGlobal>> changeListeners = new ArrayList<>();
     private static final OrderGlobal instance = new OrderGlobal();
 
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
