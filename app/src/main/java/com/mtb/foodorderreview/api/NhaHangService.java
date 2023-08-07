@@ -12,6 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface NhaHangService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH-mm-ss").create();
@@ -26,4 +27,15 @@ public interface NhaHangService {
     @GET("nhahang/{id}")
     Call<List<NhaHang>> getListNHbyLoaiFood(@Path("id") int id);
 
+    @GET("/nhahang/food")
+    Call<List<NhaHang>> getListNHByFoodSearch(@Query(value = "kw") String kw);
+
+    @GET("/nhahang/rating/{id}")
+    Call<Double> getRating(@Path("id") int id);
+
+    @GET("/nhahang/countrating/{id}")
+    Call<Integer> countCommnent(@Path("id") int id);
+
+    @GET("/nhahang/detail/{id}")
+    Call<NhaHang> getNhaHangById(@Path("id") int id);
 }

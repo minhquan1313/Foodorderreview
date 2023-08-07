@@ -6,6 +6,13 @@ public class ChiTietDonHang {
     private Integer idNhaHangFood;
     private Integer idDonHang;
 
+    public ChiTietDonHang(Integer id, Integer soLuong, Integer idNhaHangFood, Integer idDonHang) {
+        this.id = id;
+        this.soLuong = soLuong;
+        this.idNhaHangFood = idNhaHangFood;
+        this.idDonHang = idDonHang;
+    }
+
     public Integer getId() {
         return id;
     }

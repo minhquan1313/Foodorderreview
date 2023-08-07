@@ -251,7 +251,7 @@ public class HomePageFragment extends Fragment {
                 List<NhaHang> list = response.body();
                 int dem = 0;
                 for (NhaHang nhaHang : list) {
-                    l.add(new Restaurant(nhaHang.getId(), nhaHang.getTen(), nhaHang.getAvatar(), "DC nha hang"));
+                    l.add(new Restaurant(nhaHang.getId(), nhaHang.getTen(), nhaHang.getAvatar(), nhaHang.getDiaChi()));
                 }
 
                 adapter.notifyDataSetChanged();
@@ -411,16 +411,37 @@ public class HomePageFragment extends Fragment {
                     return false;
 
                 String keyword = home_search_inp.getText().toString().trim();
+                List<Restaurant> r = new ArrayList<>();
+                NhaHangService.apiService.getListNHByFoodSearch(keyword).enqueue(new Callback<List<NhaHang>>() {
+                    @Override
+                    public void onResponse(Call<List<NhaHang>> call, Response<List<NhaHang>> response) {
+                        List<NhaHang> h = response.body();
+                        for (NhaHang nhaHang : h) {
+                            r.add(new Restaurant(nhaHang.getId(), nhaHang.getTen(), nhaHang.getAvatar(), nhaHang.getDiaChi()));
+                        }
+                        RestaurantListGlobal.getInstance().setList(r);
+
+                        Intent intent = new Intent(context, RestaurantListActivity.class);
+                        intent.putExtra("TITLE", keyword);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<NhaHang>> call, Throwable t) {
+
+                    }
+                });
 
 
-                List<Restaurant> restaurants = getAllRestaurants();
+//                List<Restaurant> restaurants = getAllRestaurants();
 
-                RestaurantListGlobal.getInstance().setList(restaurants);
-
-                Intent intent = new Intent(context, RestaurantListActivity.class);
-                intent.putExtra("TITLE", keyword);
-                startActivity(intent);
-
+//                RestaurantListGlobal.getInstance().setList(restaurants);
+//
+//                Intent intent = new Intent(context, RestaurantListActivity.class);
+//                intent.putExtra("TITLE", keyword);
+//                startActivity(intent);
+//
                 return true;
             }
         });

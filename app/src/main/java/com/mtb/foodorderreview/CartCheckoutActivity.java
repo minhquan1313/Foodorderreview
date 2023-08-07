@@ -10,13 +10,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mtb.foodorderreview.api.ChiTietDonHangService;
 import com.mtb.foodorderreview.api.DonHangService;
+import com.mtb.foodorderreview.api.NhaHangFoodService;
 import com.mtb.foodorderreview.checkout.CartFoodListViewAdapter;
 import com.mtb.foodorderreview.components.ExpandableHeightListView;
+import com.mtb.foodorderreview.global.CartFood;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.OrderGlobal;
 import com.mtb.foodorderreview.global.UserGlobal;
+import com.mtb.foodorderreview.model.ChiTietDonHang;
 import com.mtb.foodorderreview.model.DonHang;
+import com.mtb.foodorderreview.model.NhaHangFood;
 import com.mtb.foodorderreview.something.Order;
 import com.mtb.foodorderreview.utils.ICallback;
 import com.mtb.foodorderreview.utils.Utils;
@@ -25,7 +30,10 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -102,11 +110,12 @@ public class CartCheckoutActivity extends AppCompatActivity {
                     public void onResponse(Call<DonHang> call, Response<DonHang> response) {
                         DonHang d = response.body();
                         id[0] = d.getId();
-                        callback.callback();
 
                         OrderGlobal.getInstance().setOrder(order);
                         order.setId(id[0]);
                         order.setState(Order.STATE.getState(d.getTrangThai()));
+
+                        callback.callback();
                     }
 
                     @Override
@@ -115,22 +124,65 @@ public class CartCheckoutActivity extends AppCompatActivity {
                     }
                 });
 
+
                 callback = new ICallback() {
                     @Override
                     public void callback() {
-                        cartGlobal.reset();
+                        int foodSize = cartGlobal.getFoodList().size();
                         Intent intent = new Intent();
-
-
                         //intent.putExtra("idDonhang", id[0]);
                         setResult(Activity.RESULT_OK, intent);
                         finish();
+
+                        List<ChiTietDonHang> chiTietDonHangs = new ArrayList<>();
+                        for (CartFood i : cartGlobal.getFoodList()) {
+                            Map<String, Object> map = Map.of(
+                                    "idNhaHang", cartGlobal.getRestaurant().getId(),
+                                    "idFood", i.getFood().getId()
+                            );
+                            final int[] id = {0};
+
+                            NhaHangFoodService.apiService.getIDNhaHangFood(map).enqueue(new Callback<NhaHangFood>() {
+                                @Override
+                                public void onResponse(Call<NhaHangFood> call, Response<NhaHangFood> response) {
+                                    int id = response.body().getId();
+
+                                    ChiTietDonHang ct = new ChiTietDonHang(null, i.getQuantity(), id, order.getId());
+                                    chiTietDonHangs.add(ct);
+
+                                    if (chiTietDonHangs.size() == foodSize)
+                                        whenIdNhaHangFoodFilled(chiTietDonHangs);
+                                }
+
+                                @Override
+                                public void onFailure(Call<NhaHangFood> call, Throwable t) {
+
+                                }
+                            });
+
+
+                        }
+                        cartGlobal.reset();
                     }
                 };
 
 
 //                Intent intent = new Intent(CartCheckoutActivity.this, DeliveryActivity.class);
 //                startActivity(intent);
+
+            }
+        });
+    }
+
+    private void whenIdNhaHangFoodFilled(List<ChiTietDonHang> list) {
+        ChiTietDonHangService.apiService.saveListChiTietDonHang(list).enqueue(new Callback<List<ChiTietDonHang>>() {
+            @Override
+            public void onResponse(Call<List<ChiTietDonHang>> call, Response<List<ChiTietDonHang>> response) {
+                List<ChiTietDonHang> f = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<List<ChiTietDonHang>> call, Throwable t) {
 
             }
         });

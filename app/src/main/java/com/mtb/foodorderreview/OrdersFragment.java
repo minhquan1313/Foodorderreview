@@ -9,18 +9,27 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import com.mtb.foodorderreview.api.ChiTietDonHangService;
+import com.mtb.foodorderreview.api.DonHangService;
+import com.mtb.foodorderreview.api.NhaHangService;
 import com.mtb.foodorderreview.global.CartFood;
+import com.mtb.foodorderreview.global.UserGlobal;
 import com.mtb.foodorderreview.homeview.OrderListViewAdapter;
 import com.mtb.foodorderreview.homeview.Restaurant;
+import com.mtb.foodorderreview.model.NhaHang;
 import com.mtb.foodorderreview.restaurentview.RestaurantFood;
 import com.mtb.foodorderreview.something.Order;
+import com.mtb.foodorderreview.utils.ICallback;
 import com.mtb.foodorderreview.utils.ICartFoodDetailFromAPI;
 import com.mtb.foodorderreview.utils.Utils;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,12 +106,18 @@ public class OrdersFragment extends Fragment {
     }
 
     private Restaurant getRestaurantById(int id) {
+
         Restaurant f = new Restaurant(id, "Restaurant name " + id, Utils.URL_SAMPLE_IMAGE, "Restaurant address");
         return f;
     }
 
+    private Restaurant converst(NhaHang nhaHang) {
+        return null;
+    }
+
     private CartFood getCardFoodByFoodId(int id, int quantity) {
         CartFood f = new CartFood(getRestFoodById(id), quantity);
+
 
         return f;
     }
@@ -136,63 +151,120 @@ public class OrdersFragment extends Fragment {
         return o;
     }
 
+    private int getFinalPrice(List<ICartFoodDetailFromAPI> list) {
+        int total = 0;
+        for (ICartFoodDetailFromAPI i : list) {
+            Double val = i.price();
+            total += val.intValue();
+        }
+        return total;
+    }
+
+    private ICallback callback;
+
     private void setOrderListV(View view) {
-        Order[] l = {
-                makeOrder(1,
-                        1,
-                        2,
-                        "12/2/2023",
-                        new ArrayList<ICartFoodDetailFromAPI>() {
-                            {
-                                add(new ICartFoodDetailFromAPI() {
-                                    @Override
-                                    public int foodId() {
-                                        return 1;
-                                    }
+        List<Order> orderList = new ArrayList<>();
+        OrderListViewAdapter adapter = new OrderListViewAdapter(context, orderList);
 
-                                    @Override
-                                    public int quantity() {
-                                        return 2;
+
+        DonHangService.apiService.getDonHangUI(UserGlobal.getInstance().getId()).enqueue(new Callback<List<Object[]>>() {
+            @Override
+            public void onResponse(Call<List<Object[]>> call, Response<List<Object[]>> response) {
+                List<Object[]> list = response.body();
+                if (list != null) {
+                    for (Object[] objects : list) {
+                        List<ICartFoodDetailFromAPI> l = new ArrayList<>();
+                        final int[] sizeChiTietDonhang = {-1};
+
+                        Double idDonHang = (Double) objects[0];
+                        ChiTietDonHangService.apiService.listChiTietDonHangByDonhang(idDonHang.intValue()).enqueue(new Callback<List<Object[]>>() {
+                            @Override
+                            public void onResponse(Call<List<Object[]>> call, Response<List<Object[]>> response) {
+                                List<Object[]> res = response.body();
+
+                                sizeChiTietDonhang[0] = res.size();
+                                if (res != null) {
+                                    for (Object[] obj : res) {
+                                        ICartFoodDetailFromAPI item = new ICartFoodDetailFromAPI() {
+
+                                            @Override
+                                            public int foodId() {
+                                                Double idfood = (Double) obj[0];
+                                                return idfood.intValue();
+                                            }
+
+                                            @Override
+                                            public int quantity() {
+                                                Double quantity = (Double) obj[1];
+                                                return quantity.intValue();
+                                            }
+
+                                            @Override
+                                            public double price() {
+                                                return (double) obj[2];
+                                            }
+                                        };
+                                        l.add(item);
                                     }
-                                });
+                                    Double num1 = (Double) objects[0];
+                                    Double num2 = (Double) objects[1];
+                                    Double num3 = (Double) objects[2];
+
+                                    String year = objects[3].toString().substring(0, 4);
+                                    String month = objects[3].toString().substring(5, 7);
+                                    String date = objects[3].toString().substring(8, 10);
+
+                                    String createDate = date.concat("/").concat(month).concat("/").concat(year);
+
+                                    NhaHangService.apiService.getNhaHangById(num2.intValue()).enqueue(new Callback<NhaHang>() {
+                                        @Override
+                                        public void onResponse(Call<NhaHang> call, Response<NhaHang> response) {
+                                            NhaHang n = response.body();
+                                            Restaurant f = new Restaurant(n.getId(), n.getTen(), n.getAvatar(), n.getDiaChi());
+                                            List<CartFood> cartFood = getCardFoodsByDetail(l);
+                                            Order o = null;
+                                            try {
+                                                o = new Order(num1.intValue(),
+                                                        f,
+                                                        Utils.dateParse(createDate),
+                                                        cartFood,
+                                                        Order.STATE.getState(num2.intValue()),
+                                                        getFinalPrice(l));
+                                            } catch (ParseException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                            orderList.add(o);
+                                            adapter.notifyDataSetChanged();
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<NhaHang> call, Throwable t) {
+
+                                        }
+                                    });
+
+                                }
+
                             }
-                        },
-                        35000),
-                makeOrder(2,
-                        2,
-                        4,
-                        "11/2/2023",
-                        new ArrayList<ICartFoodDetailFromAPI>() {
-                            {
-                                add(new ICartFoodDetailFromAPI() {
-                                    @Override
-                                    public int foodId() {
-                                        return 1;
-                                    }
 
-                                    @Override
-                                    public int quantity() {
-                                        return 2;
-                                    }
-                                });
-                                add(new ICartFoodDetailFromAPI() {
-                                    @Override
-                                    public int foodId() {
-                                        return 2;
-                                    }
+                            @Override
+                            public void onFailure(Call<List<Object[]>> call, Throwable t) {
 
-                                    @Override
-                                    public int quantity() {
-                                        return 1;
-                                    }
-                                });
                             }
-                        },
-                        45000),
-        };
+                        });
+                    }
 
-        OrderListViewAdapter adapter = new OrderListViewAdapter(context, Arrays.asList(l));
 
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Object[]>> call, Throwable t) {
+
+            }
+        });
         orders_listview.setAdapter(adapter);
+
     }
 }

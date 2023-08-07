@@ -5,7 +5,6 @@ import com.mtb.foodorderreview.global.RestaurantListGlobal;
 import com.mtb.foodorderreview.homeview.Restaurant;
 import com.mtb.foodorderreview.model.NhaHang;
 import com.mtb.foodorderreview.utils.ICallback;
-import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class CallNhaHang {
             public void onResponse(Call<List<com.mtb.foodorderreview.model.NhaHang>> call, Response<List<com.mtb.foodorderreview.model.NhaHang>> response) {
                 List<NhaHang> nh = response.body();
                 for (NhaHang n : nh) {
-                    l.add(new Restaurant(n.getId(), n.getTen(), Utils.URL_SAMPLE_IMAGE, n.getDiaChi()));
+                    l.add(new Restaurant(n.getId(), n.getTen(), n.getAvatar(), n.getDiaChi()));
                 }
 
                 RestaurantListGlobal.getInstance().setList(l);
@@ -47,7 +46,7 @@ public class CallNhaHang {
             public void onResponse(Call<List<NhaHang>> call, Response<List<NhaHang>> response) {
                 List<NhaHang> nh = response.body();
                 for (NhaHang n : nh) {
-                    l.add(new Restaurant(n.getId(), n.getTen(), Utils.URL_SAMPLE_IMAGE, n.getDiaChi()));
+                    l.add(new Restaurant(n.getId(), n.getTen(), n.getAvatar(), n.getDiaChi()));
                 }
                 RestaurantListGlobal.getInstance().setList(l);
 

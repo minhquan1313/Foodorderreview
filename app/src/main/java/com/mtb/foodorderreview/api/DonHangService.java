@@ -36,4 +36,6 @@ public interface DonHangService {
     @GET("/donhang/user/{id}")
     Call<List<DonHang>> getListDonhangByIDUser(@Path("id") int id);
 
+    @GET("/donhangui/{id}")
+    Call<List<Object[]>> getDonHangUI(@Path("id") int id);
 }

@@ -12,14 +12,22 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mtb.foodorderreview.api.CommentService;
 import com.mtb.foodorderreview.components.ExpandableHeightListView;
+import com.mtb.foodorderreview.global.RestaurantGlobal;
 import com.mtb.foodorderreview.global.UserGlobal;
+import com.mtb.foodorderreview.model.DanhGia;
 import com.mtb.foodorderreview.restaurentview.RestaurantUserRate;
 import com.mtb.foodorderreview.restaurentview.RestaurantUserRateListViewAdapter;
+import com.mtb.foodorderreview.utils.ICallback;
 import com.mtb.foodorderreview.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RestaurantRatingActivity extends AppCompatActivity {
     ExpandableHeightListView restaurant_rating_listview;
@@ -105,16 +113,29 @@ public class RestaurantRatingActivity extends AppCompatActivity {
     }
 
     private void listview() {
-        l = new ArrayList<>() {
-            {
-                add(new RestaurantUserRate("Anh tư", 5, "Quá ngon"));
-                add(new RestaurantUserRate("Anh năm", 4, "Quá ngon"));
-                add(new RestaurantUserRate("Anh Sáu", 1, "Quá nấu chưa chín, t quá thất vọng rồi"));
-            }
-        };
 
-        adapter = new RestaurantUserRateListViewAdapter(context, l);
-        restaurant_rating_listview.setAdapter(adapter);
+//        List<RestaurantUserRate> listfo = new ArrayList<>();
+        CommentService.apiService.getListDanhGia(RestaurantGlobal.getInstance().getRestaurant().getId()).enqueue(new Callback<List<DanhGia>>() {
+            @Override
+            public void onResponse(Call<List<DanhGia>> call, Response<List<DanhGia>> response) {
+                List<DanhGia> list = response.body();
+                for (DanhGia d : list) {
+                    l.add(new RestaurantUserRate(UserGlobal.getInstance().getName(), d.getRate(), d.getNoiDung()));
+                }
+                adapter = new RestaurantUserRateListViewAdapter(context, l);
+                restaurant_rating_listview.setAdapter(adapter);
+                restaurant_rating_listview.setExpanded(true);
+            }
+
+            @Override
+            public void onFailure(Call<List<DanhGia>> call, Throwable t) {
+
+            }
+        });
+        l = new ArrayList<>();
+//
+//        adapter = new RestaurantUserRateListViewAdapter(context, l);
+//        restaurant_rating_listview.setAdapter(adapter);
     }
 
     private void starsClick() {
@@ -167,6 +188,13 @@ public class RestaurantRatingActivity extends AppCompatActivity {
         });
     }
 
+    private void reset() {
+        starCount = 0;
+        note = "";
+        setStar(starCount);
+        restaurant_rating_note_input.setText(note);
+    }
+
     private void updateSubmitBtn() {
         if (starCount == 0) {
             Utils.UI.disableBtn(context, restaurant_rating_submit_btn);
@@ -175,12 +203,30 @@ public class RestaurantRatingActivity extends AppCompatActivity {
         Utils.UI.enableBtn(context, restaurant_rating_submit_btn);
     }
 
+    private ICallback callback;
+
     private void onUserRateSubmit() {
         // API here
+        DanhGia danhGia = new DanhGia(null, note, null, starCount, UserGlobal.getInstance().getId(), RestaurantGlobal.getInstance().getRestaurant().getId());
+        CommentService.apiService.createComment(danhGia).enqueue(new Callback<DanhGia>() {
+            @Override
+            public void onResponse(Call<DanhGia> call, Response<DanhGia> response) {
+                callback.callback();
+            }
 
-        l.add(0, new RestaurantUserRate(UserGlobal.getInstance().getName(), starCount, note));
+            @Override
+            public void onFailure(Call<DanhGia> call, Throwable t) {
 
-        adapter.notifyDataSetChanged();
-        Utils.UI.enableBtn(context, restaurant_rating_submit_btn);
+            }
+        });
+        callback = new ICallback() {
+            @Override
+            public void callback() {
+                l.add(0, new RestaurantUserRate(UserGlobal.getInstance().getName(), starCount, note));
+                adapter.notifyDataSetChanged();
+                reset();
+                //Utils.UI.enableBtn(context, restaurant_rating_submit_btn);
+            }
+        };
     }
 }

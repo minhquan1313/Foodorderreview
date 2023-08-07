@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mtb.foodorderreview.api.FoodService;
+import com.mtb.foodorderreview.api.NhaHangService;
 import com.mtb.foodorderreview.components.ExpandableHeightGridView;
 import com.mtb.foodorderreview.global.CartGlobal;
 import com.mtb.foodorderreview.global.RestaurantFoodGlobal;
@@ -77,8 +79,10 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_location1 = findViewById(R.id.restaurant_location1);
         restaurant_cart_btn = findViewById(R.id.restaurant_cart_btn);
         restaurant_cart_quantity_text = findViewById(R.id.restaurant_cart_quantity_text);
+
         restaurant_rate_star_text = findViewById(R.id.restaurant_rate_star_text);
         restaurant_rate_amount_text = findViewById(R.id.restaurant_rate_amount_text);
+
         linear_btn_restaurant_back1 = findViewById(R.id.linear_btn_restaurant_back1);
         restaurant_rating_card = findViewById(R.id.restaurant_rating_card);
 
@@ -94,7 +98,39 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurant_rate_star_text.setText("1");
         restaurant_rate_amount_text.setText("1k");
         Utils.UI.setSrc(restaurant.getImage(), restaurant_banner1);
+        updateStatusRating();
+
     }
+
+    private void updateStatusRating() {
+        int idNhaHang = RestaurantGlobal.getInstance().getRestaurant().getId();
+        NhaHangService.apiService.getRating(idNhaHang).enqueue(new Callback<Double>() {
+            @Override
+            public void onResponse(Call<Double> call, Response<Double> response) {
+                Double star = (Math.round(response.body() * 100.0) / 100.0);
+                restaurant_rate_star_text.setText(star.toString());
+            }
+
+            @Override
+            public void onFailure(Call<Double> call, Throwable t) {
+
+            }
+        });
+
+        NhaHangService.apiService.countCommnent(idNhaHang).enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+
+                restaurant_rate_amount_text.setText(response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     public void updateCartUI() {
         if (cartGlobal.getFoodList().size() == 0 || cartGlobal.getRestaurant().getId() != restaurant.getId()) {
@@ -170,7 +206,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 List<Food> listFood = response.body();
 
                 for (Food l : listFood) {
-                    list.add(new RestaurantFood(l.getId(), l.getTen(), "Bún bò thơm ngon mời ban ăn nha", Utils.URL_SAMPLE_IMAGE,
+                    list.add(new RestaurantFood(l.getId(), l.getTen(), "", l.getAvatar(),
                             l.getGiaTien().intValue()));
                 }
 

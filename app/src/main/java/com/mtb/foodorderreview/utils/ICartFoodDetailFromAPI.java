@@ -5,4 +5,6 @@ public interface ICartFoodDetailFromAPI {
 
     int quantity();
 
+    double price();
+
 }

@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Utils {
-    public static final String ip = "http://192.168.1.8:8085/";
+    public static final String ip = "http://192.168.1.6:8085/";
     public static final String CURRENCY = "đ";
     public static final String URL_SAMPLE_IMAGE = "https://hellothucung.com/wp-content/uploads/2022/01/Poodle-mau-vang-mo-2.jpg";
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
